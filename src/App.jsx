@@ -9,9 +9,11 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const postApi = async () =>
-      await fetchRequest('http://localhost:3000/posts');
-    setPosts(postApi);
+    const postApi = async () => {
+      const data = await fetchRequest('http://localhost:3000/posts');
+      setPosts(data);
+    };
+    postApi()
     return () => {
       setPosts([]);
     };
@@ -19,7 +21,7 @@ function App() {
   return (
     <div className="content">
       <Header />
-      <Outlet />
+      <Outlet context={posts} />
     </div>
   );
 }
