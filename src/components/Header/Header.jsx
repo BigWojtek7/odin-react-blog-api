@@ -1,6 +1,11 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 function Header() {
+  const handleLogout = () =>{
+    localStorage.removeItem('token')
+    alert("You are signed out")
+  }
+
   return (
     <div className={styles.header}>
       <div className={styles.headerLeft}>
@@ -10,7 +15,8 @@ function Header() {
       </div>
       <div className={styles.headerRight}>
         <Link to="login">Log-in</Link>
-        <Link to="signup">Sign Up</Link>
+        <Link to="sign-up">Sign Up</Link>
+        <a href="#" onClick={handleLogout}>Sign Out</a>
       </div>
       <hr />
     </div>
