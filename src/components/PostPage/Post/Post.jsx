@@ -1,7 +1,10 @@
 function Post({ post }) {
   
   return (
-    <div></div>
+    <div>
+      <p>{post.title}</p>
+      <p>{post.content}</p>
+    </div>
   )
 }
 

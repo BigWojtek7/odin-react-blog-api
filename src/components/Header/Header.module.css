@@ -1,6 +1,16 @@
 .logo {
   font-size: 4rem;
-  /* height: 6em; */
-  padding: 0.5em;
+  text-decoration: none;
+  color: rgb(0, 126, 217);
+  letter-spacing: 0.2em;
+  
+}
+
+.headerLeft{
   text-align: center;
+  padding: 1em;
+}
+
+.headerRight > * {
+  margin: 0.5em;
 }

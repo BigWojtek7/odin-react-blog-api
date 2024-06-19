@@ -1,4 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function PostLists() {
   const posts = useOutletContext();
@@ -7,13 +8,8 @@ function PostLists() {
     <div className="postLists">
       <ul>
         {posts.map(post => (
-            <li key={post._id}>{post.title}</li>
+            <li key={post._id}><Link to={`/posts/${post._id}`}>{post.title}</Link></li>
         ))}
-        </ul>
-      <ul>
-        <li>Some</li>
-        <li>List</li>
-        <li>Example</li>
       </ul>
     </div>
   );
