@@ -3,8 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 function CommentsForm() {
   const { postid } = useParams();
-  const [, token,] = useOutletContext();
-  console.log(token, 'value3');
+  const [, token] = useOutletContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,29 +11,42 @@ function CommentsForm() {
     // formData.append('username', e.target.username.value);
     // formData.append('password', e.target.password.value);
     const postApi = async () => {
-      const res = await fetch(
-        `http://localhost:3000/posts/${postid}/comments`,
-        {
-          headers: { 'Content-Type': 'application/json', Authorization: token },
-          body: JSON.stringify({
-            content: e.target.content.value,
-          }),
-          method: 'post',
-        }
-      );
-      const data = await res.json();
-      console.log(data)
+      try {
+        const res = await fetch(
+          `http://localhost:3000/posts/${postid}/comments`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            body: JSON.stringify({
+              content: e.target.content.value,
+            }),
+            method: 'post',
+          }
+        );
+        console.log(res.status)
+        // const data = await res.json();
+
+        window.location.reload();
+      } catch (err) {
+        console.log(err.name);
+      }
     };
     postApi();
-    window.location.reload(); 
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="content"></label>
-      <textarea name="content" id="content"></textarea>
-      <button>Submit</button>
-    </form>
+    <div className="commentSubmit">
+      {token ? (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="content"></label>
+          <textarea name="content" id="content"></textarea>
+          <button>Submit</button>
+        </form>
+      ): <p><strong>To add comment You must log in first!</strong></p>}
+
+    </div>
   );
 }
 

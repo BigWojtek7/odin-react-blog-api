@@ -28,6 +28,7 @@ function PostPage() {
       const data = await fetchRequest(
         `http://localhost:3000/posts/${postid}/comments`
       );
+
       setComments(data);
     };
     postApi();
@@ -35,8 +36,6 @@ function PostPage() {
       setComments([]);
     };
   }, [postid]);
-
-  console.log('wol', comments)
 
   return (
     <div>

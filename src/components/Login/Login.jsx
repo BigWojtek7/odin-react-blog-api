@@ -29,7 +29,7 @@ function Login() {
       if (data.success) {
         navigate('/');
       }
-      console.log(data);
+
     };
     postApi();
   };

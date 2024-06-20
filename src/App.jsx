@@ -8,18 +8,34 @@ import fetchRequest from './components/FetchBlogApi/fetchRequest';
 function App() {
   const [posts, setPosts] = useState([]);
 
+  const [user, setUser] = useState({});
+
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken);
 
-  console.log(token, 'hahaha');
+  useEffect(() => {
+    if (token) {
+      const postApi = async () => {
+        try {
+          const res = await fetch(`http://localhost:3000/user`, {
+            headers: {
+              Authorization: token,
+            },
+          });
+          const data = await res.json();
 
-  // useEffect(() => {
-  //   setToken(currentToken);
-  //   console.log(token, 'hahaha')
-  // }, [currentToken]);
+          setUser(data);
+        } catch (err) {
+          console.log(err.name);
+        }
+      };
+      postApi();
+    }
+    return () => {
+      setUser([]);
+    };
+  }, [token]);
 
-
-  
   useEffect(() => {
     const postApi = async () => {
       const data = await fetchRequest('http://localhost:3000/posts');
@@ -32,8 +48,8 @@ function App() {
   }, []);
   return (
     <div className="content">
-      <Header token = {token} setToken={setToken}/>
-      <Outlet context={[posts, token, setToken]} />
+      <Header token={token} setToken={setToken} user={user} />
+      <Outlet context={[posts, token, setToken, user]} />
     </div>
   );
 }

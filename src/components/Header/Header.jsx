@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-function Header({ token, setToken }) {
+function Header({ token, setToken, user }) {
   // const [, token, setToken] = useOutletContext();
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -23,7 +23,7 @@ function Header({ token, setToken }) {
           </div>
         ) : (
           <div className="loggedIn">
-          <span>Hello user!</span>
+          <span>Hello {user.username} !</span>
           <a href="#" onClick={handleLogout}>
             Sign Out
           </a>
