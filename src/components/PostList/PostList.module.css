@@ -1,0 +1,14 @@
+.postsList ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.postsList h1{
+  font-size: 2.5rem;
+}
+.postsList{
+  font-size: 2rem;
+  line-height: 2em;
+  text-align: center;
+}

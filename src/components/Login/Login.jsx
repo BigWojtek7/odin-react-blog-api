@@ -29,7 +29,6 @@ function Login() {
       if (data.success) {
         navigate('/');
       }
-
     };
     postApi();
   };

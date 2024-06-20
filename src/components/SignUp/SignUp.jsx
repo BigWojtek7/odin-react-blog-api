@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,9 +21,11 @@ function SignUp() {
         }),
         method: 'post',
       });
-      const json = await res.json();
-      setFetchData(json);
-      console.log(json);
+      const data = await res.json();
+      setFetchData(data);
+      if (data.success) {
+        navigate('/');
+      }
     };
     postApi();
   };

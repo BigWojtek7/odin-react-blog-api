@@ -39,7 +39,7 @@ function PostPage() {
 
   return (
     <div>
-      <h1>Post</h1>
+      <h1>Post:</h1>
       <Post post={post} />
       <hr />
       <h2>Comments</h2>
