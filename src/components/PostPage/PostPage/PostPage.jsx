@@ -9,19 +9,19 @@ function PostPage() {
   const { postid } = useParams();
   const [post, setPost] = useState([]);
 
+
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const postApi = async () => {
       const data = await fetchRequest(`http://localhost:3000/posts/${postid}`);
       setPost(data);
-      console.log(post)
     };
     postApi();
     return () => {
       setPost([]);
     };
-  }, []);
+  }, [postid]);
 
   useEffect(() => {
     const postApi = async () => {
@@ -34,7 +34,7 @@ function PostPage() {
     return () => {
       setComments([]);
     };
-  }, []);
+  }, [postid]);
 
   console.log('wol', comments)
 

@@ -1,10 +1,12 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-function Header() {
-  const handleLogout = () =>{
-    localStorage.removeItem('token')
-    alert("You are signed out")
-  }
+function Header({ token, setToken }) {
+  // const [, token, setToken] = useOutletContext();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    alert('You are signed out');
+  };
 
   return (
     <div className={styles.header}>
@@ -14,9 +16,19 @@ function Header() {
         </Link>
       </div>
       <div className={styles.headerRight}>
-        <Link to="login">Log-in</Link>
-        <Link to="sign-up">Sign Up</Link>
-        <a href="#" onClick={handleLogout}>Sign Out</a>
+        {!token ? (
+          <div >
+            <Link to="login">Log-in</Link>
+            <Link to="sign-up">Sign Up</Link>
+          </div>
+        ) : (
+          <div className="loggedIn">
+          <span>Hello user!</span>
+          <a href="#" onClick={handleLogout}>
+            Sign Out
+          </a>
+          </div>
+        )}
       </div>
       <hr />
     </div>

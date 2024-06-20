@@ -2,8 +2,7 @@ import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function PostLists() {
-  const posts = useOutletContext();
-  console.log(posts)
+  const [posts,,] = useOutletContext();
   return (
     <div className="postLists">
       <ul>

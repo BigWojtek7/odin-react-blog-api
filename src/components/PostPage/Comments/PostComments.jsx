@@ -1,3 +1,4 @@
+import CommentsForm from './CommentsForm';
 function PostComments({ comments }) {
   return (
     <>
@@ -7,8 +8,9 @@ function PostComments({ comments }) {
           <p>{comment.content}</p>
         </div>
       ))}
+      <CommentsForm />
     </>
   );
 }
 
-export default PostComments
+export default PostComments;

@@ -11,6 +11,6 @@
   padding: 1em;
 }
 
-.headerRight > * {
+.headerRight div > * {
   margin: 0.5em;
 }
