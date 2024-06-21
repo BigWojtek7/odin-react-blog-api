@@ -29,6 +29,9 @@ function Header({ token, setToken, user }) {
           </a>
           </div>
         )}
+        {user.is_admin && (
+          <Link to="new-post">New Post</Link>
+        )}
       </div>
       <hr />
     </div>

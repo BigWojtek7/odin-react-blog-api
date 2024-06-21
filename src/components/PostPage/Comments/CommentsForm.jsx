@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 function CommentsForm() {
   const { postid } = useParams();
-  const [, token] = useOutletContext();
+  const [token] = useOutletContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ function CommentsForm() {
             method: 'post',
           }
         );
-        console.log(res.status)
+        console.log(res.status);
         // const data = await res.json();
 
         window.location.reload();
@@ -44,8 +44,11 @@ function CommentsForm() {
           <textarea name="content" id="content"></textarea>
           <button>Submit</button>
         </form>
-      ): <p><strong>To add comment You must log in first!</strong></p>}
-
+      ) : (
+        <p>
+          <strong>To add comment You must log in first!</strong>
+        </p>
+      )}
     </div>
   );
 }

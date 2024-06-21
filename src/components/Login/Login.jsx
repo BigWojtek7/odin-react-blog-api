@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 
 function Login() {
   const [fetchData, setFetchData] = useState(false);
-  const [, token, setToken] = useOutletContext();
+  const [token, setToken] = useOutletContext();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();

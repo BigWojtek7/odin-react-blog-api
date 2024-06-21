@@ -12,6 +12,8 @@ function PostPage() {
 
   const [comments, setComments] = useState([]);
 
+  
+
   useEffect(() => {
     const postApi = async () => {
       const data = await fetchRequest(`http://localhost:3000/posts/${postid}`);
@@ -28,7 +30,7 @@ function PostPage() {
       const data = await fetchRequest(
         `http://localhost:3000/posts/${postid}/comments`
       );
-
+      console.log(data)
       setComments(data);
     };
     postApi();
