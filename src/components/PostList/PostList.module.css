@@ -1,14 +1,22 @@
-.postsList ul{
+.postsList ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.postsList h1{
+.postsList h1 {
   font-size: 2.5rem;
 }
-.postsList{
-  font-size: 2rem;
-  line-height: 2em;
+.postsList {
   text-align: center;
+}
+
+.postsList p {
+  display: inline;
+  line-height: 2em;
+}
+
+.postsList p:first-child {
+  font-size: 1.5rem;
+  font-weight: 700;
 }

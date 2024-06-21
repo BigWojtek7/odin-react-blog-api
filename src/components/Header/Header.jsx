@@ -17,21 +17,20 @@ function Header({ token, setToken, user }) {
       </div>
       <div className={styles.headerRight}>
         {!token ? (
-          <div >
+          <div>
             <Link to="login">Log-in</Link>
             <Link to="sign-up">Sign Up</Link>
           </div>
         ) : (
           <div className="loggedIn">
-          <span>Hello {user.username} !</span>
-          <a href="#" onClick={handleLogout}>
-            Sign Out
-          </a>
+            <span>Hello {user.username} !</span>
+            <a href="#" onClick={handleLogout}>
+              Sign Out
+            </a>
           </div>
         )}
-        {user.is_admin && (
-          <Link to="new-post">New Post</Link>
-        )}
+
+        {user.is_admin && <Link to="new-post"><button>New Post</button></Link>}
       </div>
       <hr />
     </div>

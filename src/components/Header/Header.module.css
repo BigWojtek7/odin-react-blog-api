@@ -14,3 +14,8 @@
 .headerRight div > * {
   margin: 0.5em;
 }
+.headerRight{
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}

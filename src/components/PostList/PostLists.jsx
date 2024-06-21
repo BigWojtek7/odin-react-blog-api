@@ -21,7 +21,7 @@ function PostLists() {
   const handleDelete = (e) => {
     e.preventDefault();
     const postId = e.target.value;
-    console.log(postId)
+    console.log(postId);
     const postApi = async () => {
       try {
         const res = await fetch(`http://localhost:3000/posts/${postId}`, {
@@ -49,7 +49,9 @@ function PostLists() {
       <ul>
         {posts.map((post) => (
           <li key={post._id}>
-            <Link to={`/posts/${post._id}`}>{post.title}</Link>
+            <Link to={`/posts/${post._id}`}>
+              <p>{post.title}</p> <p>{post.user.username}</p> <p>{post.date_format}</p>
+            </Link>
             {user.is_admin && (
               <button value={post._id} onClick={handleDelete}>
                 Delete
