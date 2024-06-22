@@ -9,7 +9,7 @@ function PostLists() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const postApi = async () => {
-      const data = await fetchRequest('http://localhost:3000/posts');
+      const data = await fetchRequest('https://incandescent-creative-gaura.glitch.me/posts');
       setPosts(data);
     };
     postApi();
@@ -24,7 +24,7 @@ function PostLists() {
     console.log(postId);
     const postApi = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/posts/${postId}`, {
+        const res = await fetch(`https://incandescent-creative-gaura.glitch.me/posts/${postId}`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: token,
