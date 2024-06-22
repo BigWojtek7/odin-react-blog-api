@@ -1,8 +1,23 @@
-# React + Vite
+# Odin Project Authentication
+[Live Preview](https://lean-noisy-citrine.glitch.me)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You can see post without log-in.
+A website where you have to log-in to leave comments
+As a admin you can also delete posts & delete comments.
 
-Currently, two official plugins are available:
+Account with admin permission:
+<details>
+<summary>Show code</summary>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+username: admin,
+password: admin
+</details>
+
+Regular user account without admin permission:
+(You can create different account, this is just example)
+<details>
+<summary>Show code</summary>
+
+username: user,
+password: user
+</details>
