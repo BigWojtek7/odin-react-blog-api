@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
-  const [fetchData, setFetchData] = useState();
+  const [fetchData, setFetchData] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -17,7 +17,7 @@ function SignUp() {
           username: e.target.username.value,
           password: e.target.password.value,
           re_password: e.target.re_password.value,
-          is_admin: false
+          is_admin: false,
         }),
         method: 'post',
       });
@@ -29,6 +29,7 @@ function SignUp() {
     };
     postApi();
   };
+  console.log(fetchData);
 
   return (
     <>
@@ -41,7 +42,10 @@ function SignUp() {
         <input id="re_password" name="re_password" type="password" />
         <button>Sign Up</button>
       </form>
-      {fetchData && <p>{fetchData.msg}</p>}
+      {fetchData &&
+        fetchData.msg.map((err, index) => (
+          <p key={index}>{err.msg}</p>
+        ))}
     </>
   );
 }
