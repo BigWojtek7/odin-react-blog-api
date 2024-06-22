@@ -11,7 +11,7 @@ function SignUp() {
     console.log(e.target.username.value);
 
     const postApi = async () => {
-      const res = await fetch('http://localhost:3000/sign-up', {
+      const res = await fetch('https://incandescent-creative-gaura.glitch.me/sign-up', {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: e.target.username.value,

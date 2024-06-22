@@ -18,7 +18,7 @@ function App() {
     if (token) {
       const postApi = async () => {
         try {
-          const res = await fetch(`http://localhost:3000/user`, {
+          const res = await fetch(`https://incandescent-creative-gaura.glitch.me/user`, {
             headers: {
               Authorization: token,
             },
@@ -39,7 +39,7 @@ function App() {
 
   // useEffect(() => {
   //   const postApi = async () => {
-  //     const data = await fetchRequest('http://localhost:3000/posts');
+  //     const data = await fetchRequest('https://incandescent-creative-gaura.glitch.me/posts');
   //     setPosts(data);
   //   };
   //   postApi();

@@ -13,7 +13,7 @@ function CommentsForm() {
     const postApi = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/posts/${postid}/comments`,
+          `https://incandescent-creative-gaura.glitch.me/posts/${postid}/comments`,
           {
             headers: {
               'Content-Type': 'application/json',

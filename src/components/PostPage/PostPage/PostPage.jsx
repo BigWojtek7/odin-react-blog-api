@@ -16,7 +16,7 @@ function PostPage() {
 
   useEffect(() => {
     const postApi = async () => {
-      const data = await fetchRequest(`http://localhost:3000/posts/${postid}`);
+      const data = await fetchRequest(`https://incandescent-creative-gaura.glitch.me/posts/${postid}`);
       setPost(data);
     };
     postApi();
@@ -28,7 +28,7 @@ function PostPage() {
   useEffect(() => {
     const postApi = async () => {
       const data = await fetchRequest(
-        `http://localhost:3000/posts/${postid}/comments`
+        `https://incandescent-creative-gaura.glitch.me/posts/${postid}/comments`
       );
       console.log(data)
       setComments(data);

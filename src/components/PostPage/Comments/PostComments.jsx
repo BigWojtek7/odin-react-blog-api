@@ -10,7 +10,7 @@ function PostComments({ comments }) {
     console.log(commentId);
     const postApi = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/posts/comments/${commentId}`, {
+        const res = await fetch(`https://incandescent-creative-gaura.glitch.me/posts/comments/${commentId}`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: token,
