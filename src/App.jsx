@@ -3,10 +3,8 @@ import './App.css';
 import Header from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
 
-// import fetchRequest from './components/FetchBlogApi/fetchRequest';
 
 function App() {
-  // const [posts, setPosts] = useState([]);
 
   const [user, setUser] = useState({});
 
@@ -37,16 +35,6 @@ function App() {
     };
   }, [token]);
 
-  // useEffect(() => {
-  //   const postApi = async () => {
-  //     const data = await fetchRequest('https://incandescent-creative-gaura.glitch.me/posts');
-  //     setPosts(data);
-  //   };
-  //   postApi();
-  //   return () => {
-  //     setPosts([]);
-  //   };
-  // }, []);
   return (
     <div className="content">
       <Header token={token} setToken={setToken} user={user} />
