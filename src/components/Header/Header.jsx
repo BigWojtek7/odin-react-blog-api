@@ -23,7 +23,7 @@ function Header({ token, setToken, user }) {
           </div>
         ) : (
           <div className="loggedIn">
-            <span>Hello {user.username} !</span>
+            <span>Hello <strong>{user.username}</strong> !</span>
             <a href="#" onClick={handleLogout}>
               Sign Out
             </a>
