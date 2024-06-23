@@ -1,5 +1,5 @@
-# Odin Project Authentication
-[Live Preview](https://lean-noisy-citrine.glitch.me)
+# Odin Project Blog Api
+[Live Preview](https://my-daily-blog.netlify.app/)
 
 You can see post without log-in.
 A website where you have to log-in to leave comments
