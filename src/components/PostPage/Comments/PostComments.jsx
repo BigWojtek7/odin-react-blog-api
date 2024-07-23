@@ -35,7 +35,7 @@ function PostComments({ comments }) {
         {comments.map((comment) => (
           <div className={styles.singleComment} key={comment.id}>
             <p>
-              <strong>{comment.username}</strong> {comment.date}
+              <strong>{comment.username}</strong> {comment.date_format}
             </p>
             <p>{comment.content}</p>
             {user.is_admin && (
