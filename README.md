@@ -1,5 +1,6 @@
 # Odin Project Blog Api
-[Live Preview](https://my-daily-blog.netlify.app/)
+[Live Preview](https://my-blog-api.netlify.app/)
+[Backend](https://github.com/BigWojtek7/odin-express-blog-api)
 
 You can see post without log-in.
 A website where you have to log-in to leave comments
