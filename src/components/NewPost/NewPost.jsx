@@ -11,7 +11,7 @@ function NewPost() {
     // formData.append('password', e.target.password.value);
     const postApi = async () => {
       try {
-        await fetch(`http://localhost:3000/posts/`, {
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: token,

@@ -16,13 +16,13 @@ function App() {
     if (token) {
       const postApi = async () => {
         try {
-          const res = await fetch(`https://incandescent-creative-gaura.glitch.me/user`, {
+          const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user`, {
             headers: {
               Authorization: token,
             },
           });
           const data = await res.json();
-
+          console.log(data)
           setUser(data);
         } catch (err) {
           console.log(err.name);

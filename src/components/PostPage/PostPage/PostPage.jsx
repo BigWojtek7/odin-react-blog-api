@@ -16,7 +16,7 @@ function PostPage() {
 
   useEffect(() => {
     const postApi = async () => {
-      const data = await fetchRequest(`https://incandescent-creative-gaura.glitch.me/posts/${postid}`);
+      const data = await fetchRequest(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`);
       setPost(data);
     };
     postApi();
@@ -28,7 +28,7 @@ function PostPage() {
   useEffect(() => {
     const postApi = async () => {
       const data = await fetchRequest(
-        `https://incandescent-creative-gaura.glitch.me/posts/${postid}/comments`
+        `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`
       );
       console.log(data)
       setComments(data);

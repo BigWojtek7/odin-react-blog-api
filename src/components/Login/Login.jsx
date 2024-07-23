@@ -12,7 +12,7 @@ function Login() {
     // formData.append('username', e.target.username.value);
     // formData.append('password', e.target.password.value);
     const postApi = async () => {
-      const res = await fetch('https://incandescent-creative-gaura.glitch.me/login', {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: e.target.username.value,
