@@ -49,11 +49,11 @@ function PostLists() {
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
-            <Link to={`/posts/${post._id}`}>
-              <p>{post.title}</p> <p>{post.username}</p> <p>{post.date}</p>
+            <Link to={`/posts/${post.id}`}>
+              <p>{post.title}</p> <p>{post.username}</p> <p>{post.date_format}</p>
             </Link>
             {user.is_admin && (
-              <button value={post._id} onClick={handleDelete}>
+              <button value={post.id} onClick={handleDelete}>
                 Delete
               </button>
             )}
