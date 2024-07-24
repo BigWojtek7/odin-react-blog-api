@@ -6,9 +6,6 @@ function NewPost() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // let formData = new FormData();
-    // formData.append('username', e.target.username.value);
-    // formData.append('password', e.target.password.value);
     const postApi = async () => {
       try {
         await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/`, {

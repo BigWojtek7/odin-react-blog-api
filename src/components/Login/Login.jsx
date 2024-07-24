@@ -6,11 +6,10 @@ function Login() {
   const [fetchData, setFetchData] = useState(false);
   const [token, setToken] = useOutletContext();
   const navigate = useNavigate();
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // let formData = new FormData();
-    // formData.append('username', e.target.username.value);
-    // formData.append('password', e.target.password.value);
     const postApi = async () => {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         headers: { 'Content-Type': 'application/json' },
