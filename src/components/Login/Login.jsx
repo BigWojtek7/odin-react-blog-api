@@ -1,51 +1,63 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
+import requestWithNativeFetch from '../../utils/fetchApi';
+
+import Loader from '../Loader/Loader';
 
 function Login() {
   const [fetchData, setFetchData] = useState(false);
-  const [token, setToken] = useOutletContext();
+  const [token, setToken, , isLoading, setIsLoading] = useOutletContext();
   const navigate = useNavigate();
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const postApi = async () => {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+    setIsLoading(true);
+    const fetchDataForLogin = async () => {
+      try {
+        const url = `${import.meta.env.VITE_BACKEND_URL}/login`;
+        const headers = { 'Content-Type': 'application/json' };
+        const data = {
           username: e.target.username.value,
           password: e.target.password.value,
-        }),
-        method: 'post',
-      });
-      const data = await res.json();
-      setFetchData(data);
-      const dataToken = data.token;
-      localStorage.setItem('token', dataToken);
-      setToken(dataToken);
-
-      if (data.success) {
-        navigate('/');
+        };
+        const messagesData = await requestWithNativeFetch(
+          url,
+          'POST',
+          headers,
+          data
+        );
+        setFetchData(messagesData);
+        setIsLoading(false);
+        if (messagesData.success) {
+          const dataToken = messagesData.token;
+          localStorage.setItem('token', dataToken);
+          setToken(dataToken);
+          navigate('/');
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
-    postApi();
+    fetchDataForLogin();
   };
 
   return (
     <>
-      {!token ? (
+      {isLoading ? (
+        <Loader />
+      ) : !token ? (
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" type="text" />
           <label htmlFor="password">Password</label>
           <input id="password" name="password" type="password" />
           <button>Log In</button>
+          {fetchData && <p>{fetchData.msg}</p>}
         </form>
       ) : (
         <p>You are logged in</p>
       )}
-      {fetchData && <p>{fetchData.msg}</p>}
     </>
   );
 }
