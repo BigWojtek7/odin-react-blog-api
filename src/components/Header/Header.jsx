@@ -2,7 +2,7 @@ import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
 import Icon from '@mdi/react';
-import { mdiLogin, mdiAccountPlus } from '@mdi/js';
+import { mdiLogin, mdiAccountPlus, mdiLogout } from '@mdi/js';
 
 function Header({ token, setToken, user }) {
   // const [, token, setToken] = useOutletContext();
@@ -20,20 +20,23 @@ function Header({ token, setToken, user }) {
         </Link>
       </div>
       <div className={styles.headerRight}>
-        
         {!token ? (
           <div className={styles.accountLinks}>
-            <Link to="login">Log-in<Icon path={mdiLogin} size={1.5}/></Link>        
-            <Link to="sign-up">Sign Up <Icon path={mdiAccountPlus} size={1.5}/></Link>
+            <Link to="login">
+              Log-in
+              <Icon path={mdiLogin} size={1.5} />
+            </Link>
+            <Link to="sign-up">
+              Sign Up <Icon path={mdiAccountPlus} size={1.5} />
+            </Link>
           </div>
         ) : (
-          
           <div className={styles.accountLinks}>
             <span>
               Hello <strong>{user.username}</strong> !
             </span>
             <a href="#" onClick={handleLogout}>
-              Sign Out
+              <Icon path={mdiLogout} size={1.3} color={'red'} />
             </a>
           </div>
         )}

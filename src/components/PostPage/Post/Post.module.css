@@ -2,9 +2,11 @@
   font-weight: 700;
   text-align: center;
   font-size: 1.6rem;
+  padding: .5em;
 }
 
 .content{
   line-height: 2;
   font-size: 1.5rem;
+  padding: 0.5em 0;
 }
