@@ -1,9 +1,9 @@
 body {
-  margin: 3vw 10vw;
+  margin: 5vh 15vw;
   background-color: #d2d2d2;
 }
 
-#root {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,7 +13,7 @@ body {
 .content {
   background-color: #bcbcbc;
   border-radius: 20px;
-  padding: 0 5vw 5vw 5vw;
+  padding: 0 5vw 5vh 5vw;
 }
 
 .card {
@@ -49,4 +49,9 @@ button{
   padding: 5px 10px;
   font-size: 1rem;
   font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

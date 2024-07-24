@@ -4,6 +4,9 @@ import styles from './PostList.module.css';
 import { useEffect, useState } from 'react';
 import fetchRequest from '../FetchBlogApi/fetchRequest';
 
+import Icon from '@mdi/react';
+import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
+
 function PostLists() {
   const [token, , user] = useOutletContext();
   const [posts, setPosts] = useState([]);
@@ -49,14 +52,16 @@ function PostLists() {
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
+            <div className={styles.post}>
             <Link to={`/posts/${post.id}`}>
-              <p>{post.title}</p> <p>{post.username}</p> <p>{post.date_format}</p>
+              <p>{post.title}</p> <p>{post.username}</p> <p>{post.date_format}</p><Icon path={mdiArrowBottomRightBoldBoxOutline} size={1.8} />
             </Link>
             {user.is_admin && (
               <button value={post.id} onClick={handleDelete}>
                 Delete
               </button>
             )}
+            </div>
           </li>
         ))}
       </ul>

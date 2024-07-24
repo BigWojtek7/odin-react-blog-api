@@ -7,9 +7,6 @@ function CommentsForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // let formData = new FormData();
-    // formData.append('username', e.target.username.value);
-    // formData.append('password', e.target.password.value);
     const postApi = async () => {
       try {
         const res = await fetch(

@@ -8,14 +8,23 @@
 
 .headerLeft{
   text-align: center;
-  padding: 1em;
+  padding: 0.8em;
 }
 
-.headerRight div > * {
-  margin: 0.5em;
-}
 .headerRight{
   display: flex;
-  gap: 1em;
+  gap: 1.2em;
+}
+
+.accountLinks{
+  display: flex;
+  gap: 1.2em;
   align-items: center;
 }
+
+.accountLinks a {
+  display: flex;
+  align-items: center;
+  gap: .3em
+}
+

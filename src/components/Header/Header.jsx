@@ -1,5 +1,9 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
+
+import Icon from '@mdi/react';
+import { mdiLogin, mdiAccountPlus } from '@mdi/js';
+
 function Header({ token, setToken, user }) {
   // const [, token, setToken] = useOutletContext();
   const handleLogout = () => {
@@ -16,21 +20,29 @@ function Header({ token, setToken, user }) {
         </Link>
       </div>
       <div className={styles.headerRight}>
+        
         {!token ? (
-          <div>
-            <Link to="login">Log-in</Link>
-            <Link to="sign-up">Sign Up</Link>
+          <div className={styles.accountLinks}>
+            <Link to="login">Log-in<Icon path={mdiLogin} size={1.5}/></Link>        
+            <Link to="sign-up">Sign Up <Icon path={mdiAccountPlus} size={1.5}/></Link>
           </div>
         ) : (
-          <div className="loggedIn">
-            <span>Hello <strong>{user.username}</strong> !</span>
+          
+          <div className={styles.accountLinks}>
+            <span>
+              Hello <strong>{user.username}</strong> !
+            </span>
             <a href="#" onClick={handleLogout}>
               Sign Out
             </a>
           </div>
         )}
 
-        {user.is_admin && <Link to="new-post"><button>New Post</button></Link>}
+        {user.is_admin && (
+          <Link to="new-post">
+            <button>New Post</button>
+          </Link>
+        )}
       </div>
       <hr />
     </div>
