@@ -23,17 +23,15 @@
 }
 
 .post{
-  margin: 0.9em;
-}
-
-.post{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0.9em;
 }
 
 .post a {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5em
 }
