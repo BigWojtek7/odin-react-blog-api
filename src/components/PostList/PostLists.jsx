@@ -1,37 +1,18 @@
 import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
-import { useEffect, useState } from 'react';
-import getRequestWithNativeFetch from '../../utils/fetchApiGet';
 
+import { useFetch } from '../../utils/useFetch';
 import Icon from '@mdi/react';
 import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 import Loader from '../Loader/Loader';
 
 function PostLists() {
-  const [token, , user, isLoading, setIsLoading] = useOutletContext();
-  const [posts, setPosts] = useState([]);
+  const [token, , user] = useOutletContext();
 
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchDataForPosts = async () => {
-      try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/posts`;
-        const headers = {};
-        const messagesData = await getRequestWithNativeFetch(url, headers);
-        setPosts(messagesData);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchDataForPosts();
-
-    return () => {
-      setPosts([]);
-    };
-  }, [setIsLoading]);
-
+  
+  const {fetchData , error , loading } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`)
+  console.log(fetchData, error,loading)
   const handleDelete = (e) => {
     e.preventDefault();
     const postId = e.target.value;
@@ -62,13 +43,13 @@ function PostLists() {
 
   return (
     <div className={styles.postsList}>
-      {isLoading ? (
+      {loading ? (
         <Loader />
       ) : (
         <div>
           <h1>Titles of posts:</h1>
           <ul>
-            {posts.map((post) => (
+            {fetchData?.map((post) => (
               <li key={post.id}>
                 <div className={styles.post}>
                   <Link to={`/posts/${post.id}`}>

@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react';
 
-const useFetch = (url, method, headers, data = undefined) => {
+export function useFetch(url, method, headers, data) {
   const [fetchData, setFetchData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log('1')
-  
   useEffect(() => {
-    console.log(url)
+    const controller = new AbortController();
     const fetchForData = async () => {
       try {
         const response = await fetch(url, {
+          signal: controller.signal,
           method: method,
           headers: headers,
           body: JSON.stringify(data),
         });
         const responseJSON = await response.json();
         setFetchData(responseJSON);
-        console.log(responseJSON)
       } catch (err) {
         setError(err);
       } finally {
@@ -26,9 +24,10 @@ const useFetch = (url, method, headers, data = undefined) => {
       }
     };
     fetchForData();
+    return () => {
+      controller.abort();
+    };
   }, [url, method, headers, data]);
 
   return { fetchData, error, loading };
-};
-
-export default useFetch;
+}
