@@ -1,9 +1,9 @@
 import App from './App';
-import PostLists from './components/PostList/PostLists';
-import PostPage from './components/PostPage/PostPage/PostPage';
-import Login from './components/Login/Login';
-import SignUp from './components/SignUp/SignUp';
-import NewPost from './components/NewPost/NewPost';
+import PostLists from './pages/PostList/PostLists';
+import PostPage from './pages/PostPage/PostPage/PostPage';
+import Login from './pages/Login/Login';
+import SignUp from './pages/SignUp/SignUp';
+import NewPost from './pages/NewPost/NewPost';
 
 const routes = [
   {
@@ -12,9 +12,9 @@ const routes = [
     children: [
       { index: true, element: <PostLists /> },
       { path: 'posts/:postid', element: <PostPage /> },
-      { path: 'new-post', element: <NewPost />},
+      { path: 'new-post', element: <NewPost /> },
       { path: 'login', element: <Login /> },
-      { path: 'sign-up', element: <SignUp />}
+      { path: 'sign-up', element: <SignUp /> },
     ],
   },
 ];

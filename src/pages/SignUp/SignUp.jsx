@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import Loader from '../Loader/Loader';
+import Loader from '../../components/Loader/Loader';
 import requestWithNativeFetch from '../../utils/fetchApi';
 
 function SignUp() {

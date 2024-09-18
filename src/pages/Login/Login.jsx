@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
 import requestWithNativeFetch from '../../utils/fetchApi';
 
-import Loader from '../Loader/Loader';
+import Loader from '../../components/Loader/Loader';
 
 function Login() {
   const [fetchData, setFetchData] = useState(false);
