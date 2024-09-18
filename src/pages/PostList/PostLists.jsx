@@ -1,36 +1,53 @@
 import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import getRequestWithNativeFetch from '../../utils/fetchApiGet';
 
 import Icon from '@mdi/react';
 import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 import Loader from '../../components/Loader/Loader';
 
+import useFetch from '../../utils/useFetch';
+
 function PostLists() {
   const [token, , user, isLoading, setIsLoading] = useOutletContext();
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchDataForPosts = async () => {
-      try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/posts`;
-        const headers = {};
-        const messagesData = await getRequestWithNativeFetch(url, headers);
-        setPosts(messagesData);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchDataForPosts();
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   const fetchDataForPosts = async () => {
+  //     try {
+  //       const url = `${import.meta.env.VITE_BACKEND_URL}/posts`;
+  //       const headers = {};
+  //       const messagesData = await getRequestWithNativeFetch(url, headers);
+  //       setPosts(messagesData);
+  //       setIsLoading(false);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchDataForPosts();
 
-    return () => {
-      setPosts([]);
-    };
-  }, [setIsLoading]);
+  //   return () => {
+  //     setPosts([]);
+  //   };
+  // }, [setIsLoading]);
+
+  // const options = useMemo(
+  //   () => ({
+  //     headers: {},
+  //   }),
+  //   []
+  // );
+
+  const {
+    fetchData: posts,
+    error,
+    loading,
+  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
+
+  console.log(error, loading);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -68,7 +85,7 @@ function PostLists() {
         <div>
           <h1>Titles of posts:</h1>
           <ul>
-            {posts.map((post) => (
+            {posts?.map((post) => (
               <li key={post.id}>
                 <div className={styles.post}>
                   <Link to={`/posts/${post.id}`}>
