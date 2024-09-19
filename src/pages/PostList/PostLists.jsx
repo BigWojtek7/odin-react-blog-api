@@ -12,34 +12,6 @@ import useFetch from '../../utils/useFetch';
 
 function PostLists() {
   const [token, , user, isLoading, setIsLoading] = useOutletContext();
-  // const [posts, setPosts] = useState([]);
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   const fetchDataForPosts = async () => {
-  //     try {
-  //       const url = `${import.meta.env.VITE_BACKEND_URL}/posts`;
-  //       const headers = {};
-  //       const messagesData = await getRequestWithNativeFetch(url, headers);
-  //       setPosts(messagesData);
-  //       setIsLoading(false);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchDataForPosts();
-
-  //   return () => {
-  //     setPosts([]);
-  //   };
-  // }, [setIsLoading]);
-
-  // const options = useMemo(
-  //   () => ({
-  //     headers: {},
-  //   }),
-  //   []
-  // );
 
   const {
     fetchData: posts,
@@ -47,7 +19,7 @@ function PostLists() {
     loading,
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
-  console.log(error, loading);
+  console.log(posts, error, loading);
 
   const handleDelete = (e) => {
     e.preventDefault();

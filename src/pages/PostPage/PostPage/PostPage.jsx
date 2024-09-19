@@ -4,41 +4,25 @@ import { useParams } from 'react-router-dom';
 
 import Post from '../Post/Post';
 import PostComments from '../Comments/PostComments';
+import useFetch from '../../../utils/useFetch';
 
 import styles from './PostPage.module.css';
 
 function PostPage() {
   const { postid } = useParams();
-  const [post, setPost] = useState([]);
+  const {
+    fetchData: post,
+    error:postError,
+    loading:postLoading,
+  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`);
 
-  const [comments, setComments] = useState([]);
+  console.log(post, postError, postLoading);
 
-  useEffect(() => {
-    const postApi = async () => {
-      const data = await fetchRequest(
-        `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
-      );
-      setPost(data);
-    };
-    postApi();
-    return () => {
-      setPost([]);
-    };
-  }, [postid]);
-
-  useEffect(() => {
-    const postApi = async () => {
-      const data = await fetchRequest(
-        `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`
-      );
-      console.log(data);
-      setComments(data);
-    };
-    postApi();
-    return () => {
-      setComments([]);
-    };
-  }, [postid]);
+  const {
+    fetchData: comments,
+    error:commentError,
+    loading: commentLoading,
+  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
 
   return (
     <div>

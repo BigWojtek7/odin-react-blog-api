@@ -32,14 +32,14 @@ function PostComments({ comments }) {
   return (
     <>
       <div className={styles.comments}>
-        {comments.map((comment) => (
+        {comments?.map((comment) => (
           <div className={styles.singleComment} key={comment.id}>
             <p>
-              <strong>{comment.username}</strong> {comment.date_format}
+              <strong>{comment?.username}</strong> {comment?.date_format}
             </p>
-            <p>{comment.content}</p>
+            <p>{comment?.content}</p>
             {user.is_admin && (
-              <button value={comment.id} onClick={handleDelete}>
+              <button value={comment?.id} onClick={handleDelete}>
                 Delete
               </button>
             )}
