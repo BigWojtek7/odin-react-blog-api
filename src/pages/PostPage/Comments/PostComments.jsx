@@ -6,8 +6,9 @@ import { useOutletContext } from 'react-router-dom';
 function PostComments({ comments }) {
   const [token, , user] = useOutletContext();
 
-  const [deleteCommentRes, setDeleteCommentRes] = useState({})
+  const [deleteCommentRes, setDeleteCommentRes] = useState({});
 
+  console.log(deleteCommentRes);
   const handleDelete = (e) => {
     e.preventDefault();
     const commentId = e.target.value;

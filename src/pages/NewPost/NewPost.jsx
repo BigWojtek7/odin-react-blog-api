@@ -7,6 +7,7 @@ function NewPost() {
   const [token, , user] = useOutletContext();
   const navigate = useNavigate();
   const [cretePostRes, setCreatePostRes] = useState({})
+  console.log(cretePostRes)
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -8,6 +8,7 @@ function CommentsForm() {
   const [createCommentRes, setCreteCommentRes] = useState({});
   const { postid } = useParams();
   const [token] = useOutletContext();
+  console.log(createCommentRes)
 
   const handleSubmit = (e) => {
     e.preventDefault();

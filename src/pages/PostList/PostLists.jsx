@@ -1,7 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import requestWithNativeFetch from '../../utils/fetchApiGet';
 
 import Icon from '@mdi/react';
@@ -11,13 +11,14 @@ import Loader from '../../components/Loader/Loader';
 import useFetch1 from '../../utils/useFetch';
 
 function PostLists() {
-  const [token, , user, isLoading, setIsLoading] = useOutletContext();
+  const [token, , user, isLoading, ] = useOutletContext();
   const [deletePostRes, setDeletePostRes] = useState({});
+  console.log(deletePostRes)
 
   const {
     fetchData: posts,
-    error,
-    loading,
+    // error,
+    // loading,
   } = useFetch1(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
   const handleDelete = (e) => {
