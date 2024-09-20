@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
-import requestWithNativeFetch from '../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/fetchApiGet';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);
-  const [token,, , isLoading, setIsLoading] = useOutletContext();
+  const [token, , , isLoading, setIsLoading] = useOutletContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -13,21 +13,21 @@ function SignUp() {
     setIsLoading(true);
     const fetchDataForCreateUser = async () => {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/sign-up`;
-        const headers = {
-          'Content-Type': 'application/json',
-        };
-        const data = {
-          username: e.target.username.value,
-          password: e.target.password.value,
-          re_password: e.target.re_password.value,
-          is_admin: false,
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: e.target.username.value,
+            password: e.target.password.value,
+            re_password: e.target.re_password.value,
+            is_admin: false,
+          }),
+          method: 'post',
         };
         const createUserData = await requestWithNativeFetch(
-          url,
-          'POST',
-          headers,
-          data
+          `${import.meta.env.VITE_BACKEND_URL}/sign-up`,
+          options
         );
         setFetchData(createUserData);
         setIsLoading(false);

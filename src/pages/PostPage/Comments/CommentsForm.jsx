@@ -1,7 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
 
+import requestWithNativeFetch from '../../../utils/fetchApiGet';
+import { useState } from 'react';
+
 function CommentsForm() {
+  const [createCommentRes, setCreteCommentRes] = useState({});
   const { postid } = useParams();
   const [token] = useOutletContext();
 
@@ -9,20 +13,22 @@ function CommentsForm() {
     e.preventDefault();
     const postApi = async () => {
       try {
-        const res = await fetch(
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            content: e.target.content.value,
+          }),
+          method: 'post',
+        };
+
+        const createCommentData = await requestWithNativeFetch(
           `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: token,
-            },
-            body: JSON.stringify({
-              content: e.target.content.value,
-            }),
-            method: 'post',
-          }
+          options
         );
-        console.log(res.status);
+        setCreteCommentRes(createCommentData);
         // const data = await res.json();
 
         window.location.reload();

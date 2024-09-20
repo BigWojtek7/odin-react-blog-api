@@ -1,32 +1,37 @@
+import { useState } from 'react';
+import requestWithNativeFetch from '../../../utils/fetchApiGet';
 import CommentsForm from './CommentsForm';
 import styles from './PostComments.module.css';
 import { useOutletContext } from 'react-router-dom';
 function PostComments({ comments }) {
   const [token, , user] = useOutletContext();
-  
+
+  const [deleteCommentRes, setDeleteCommentRes] = useState({})
+
   const handleDelete = (e) => {
     e.preventDefault();
     const commentId = e.target.value;
-    console.log(commentId);
-    const postApi = async () => {
+
+    const fetchDataForDeletePost = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`, {
+        const options = {
           headers: {
             'Content-Type': 'application/json',
             Authorization: token,
           },
           method: 'delete',
-        });
-        const data = await res.json();
-        console.log(data)
-        window.location.reload();
-
-        
+        };
+        const deleteData = await requestWithNativeFetch(
+          `${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`,
+          options
+        );
+        setDeleteCommentRes(deleteData);
       } catch (err) {
         console.log(err);
       }
     };
-    postApi();
+    fetchDataForDeletePost();
+    window.location.reload();
   };
 
   return (

@@ -2,53 +2,49 @@ import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
 import { useEffect, useMemo, useState } from 'react';
-import getRequestWithNativeFetch from '../../utils/fetchApiGet';
+import requestWithNativeFetch from '../../utils/fetchApiGet';
 
 import Icon from '@mdi/react';
 import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 import Loader from '../../components/Loader/Loader';
 
-import useFetch from '../../utils/useFetch';
+import useFetch1 from '../../utils/useFetch';
 
 function PostLists() {
   const [token, , user, isLoading, setIsLoading] = useOutletContext();
+  const [deletePostRes, setDeletePostRes] = useState({});
 
   const {
     fetchData: posts,
     error,
     loading,
-  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
-
-  console.log(posts, error, loading);
+  } = useFetch1(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
   const handleDelete = (e) => {
     e.preventDefault();
     const postId = e.target.value;
-    console.log(postId);
-    const postApi = async () => {
+
+    const fetchDataForDeletePost = async () => {
       try {
-        const res = await fetch(
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          method: 'delete',
+        };
+        const deleteData = await requestWithNativeFetch(
           `${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: token,
-            },
-            method: 'delete',
-          }
+          options
         );
-        console.log(res.status);
-        // const data = await res.json();
-        const data = await res.json();
-        console.log(data);
-        window.location.reload();
+        setDeletePostRes(deleteData);
       } catch (err) {
-        console.log(err.name);
+        console.log(err);
       }
     };
-    postApi();
+    fetchDataForDeletePost();
+    window.location.reload();
   };
-
   return (
     <div className={styles.postsList}>
       {isLoading ? (

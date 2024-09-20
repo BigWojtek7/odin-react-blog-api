@@ -1,14 +1,18 @@
 import { useOutletContext } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import requestWithNativeFetch from '../../utils/fetchApiGet';
+import { useState } from 'react';
+
 function NewPost() {
   const [token, , user] = useOutletContext();
   const navigate = useNavigate();
+  const [cretePostRes, setCreatePostRes] = useState({})
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const postApi = async () => {
       try {
-        await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/`, {
+        const options = {
           headers: {
             'Content-Type': 'application/json',
             Authorization: token,
@@ -18,7 +22,12 @@ function NewPost() {
             content: e.target.content.value,
           }),
           method: 'post',
-        });
+        };
+        const createPostDate = await requestWithNativeFetch(
+          `${import.meta.env.VITE_BACKEND_URL}/posts/`,
+          options
+        );
+        setCreatePostRes(createPostDate)
         navigate('/');
       } catch (err) {
         console.log(err.name);

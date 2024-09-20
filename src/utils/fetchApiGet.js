@@ -1,10 +1,9 @@
-const getRequestWithNativeFetch = async (url, headers) => {
-  const response = await fetch(url, { headers: headers });
-
+const requestWithNativeFetch = async (url, options) => {
+  const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error(`HTTP error: Status ${response.status}`);
   }
   return response.json();
 };
 
-export default getRequestWithNativeFetch;
+export default requestWithNativeFetch;

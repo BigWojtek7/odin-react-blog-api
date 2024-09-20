@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import getRequestWithNativeFetch from './utils/fetchApiGet';
 import { Outlet } from 'react-router-dom';
+import useFetch1 from './utils/useFetch';
 
 function App() {
   const [user, setUser] = useState({});
@@ -11,27 +12,24 @@ function App() {
 
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken);
+  const fetchOptions = useMemo(() => ({
+    headers: {
+      Authorization: token,
+    },
+  }), [token]);
+
+
+
+  const { fetchData: userData, error, loading } = useFetch1(
+    token ? `${import.meta.env.VITE_BACKEND_URL}/user` : null, fetchOptions // Tylko wywołanie, jeśli token istnieje
+  );
 
   useEffect(() => {
-    if (token) {
-      const fetchDataForUsers = async () => {
-        try {
-          const url = `${import.meta.env.VITE_BACKEND_URL}/user`;
-          const headers = {
-            Authorization: token,
-          };
-          const userData = await getRequestWithNativeFetch(url, headers);
-          setUser(userData);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      fetchDataForUsers();
+    if (userData) {
+      setUser(userData); // Ustawienie danych użytkownika po pobraniu
     }
-    return () => {
-      setUser([]);
-    };
-  }, [token]);
+    return () => setUser({}); // Czyszczenie stanu użytkownika na unmount
+  }, [userData]);
 
 
   return (

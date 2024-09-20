@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
-import requestWithNativeFetch from '../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/fetchApiGet';
 
 import Loader from '../../components/Loader/Loader';
 
@@ -15,20 +15,25 @@ function Login() {
     setIsLoading(true);
     const fetchDataForLogin = async () => {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/login`;
-        const headers = { 'Content-Type': 'application/json' };
-        const data = {
-          username: e.target.username.value,
-          password: e.target.password.value,
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: e.target.username.value,
+            password: e.target.password.value,
+          }),
+          method: 'post',
         };
+        
+
         const messagesData = await requestWithNativeFetch(
-          url,
-          'POST',
-          headers,
-          data
+          `${import.meta.env.VITE_BACKEND_URL}/login`,
+          options
         );
         setFetchData(messagesData);
         setIsLoading(false);
+        console.log(messagesData)
         if (messagesData.success) {
           const dataToken = messagesData.token;
           localStorage.setItem('token', dataToken);
