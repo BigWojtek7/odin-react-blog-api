@@ -8,7 +8,7 @@ import Icon from '@mdi/react';
 import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 import Loader from '../../components/Loader/Loader';
 
-import useFetch1 from '../../utils/useFetch';
+import useFetch from '../../utils/useFetch';
 
 function PostLists() {
   const [token, , user, isLoading, ] = useOutletContext();
@@ -19,7 +19,7 @@ function PostLists() {
     fetchData: posts,
     // error,
     // loading,
-  } = useFetch1(`${import.meta.env.VITE_BACKEND_URL}/posts`);
+  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
   const handleDelete = (e) => {
     e.preventDefault();

@@ -3,20 +3,19 @@
   text-decoration: none;
   color: rgb(0, 126, 217);
   letter-spacing: 0.2em;
-  
 }
 
-.headerLeft{
+.headerLeft {
   text-align: center;
   padding: 0.8em;
 }
 
-.headerRight{
+.headerRight {
   display: flex;
   gap: 1.2em;
 }
 
-.accountLinks{
+.accountLinks {
   display: flex;
   gap: 1.2em;
   align-items: center;
@@ -25,6 +24,5 @@
 .accountLinks a {
   display: flex;
   align-items: center;
-  gap: .3em
+  gap: 0.3em;
 }
-

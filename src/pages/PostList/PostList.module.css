@@ -22,7 +22,7 @@
   font-weight: 700;
 }
 
-.post{
+.post {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,5 +33,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5em
+  gap: 0.5em;
 }

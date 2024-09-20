@@ -6,8 +6,8 @@ import { useState } from 'react';
 function NewPost() {
   const [token, , user] = useOutletContext();
   const navigate = useNavigate();
-  const [cretePostRes, setCreatePostRes] = useState({})
-  console.log(cretePostRes)
+  const [cretePostRes, setCreatePostRes] = useState({});
+  console.log(cretePostRes);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ function NewPost() {
           `${import.meta.env.VITE_BACKEND_URL}/posts/`,
           options
         );
-        setCreatePostRes(createPostDate)
+        setCreatePostRes(createPostDate);
         navigate('/');
       } catch (err) {
         console.log(err.name);

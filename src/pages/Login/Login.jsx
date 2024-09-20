@@ -25,7 +25,6 @@ function Login() {
           }),
           method: 'post',
         };
-        
 
         const messagesData = await requestWithNativeFetch(
           `${import.meta.env.VITE_BACKEND_URL}/login`,
@@ -33,7 +32,7 @@ function Login() {
         );
         setFetchData(messagesData);
         setIsLoading(false);
-        console.log(messagesData)
+        console.log(messagesData);
         if (messagesData.success) {
           const dataToken = messagesData.token;
           localStorage.setItem('token', dataToken);

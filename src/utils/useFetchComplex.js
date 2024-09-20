@@ -1,6 +1,12 @@
+  
+  
+  // unused hook because of too much complexity
+
 import { useState, useEffect, useCallback } from 'react';
 
-const useFetch = (url, options, { manual = false } = {}) => {
+const useFetchComplex = (url, options, { manual = false } = {}) => {
+
+
   const [fetchData, setFetchData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -63,4 +69,4 @@ const useFetch = (url, options, { manual = false } = {}) => {
   return { fetchData, error, loading, fetchRequest };
 };
 
-export default useFetch;
+export default useFetchComplex;

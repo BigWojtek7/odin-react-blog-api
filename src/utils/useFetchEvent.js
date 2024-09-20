@@ -1,6 +1,9 @@
+
+  // unused hook because of too much complexity
+  
 import { useState } from 'react';
 
-const useFetchEvent1 = () => {
+const useFetchEvent = () => {
   const [fetchData, setFetchData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -25,4 +28,4 @@ const useFetchEvent1 = () => {
   return { fetchData, error, loading, fetchRequest };
 };
 
-export default useFetchEvent1;
+export default useFetchEvent;
