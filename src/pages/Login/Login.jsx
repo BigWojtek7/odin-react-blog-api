@@ -26,15 +26,15 @@ function Login() {
           method: 'post',
         };
 
-        const messagesData = await requestWithNativeFetch(
+        const loginData = await requestWithNativeFetch(
           `${import.meta.env.VITE_BACKEND_URL}/login`,
           options
         );
-        setFetchData(messagesData);
+        setFetchData(loginData);
         setIsLoading(false);
-        console.log(messagesData);
-        if (messagesData.success) {
-          const dataToken = messagesData.token;
+        console.log(loginData);
+        if (loginData.success) {
+          const dataToken = loginData.token;
           localStorage.setItem('token', dataToken);
           setToken(dataToken);
           navigate('/');
