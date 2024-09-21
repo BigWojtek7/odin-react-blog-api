@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import Post from '../Post/Post';
 import PostComments from '../Comments/PostComments';
-import useFetch from '../../../utils/useFetch';
+import useFetch from '../../../hooks/useFetch';
 
 import styles from './PostPage.module.css';
 

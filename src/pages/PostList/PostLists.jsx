@@ -8,12 +8,12 @@ import Icon from '@mdi/react';
 import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 import Loader from '../../components/Loader/Loader';
 
-import useFetch from '../../utils/useFetch';
+import useFetch from '../../hooks/useFetch';
 
 function PostLists() {
-  const [token, , user, isLoading, ] = useOutletContext();
+  const [token, , user, isLoading] = useOutletContext();
   const [deletePostRes, setDeletePostRes] = useState({});
-  console.log(deletePostRes)
+  console.log(deletePostRes);
 
   const {
     fetchData: posts,

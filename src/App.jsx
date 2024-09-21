@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import useFetch from './utils/useFetch';
+import useFetch from './hooks/useFetch';
 
 function App() {
   const [user, setUser] = useState({});
@@ -11,7 +11,7 @@ function App() {
 
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken);
-  const fetchOptions = useMemo(
+  const options = useMemo(
     () => ({
       headers: {
         Authorization: token,
@@ -26,14 +26,14 @@ function App() {
     // loading,
   } = useFetch(
     token ? `${import.meta.env.VITE_BACKEND_URL}/user` : null,
-    fetchOptions // Tylko wywołanie, jeśli token istnieje
+    options
   );
 
   useEffect(() => {
     if (userData) {
-      setUser(userData); // Ustawienie danych użytkownika po pobraniu
+      setUser(userData);
     }
-    return () => setUser({}); // Czyszczenie stanu użytkownika na unmount
+    return () => setUser({});
   }, [userData]);
 
   return (
