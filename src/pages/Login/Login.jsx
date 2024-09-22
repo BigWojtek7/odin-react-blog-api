@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import requestWithNativeFetch from '../../utils/fetchApiGet';
 
 import Loader from '../../components/Loader/Loader';
-import { useAuth } from '../../context/AuthProvider';
+import useAuth from '../../hooks/useAuth';
 
 function Login() {
   const [fetchData, setFetchData] = useState(false);

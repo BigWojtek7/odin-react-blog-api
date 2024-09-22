@@ -2,7 +2,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import requestWithNativeFetch from '../../utils/fetchApiGet';
 import { useState } from 'react';
-import { useAuth } from '../../context/AuthProvider';
+import useAuth from '../../hooks/useAuth';
 
 function NewPost() {
   const { token, user } = useAuth();

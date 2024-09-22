@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Icon from '@mdi/react';
 import { mdiLogin, mdiAccountPlus, mdiLogout } from '@mdi/js';
-import { useAuth } from '../../context/AuthProvider';
+import useAuth from '../../hooks/useAuth';
 
 function Header() {
   const { token, user, logOut } = useAuth();
