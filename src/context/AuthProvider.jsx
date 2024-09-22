@@ -1,14 +1,14 @@
-import { useContext, createContext, useState, useMemo, useEffect } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
 import requestWithNativeFetch from '../utils/fetchApiGet';
 import { useNavigate } from 'react-router-dom';
-import useFetch from './useFetch';
+import useFetch from '../hooks/useFetch';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken || '');
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
   const navigate = useNavigate();
 
@@ -32,12 +32,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData)
+      console.log(userData);
       setUser(userData);
     }
     return () => setUser({});
   }, [userData]);
-
 
   const loginAction = async (data) => {
     try {
@@ -72,7 +71,7 @@ const AuthProvider = ({ children }) => {
     alert('You are signed out');
   };
   return (
-    <AuthContext.Provider value={{ token, loginAction, logOut, user }}>
+    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
       {children}
     </AuthContext.Provider>
   );
@@ -80,6 +79,4 @@ const AuthProvider = ({ children }) => {
 
 export default AuthProvider;
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export { AuthContext };

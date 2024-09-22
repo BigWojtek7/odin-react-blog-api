@@ -4,46 +4,22 @@ import { useOutletContext } from 'react-router-dom';
 import requestWithNativeFetch from '../../utils/fetchApiGet';
 
 import Loader from '../../components/Loader/Loader';
+import { useAuth } from '../../context/AuthProvider';
 
 function Login() {
   const [fetchData, setFetchData] = useState(false);
   const [token, setToken, , isLoading, setIsLoading] = useOutletContext();
   const navigate = useNavigate();
 
+  const auth = useAuth();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    const fetchDataForLogin = async () => {
-      try {
-        const options = {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: e.target.username.value,
-            password: e.target.password.value,
-          }),
-          method: 'post',
-        };
-
-        const loginData = await requestWithNativeFetch(
-          `${import.meta.env.VITE_BACKEND_URL}/login`,
-          options
-        );
-        setFetchData(loginData);
-        setIsLoading(false);
-        console.log(loginData);
-        if (loginData.success) {
-          const dataToken = loginData.token;
-          localStorage.setItem('token', dataToken);
-          setToken(dataToken);
-          navigate('/');
-        }
-      } catch (err) {
-        console.log(err);
-      }
+    const data = {
+      username: e.target.username.value,
+      password: e.target.password.value,
     };
-    fetchDataForLogin();
+    auth.loginAction(data);
   };
 
   return (

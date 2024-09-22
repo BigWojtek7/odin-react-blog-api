@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
 import useFetch from './hooks/useFetch';
 import MainLayout from './layouts/MainLayout';
-import AuthProvider from './hooks/AuthProvider';
+import AuthProvider from './context/AuthProvider';
 
 function App() {
   // const [user, setUser] = useState({});
