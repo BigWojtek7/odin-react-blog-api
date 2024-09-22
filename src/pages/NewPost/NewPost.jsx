@@ -2,9 +2,16 @@ import { useOutletContext } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import requestWithNativeFetch from '../../utils/fetchApiGet';
 import { useState } from 'react';
+import { useAuth } from '../../hooks/AuthProvider';
 
 function NewPost() {
-  const [token, , user] = useOutletContext();
+  const {token, user}= useAuth();
+
+
+  // const [token, , user] = useOutletContext();
+
+
+
   const navigate = useNavigate();
   const [cretePostRes, setCreatePostRes] = useState({});
   console.log(cretePostRes);
