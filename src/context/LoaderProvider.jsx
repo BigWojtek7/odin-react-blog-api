@@ -1,17 +1,28 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 const LoaderContext = createContext({});
 
 const LoaderProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loaderText, setLoaderText] = useState('');
+  const [loaderStack, setLoaderStack] = useState();
 
   const start = (loaderText = 'Loader...') => {
     setLoaderText(loaderText);
-    setIsLoading(true);
+    setLoaderStack((prevStack) => [...prevStack, true]);
   };
 
-  const stop = () => setIsLoading(false);
+  const stop = () => {
+    setLoaderStack((prevStack) => prevStack.slice(1));
+  };
+
+  useEffect(() => {
+    if (!loaderStack.length) {
+      setIsLoading(false);
+      return;
+    }
+    setIsLoading(true);
+  }, [loaderStack]);
 
   return (
     <LoaderContext.Provider value={{ isLoading, loaderText, start, stop }}>
