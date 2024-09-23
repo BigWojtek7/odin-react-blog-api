@@ -1,0 +1,25 @@
+.modal{
+  margin: 100px auto;
+  padding: 2em;;
+  background-color: var(--nav-bg);
+  color: var(--font-clr);
+  border: var(--btn-clr) 5px solid;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+
+.buttons button{
+  flex: 1
+}
+
+.modal::backdrop {
+  background: hsl(0 0% 0% / 70%);
+}
+
+.children {
+  margin-bottom: 0.5em;
+}
