@@ -2,9 +2,9 @@ import { useState } from 'react';
 import requestWithNativeFetch from '../../../utils/fetchApi';
 import CommentsForm from './CommentsForm';
 import styles from './PostComments.module.css';
-import { useOutletContext } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 function PostComments({ comments }) {
-  const [token, , user] = useOutletContext();
+  const {user, token} = useAuth()
 
   const [deleteCommentRes, setDeleteCommentRes] = useState({});
 

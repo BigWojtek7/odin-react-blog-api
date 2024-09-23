@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { useOutletContext } from 'react-router-dom';
+
 
 import requestWithNativeFetch from '../../../utils/fetchApi';
 import { useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 function CommentsForm() {
   const [createCommentRes, setCreteCommentRes] = useState({});
   const { postid } = useParams();
-  const [token] = useOutletContext();
+  const { token } = useAuth();
   console.log(createCommentRes);
 
   const handleSubmit = (e) => {

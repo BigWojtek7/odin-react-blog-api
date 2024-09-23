@@ -1,4 +1,3 @@
-import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
 import { useState } from 'react';
@@ -11,14 +10,12 @@ import useFetch from '../../hooks/useFetch';
 import useAuth from '../../hooks/useAuth';
 
 function PostLists() {
-  // const [token, , user, isLoading] = useOutletContext();
   const { token, user } = useAuth();
   const [deletePostRes, setDeletePostRes] = useState({});
 
   const {
     fetchData: posts,
     // error,
-    // loading,
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
   const handleDelete = (e) => {

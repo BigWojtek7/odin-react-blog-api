@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import requestWithNativeFetch from '../../utils/fetchApi';
+import useAuth from '../../hooks/useAuth';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();

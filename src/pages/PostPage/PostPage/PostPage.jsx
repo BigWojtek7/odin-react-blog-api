@@ -18,8 +18,7 @@ function PostPage() {
 
   const {
     fetchData: comments,
-    // error: commentError,
-    // loading: commentLoading,
+    // error: commentError;
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
 
   return (

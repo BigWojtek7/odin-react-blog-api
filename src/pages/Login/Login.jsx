@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useOutletContext } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
 
 function Login() {
   const [fetchData, setFetchData] = useState(false);
-  const [token, setToken, , isLoading, setIsLoading] = useOutletContext();
-  const navigate = useNavigate();
+  const {token} = useAuth();
 
   const auth = useAuth();
 
@@ -22,9 +19,7 @@ function Login() {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : !token ? (
+      {!token ? (
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" type="text" />
