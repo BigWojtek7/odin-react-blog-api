@@ -8,15 +8,46 @@ import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 
 import useFetch from '../../hooks/useFetch';
 import useAuth from '../../hooks/useAuth';
+import useModal from '../../hooks/useModal';
 
 function PostLists() {
   const { token, user } = useAuth();
   const [deletePostRes, setDeletePostRes] = useState({});
 
+  const {openModal} = useModal();
+
   const {
     fetchData: posts,
     // error,
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
+
+  const handleDeletePost = (e) => {
+    e.preventDefault();
+    const postId = e.target.value;
+    openModal('Do you really want to delete this post?', ()=> {
+      console.log('www2')
+      const fetchDataForDeletePost = async () => {
+        try {
+          const options = {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            method: 'delete',
+          };
+          const deleteData = await requestWithNativeFetch(
+            `${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`,
+            options
+          );
+          setDeletePostRes(deleteData);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchDataForDeletePost();
+      window.location.reload();
+    })
+  }
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -56,7 +87,7 @@ function PostLists() {
                 <Icon path={mdiArrowBottomRightBoldBoxOutline} size={1.8} />
               </Link>
               {user.is_admin && (
-                <button value={post.id} onClick={handleDelete}>
+                <button value={post.id} onClick={handleDeletePost}>
                   Delete
                 </button>
               )}
