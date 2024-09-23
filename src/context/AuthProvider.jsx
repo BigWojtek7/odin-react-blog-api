@@ -1,9 +1,9 @@
-import { createContext, useState, useMemo, useEffect } from 'react';
-import requestWithNativeFetch from '../utils/fetchApiGet';
+import { useState, useMemo, useEffect } from 'react';
+import requestWithNativeFetch from '../utils/fetchApi';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 
-const AuthContext = createContext();
+import AuthContext from './AuthContext';
 
 const AuthProvider = ({ children }) => {
   const currentToken = localStorage.getItem('token');
@@ -78,5 +78,3 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
-
-export { AuthContext };

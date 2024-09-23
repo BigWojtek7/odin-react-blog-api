@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
-import requestWithNativeFetch from '../../utils/fetchApiGet';
 
-import Loader from '../../components/Loader/Loader';
 import useAuth from '../../hooks/useAuth';
 
 function Login() {

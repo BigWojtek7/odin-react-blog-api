@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import Loader from '../../components/Loader/Loader';
-import requestWithNativeFetch from '../../utils/fetchApiGet';
+import requestWithNativeFetch from '../../utils/fetchApi';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);
-  const [token, , , isLoading, setIsLoading] = useOutletContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -43,9 +41,7 @@ function SignUp() {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : !token ? (
+      {!token ? (
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" type="text" />

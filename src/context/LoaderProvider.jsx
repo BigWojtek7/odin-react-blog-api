@@ -1,20 +1,20 @@
-import { createContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-const LoaderContext = createContext({});
+import LoaderContext from './LoaderContext';
 
 const LoaderProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loaderText, setLoaderText] = useState('');
-  const [loaderStack, setLoaderStack] = useState();
+  const [loaderStack, setLoaderStack] = useState([]);
 
-  const start = (loaderText = 'Loader...') => {
+  const start = useCallback((loaderText = 'Loader...') => {
     setLoaderText(loaderText);
     setLoaderStack((prevStack) => [...prevStack, true]);
-  };
+  },[]);
 
-  const stop = () => {
+  const stop = useCallback(() => {
     setLoaderStack((prevStack) => prevStack.slice(1));
-  };
+  },[]);
 
   useEffect(() => {
     if (!loaderStack.length) {
@@ -32,4 +32,3 @@ const LoaderProvider = ({ children }) => {
 };
 
 export default LoaderProvider;
-export { LoaderContext };

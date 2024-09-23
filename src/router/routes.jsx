@@ -1,10 +1,10 @@
-import App from './App';
-import PostLists from './pages/PostList/PostLists';
-import PostPage from './pages/PostPage/PostPage/PostPage';
-import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
-import NewPost from './pages/NewPost/NewPost';
-import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
+import App from '../App';
+import PostLists from '../pages/PostList/PostLists';
+import PostPage from '../pages/PostPage/PostPage/PostPage';
+import Login from '../pages/Login/Login';
+import SignUp from '../pages/SignUp/SignUp';
+import NewPost from '../pages/NewPost/NewPost';
+import PrivateRoute from './PrivateRoute';
 
 const routes = [
   {

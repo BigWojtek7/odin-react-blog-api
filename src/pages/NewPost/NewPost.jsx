@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import requestWithNativeFetch from '../../utils/fetchApiGet';
+import requestWithNativeFetch from '../../utils/fetchApi';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 

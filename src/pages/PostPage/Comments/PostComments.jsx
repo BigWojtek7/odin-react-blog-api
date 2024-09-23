@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import requestWithNativeFetch from '../../../utils/fetchApiGet';
+import requestWithNativeFetch from '../../../utils/fetchApi';
 import CommentsForm from './CommentsForm';
 import styles from './PostComments.module.css';
 import { useOutletContext } from 'react-router-dom';

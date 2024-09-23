@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
+import useLoader from './useLoader';
 
 const useFetch = (url, options) => {
   const [fetchData, setFetchData] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  const { start: loaderStart, stop: loaderStop } = useLoader();
+
   useEffect(() => {
     if (url) {
       let ignore = false;
       const fetchForData = async () => {
         try {
+          loaderStart();
           const response = await fetch(url, options);
           if (!response.ok) {
             throw new Error(`HTTP error: Status ${response.status}`);
@@ -19,8 +23,9 @@ const useFetch = (url, options) => {
           }
         } catch (err) {
           setError(err);
+          console.log(err);
         } finally {
-          setLoading(false);
+          loaderStop();
         }
       };
       fetchForData();
@@ -28,9 +33,9 @@ const useFetch = (url, options) => {
         ignore = true;
       };
     }
-  }, [url, options]);
+  }, [url, options, loaderStart, loaderStop]);
 
-  return { fetchData, error, loading };
+  return { fetchData, error };
 };
 
 export default useFetch;

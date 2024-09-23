@@ -1,4 +1,4 @@
-import { LoaderContext } from '../context/LoaderProvider';
+import LoaderContext from '../context/LoaderContext';
 
 import { useContext } from 'react';
 

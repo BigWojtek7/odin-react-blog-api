@@ -1,10 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
 import './App.css';
-import Header from './components/Header/Header';
-import { Outlet } from 'react-router-dom';
-import useFetch from './hooks/useFetch';
+
 import MainLayout from './layouts/MainLayout';
 import AuthProvider from './context/AuthProvider';
+import LoaderProvider from './context/LoaderProvider';
 
 function App() {
   // const [user, setUser] = useState({});
@@ -40,14 +38,12 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <MainLayout />
-      </AuthProvider>
+      <LoaderProvider>
+        <AuthProvider>
+          <MainLayout />
+        </AuthProvider>
+      </LoaderProvider>
     </>
-    // <div className="content">
-    //   <Header token={token} setToken={setToken} user={user} />
-    //   <Outlet context={[token, setToken, user, isLoading, setIsLoading]} />
-    // </div>
   );
 }
 
