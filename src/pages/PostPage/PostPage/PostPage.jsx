@@ -14,7 +14,6 @@ function PostPage() {
     loading: postLoading,
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`);
 
-  console.log(post, postError, postLoading);
 
   const {
     fetchData: comments,

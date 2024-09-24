@@ -3,36 +3,40 @@ import requestWithNativeFetch from '../../../utils/fetchApi';
 import CommentsForm from './CommentsForm';
 import styles from './PostComments.module.css';
 import useAuth from '../../../hooks/useAuth';
+import useModal from '../../../hooks/useModal';
 function PostComments({ comments }) {
-  const {user, token} = useAuth()
+  const { user, token } = useAuth();
+  const { openModal } = useModal();
 
   const [deleteCommentRes, setDeleteCommentRes] = useState({});
-
-  console.log(deleteCommentRes);
-  const handleDelete = (e) => {
+  // console.log(deleteCommentRes)
+  
+  const handleDeleteComment = (e) => {
     e.preventDefault();
     const commentId = e.target.value;
 
-    const fetchDataForDeletePost = async () => {
-      try {
-        const options = {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-          method: 'delete',
-        };
-        const deleteData = await requestWithNativeFetch(
-          `${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`,
-          options
-        );
-        setDeleteCommentRes(deleteData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchDataForDeletePost();
-    window.location.reload();
+    openModal('Do you really want to delete this comment?', () => {
+      const fetchDataForDeleteComment = async () => {
+        try {
+          const options = {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            method: 'delete',
+          };
+          const deleteData = await requestWithNativeFetch(
+            `${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`,
+            options
+          );
+          setDeleteCommentRes(deleteData);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchDataForDeleteComment();
+      window.location.reload();
+    });
   };
 
   return (
@@ -45,7 +49,7 @@ function PostComments({ comments }) {
             </p>
             <p>{comment?.content}</p>
             {user.is_admin && (
-              <button value={comment?.id} onClick={handleDelete}>
+              <button value={comment?.id} onClick={handleDeleteComment}>
                 Delete
               </button>
             )}

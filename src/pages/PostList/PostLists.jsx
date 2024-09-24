@@ -14,7 +14,7 @@ function PostLists() {
   const { token, user } = useAuth();
   const [deletePostRes, setDeletePostRes] = useState({});
 
-  const {openModal} = useModal();
+  const { openModal } = useModal();
 
   const {
     fetchData: posts,
@@ -24,8 +24,7 @@ function PostLists() {
   const handleDeletePost = (e) => {
     e.preventDefault();
     const postId = e.target.value;
-    openModal('Do you really want to delete this post?', ()=> {
-      console.log('www2')
+    openModal('Do you really want to delete this post?', () => {
       const fetchDataForDeletePost = async () => {
         try {
           const options = {
@@ -46,34 +45,9 @@ function PostLists() {
       };
       fetchDataForDeletePost();
       window.location.reload();
-    })
-  }
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    const postId = e.target.value;
-
-    const fetchDataForDeletePost = async () => {
-      try {
-        const options = {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-          method: 'delete',
-        };
-        const deleteData = await requestWithNativeFetch(
-          `${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`,
-          options
-        );
-        setDeletePostRes(deleteData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchDataForDeletePost();
-    window.location.reload();
+    });
   };
+
   return (
     <div className={styles.postsList}>
       <h1>Titles of posts:</h1>

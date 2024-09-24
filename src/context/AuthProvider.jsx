@@ -32,7 +32,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData);
       setUser(userData);
     }
     return () => setUser({});
