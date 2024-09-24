@@ -5,11 +5,13 @@ import Login from '../pages/Login/Login';
 import SignUp from '../pages/SignUp/SignUp';
 import NewPost from '../pages/NewPost/NewPost';
 import PrivateRoute from './PrivateRoute';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const routes = [
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <PostLists /> },
       { path: 'posts/:postid', element: <PostPage /> },
