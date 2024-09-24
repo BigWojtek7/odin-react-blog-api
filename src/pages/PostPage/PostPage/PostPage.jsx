@@ -11,7 +11,6 @@ function PostPage() {
   const {
     fetchData: post,
     error: postError,
-    loading: postLoading,
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`);
 
 
