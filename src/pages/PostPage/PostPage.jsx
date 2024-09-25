@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import Post from '../../components/Post/Post';
-import PostComments from '../../components/Comment/Comment';
+import Comment from '../../components/Comment/Comment';
 import useFetch from '../../hooks/useFetch';
 
 import styles from './PostPage.module.css';
@@ -23,7 +23,7 @@ function PostPage() {
       <Post post={post} />
       <hr />
       <h2 className={styles.headerComment}>Comments</h2>
-      <PostComments comments={comments} />
+      <Comment comments={comments} />
     </div>
   );
 }

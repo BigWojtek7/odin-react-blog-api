@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import requestWithNativeFetch from '../../utils/fetchApi';
-import CommentsForm from './CommentForm';
+import CommentForm from '../CommentForm/CommentForm';
 import styles from './Comment.module.css';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
-function PostComments({ comments }) {
+function Comment({ comments }) {
   const { user, token } = useAuth();
   const { openModal } = useModal();
 
@@ -56,9 +56,9 @@ function PostComments({ comments }) {
           </div>
         ))}
       </div>
-      <CommentsForm />
+      <CommentForm />
     </>
   );
 }
 
-export default PostComments;
+export default Comment;
