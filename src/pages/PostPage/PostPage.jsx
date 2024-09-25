@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Post from '../../components/Post/Post';
 import Comment from '../../components/Comment/Comment';
 import useFetch from '../../hooks/useFetch';
-
+import Comments from '../../components/Comments/Comments';
 import styles from './PostPage.module.css';
 
 function PostPage() {
@@ -12,10 +12,10 @@ function PostPage() {
     `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
   );
 
-  const {
-    fetchData: comments,
-    // error: commentError;
-  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
+  // const {
+  //   fetchData: comments,
+  //   // error: commentError;
+  // } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
 
   return (
     <div>
@@ -23,7 +23,7 @@ function PostPage() {
       <Post post={post} />
       <hr />
       <h2 className={styles.headerComment}>Comments</h2>
-      <Comment comments={comments} />
+      <Comments postid={postid}/>
     </div>
   );
 }

@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import requestWithNativeFetch from '../../utils/fetchApi';
-import CommentForm from '../CommentForm/CommentForm';
 import styles from './Comment.module.css';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
-function Comment({ comments }) {
+function Comment({ commentId, author, content, date, setComments }) {
   const { user, token } = useAuth();
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const [deleteCommentRes, setDeleteCommentRes] = useState({});
   // console.log(deleteCommentRes)
 
   const handleDeleteComment = (e) => {
     e.preventDefault();
-    const commentId = e.target.value;
 
     openModal('Do you really want to delete this comment?', () => {
       const fetchDataForDeleteComment = async () => {
@@ -30,33 +28,27 @@ function Comment({ comments }) {
             options
           );
           setDeleteCommentRes(deleteData);
+          setComments((prevComments) =>
+            prevComments.filter((comment) => comment.id !== commentId)
+          );
         } catch (err) {
           console.log(err);
         }
       };
       fetchDataForDeleteComment();
-      window.location.reload();
+      closeModal();
     });
   };
 
   return (
     <>
-      <div className={styles.comments}>
-        {comments?.map((comment) => (
-          <div className={styles.singleComment} key={comment.id}>
-            <p>
-              <strong>{comment?.username}</strong> {comment?.date_format}
-            </p>
-            <p>{comment?.content}</p>
-            {user.is_admin && (
-              <button value={comment?.id} onClick={handleDeleteComment}>
-                Delete
-              </button>
-            )}
-          </div>
-        ))}
+      <div className={styles.comment}>
+        <p>
+          <strong>{author}</strong> {date}
+        </p>
+        <p>{content}</p>
+        {user.is_admin && <button onClick={handleDeleteComment}>Delete</button>}
       </div>
-      <CommentForm />
     </>
   );
 }
