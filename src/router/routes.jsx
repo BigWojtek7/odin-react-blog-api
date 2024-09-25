@@ -1,6 +1,6 @@
 import App from '../App';
 import PostLists from '../pages/PostList/PostLists';
-import PostPage from '../pages/PostPage/PostPage/PostPage';
+import PostPage from '../pages/PostPage/PostPage';
 import Login from '../pages/Login/Login';
 import SignUp from '../pages/SignUp/SignUp';
 import NewPost from '../pages/NewPost/NewPost';

@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-
-import requestWithNativeFetch from '../../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/fetchApi';
 import { useState } from 'react';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 function CommentsForm() {
   const [createCommentRes, setCreteCommentRes] = useState({});

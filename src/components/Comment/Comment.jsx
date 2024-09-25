@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import requestWithNativeFetch from '../../../utils/fetchApi';
-import CommentsForm from './CommentsForm';
-import styles from './PostComments.module.css';
-import useAuth from '../../../hooks/useAuth';
-import useModal from '../../../hooks/useModal';
+import requestWithNativeFetch from '../../utils/fetchApi';
+import CommentsForm from './CommentForm';
+import styles from './Comment.module.css';
+import useAuth from '../../hooks/useAuth';
+import useModal from '../../hooks/useModal';
 function PostComments({ comments }) {
   const { user, token } = useAuth();
   const { openModal } = useModal();
 
   const [deleteCommentRes, setDeleteCommentRes] = useState({});
   // console.log(deleteCommentRes)
-  
+
   const handleDeleteComment = (e) => {
     e.preventDefault();
     const commentId = e.target.value;

@@ -1,18 +1,16 @@
 import { useParams } from 'react-router-dom';
 
-import Post from '../Post/Post';
-import PostComments from '../Comments/PostComments';
-import useFetch from '../../../hooks/useFetch';
+import Post from '../../components/Post/Post';
+import PostComments from '../../components/Comment/Comment';
+import useFetch from '../../hooks/useFetch';
 
 import styles from './PostPage.module.css';
 
 function PostPage() {
   const { postid } = useParams();
-  const {
-    fetchData: post,
-    error: postError,
-  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`);
-
+  const { fetchData: post, error: postError } = useFetch(
+    `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
+  );
 
   const {
     fetchData: comments,

@@ -44,7 +44,7 @@ function PostLists() {
         }
       };
       fetchDataForDeletePost();
-      // window.location.reload();
+      window.location.reload();
     });
   };
 
