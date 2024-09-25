@@ -3,23 +3,23 @@ import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 function Login() {
-  const [fetchData, setFetchData] = useState(false);
-  const {token} = useAuth();
-
+  const [fetchData, setFetchData] = useState(null);
   const auth = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       username: e.target.username.value,
       password: e.target.password.value,
     };
-    auth.loginAction(data);
+    const loginData = await auth.loginAction(data);
+    setFetchData(loginData)
+    console.log(loginData)
   };
 
   return (
     <>
-      {!token ? (
+      {!auth.token ? (
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" type="text" />

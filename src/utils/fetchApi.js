@@ -1,9 +1,15 @@
 const requestWithNativeFetch = async (url, options) => {
   const response = await fetch(url, options);
+  const responseData = await response.json();
+  console.log(responseData)
   if (!response.ok) {
-    throw new Error(`HTTP error: Status ${response.status}`);
+    return {
+      success: false,
+      status: response.status,
+      msg: responseData.msg || 'Something went wrong',
+    };
   }
-  return response.json();
+  return responseData;
 };
 
 export default requestWithNativeFetch;

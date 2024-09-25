@@ -50,8 +50,7 @@ const AuthProvider = ({ children }) => {
         `${import.meta.env.VITE_BACKEND_URL}/login`,
         options
       );
-      // setFetchData(loginData);
-      console.log(loginData);
+
       if (loginData.success) {
         const dataToken = loginData.token;
         localStorage.setItem('token', dataToken);
@@ -59,6 +58,8 @@ const AuthProvider = ({ children }) => {
         navigate('/');
         return;
       }
+      return loginData
+      
     } catch (err) {
       console.log(err);
     }

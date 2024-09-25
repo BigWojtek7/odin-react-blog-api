@@ -10,7 +10,6 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
     const fetchDataForCreateUser = async () => {
       try {
         const options = {
@@ -30,7 +29,6 @@ function SignUp() {
           options
         );
         setFetchData(createUserData);
-        setIsLoading(false);
         if (createUserData.success) {
           navigate('/');
         }
