@@ -25,7 +25,7 @@ function Comments({ postid }) {
           />
         ))
       ) : (
-        <p>No comments yest</p>
+        <p>No comments yet</p>
       )}
     </div>
   );
