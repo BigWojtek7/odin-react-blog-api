@@ -14,7 +14,7 @@ function Login() {
     };
     const loginData = await auth.loginAction(data);
     setFetchData(loginData)
-    console.log(loginData)
+
   };
 
   return (

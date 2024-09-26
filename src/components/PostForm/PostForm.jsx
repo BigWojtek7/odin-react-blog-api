@@ -26,7 +26,6 @@ function PostForm() {
         `${import.meta.env.VITE_BACKEND_URL}/posts/`,
         options
       );
-      console.log(createPostDate);
       setCreatePostRes(createPostDate);
       if (createPostDate.success) {
         navigate('/');

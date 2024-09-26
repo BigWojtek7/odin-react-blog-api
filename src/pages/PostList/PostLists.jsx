@@ -39,7 +39,6 @@ function PostLists() {
           options
         );
         setDeletePostRes(deleteData);
-        console.log(postId);
         setPosts((prevPosts) =>
           prevPosts.filter((post) => post.id !== Number(postId))
         );
@@ -50,10 +49,6 @@ function PostLists() {
       }
     });
   };
-
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
 
   return (
     <div className={styles.postsList}>

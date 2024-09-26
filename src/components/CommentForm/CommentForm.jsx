@@ -29,19 +29,20 @@ function CommentsForm({ setComments }) {
           options
         );
         setCreteCommentRes(createCommentData);
-        console.log(createCommentData);
-        setComments((prevComments) => [
-          {
-            id: createCommentData.id,
-            user_id: createCommentData.user_id,
-            post_id: createCommentData.post_id,
-            content: createCommentData.content,
-            date_format: createCommentData.date_format,
-            username: createCommentData.username,
-          },
-          ...prevComments,
-        ]);
-        e.target.reset();
+        if (createCommentData.success) {
+          setComments((prevComments) => [
+            {
+              id: createCommentData.data.id,
+              user_id: createCommentData.data.user_id,
+              post_id: createCommentData.data.post_id,
+              content: createCommentData.data.content,
+              date_format: createCommentData.data.date_format,
+              username: createCommentData.data.username,
+            },
+            ...prevComments,
+          ]);
+          e.target.reset();
+        }
       } catch (err) {
         console.log(err.name);
       }

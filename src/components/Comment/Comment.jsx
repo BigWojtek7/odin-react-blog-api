@@ -8,7 +8,6 @@ function Comment({ commentId, author, content, date, setComments }) {
   const { openModal, closeModal } = useModal();
 
   const [deleteCommentRes, setDeleteCommentRes] = useState({});
-  // console.log(deleteCommentRes)
 
   const handleDeleteComment = (e) => {
     e.preventDefault();
