@@ -21,8 +21,7 @@ function PostPage() {
       <h1 className={styles.headerPost}>Post:</h1>
       <Post post={post} />
       <hr />
-      <h2 className={styles.headerComment}>Comments</h2>
-      <Comments postid={postid}/>
+      <Comments postid={postid} />
     </div>
   );
 }
