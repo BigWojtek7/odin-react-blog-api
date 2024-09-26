@@ -7,14 +7,9 @@ import styles from './PostPage.module.css';
 
 function PostPage() {
   const { postid } = useParams();
-  const { fetchData: post, error: postError } = useFetch(
+  const { fetchData: post } = useFetch(
     `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
   );
-
-  // const {
-  //   fetchData: comments,
-  //   // error: commentError;
-  // } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
 
   return (
     <div>

@@ -5,45 +5,49 @@ import { useState } from 'react';
 
 function PostForm() {
   const navigate = useNavigate();
-  const [cretePostRes, setCreatePostRes] = useState({});
+  const [createPostRes, setCreatePostRes] = useState({});
   const { token } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const postApi = async () => {
-      try {
-        const options = {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-          body: JSON.stringify({
-            title: e.target.title.value,
-            content: e.target.content.value,
-          }),
-          method: 'post',
-        };
-        const createPostDate = await requestWithNativeFetch(
-          `${import.meta.env.VITE_BACKEND_URL}/posts/`,
-          options
-        );
-        setCreatePostRes(createPostDate);
+    try {
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          title: e.target.title.value,
+          content: e.target.content.value,
+        }),
+        method: 'post',
+      };
+      const createPostDate = await requestWithNativeFetch(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/`,
+        options
+      );
+      console.log(createPostDate);
+      setCreatePostRes(createPostDate);
+      if (createPostDate.success) {
         navigate('/');
-      } catch (err) {
-        console.log(err.name);
       }
-    };
-    postApi();
+    } catch (err) {
+      console.log(err.name);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
-      <input name="title" id="title"></input>
-      <label htmlFor="content">Content:</label>
-      <textarea name="content" id="content"></textarea>
-      <button>Submit</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Title:</label>
+        <input name="title" id="title"></input>
+        <label htmlFor="content">Content:</label>
+        <textarea name="content" id="content"></textarea>
+        <button>Submit</button>
+      </form>
+      {!createPostRes?.success &&
+        createPostRes?.msg?.map((err, index) => <p key={index}>{err.msg}</p>)}
+    </>
   );
 }
 export default PostForm;

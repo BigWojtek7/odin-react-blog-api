@@ -9,10 +9,11 @@ function Comments({ postid }) {
     setFetchData: setComments,
     // error: commentError;
   } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
+
   return (
     <div className={styles.comments}>
       <h2 className={styles.headerComment}>Comments</h2>
-      <CommentsForm />
+      <CommentsForm setComments={setComments} />
       {comments?.length > 0 ? (
         comments?.map((comment) => (
           <Comment

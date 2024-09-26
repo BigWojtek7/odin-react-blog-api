@@ -13,30 +13,28 @@ function Comment({ commentId, author, content, date, setComments }) {
   const handleDeleteComment = (e) => {
     e.preventDefault();
 
-    openModal('Do you really want to delete this comment?', () => {
-      const fetchDataForDeleteComment = async () => {
-        try {
-          const options = {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: token,
-            },
-            method: 'delete',
-          };
-          const deleteData = await requestWithNativeFetch(
-            `${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`,
-            options
-          );
-          setDeleteCommentRes(deleteData);
-          setComments((prevComments) =>
-            prevComments.filter((comment) => comment.id !== commentId)
-          );
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      fetchDataForDeleteComment();
-      closeModal();
+    openModal('Do you really want to delete this comment?', async () => {
+      try {
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          method: 'delete',
+        };
+        const deleteData = await requestWithNativeFetch(
+          `${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`,
+          options
+        );
+        setDeleteCommentRes(deleteData);
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment.id !== commentId)
+        );
+      } catch (err) {
+        console.log(err);
+      } finally {
+        closeModal();
+      }
     });
   };
 

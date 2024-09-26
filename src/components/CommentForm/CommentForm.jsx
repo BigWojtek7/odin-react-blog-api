@@ -4,7 +4,7 @@ import requestWithNativeFetch from '../../utils/fetchApi';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
-function CommentsForm() {
+function CommentsForm({ setComments }) {
   const [createCommentRes, setCreteCommentRes] = useState({});
   const { postid } = useParams();
   const { token } = useAuth();
@@ -29,9 +29,19 @@ function CommentsForm() {
           options
         );
         setCreteCommentRes(createCommentData);
-        // const data = await res.json();
-
-        window.location.reload();
+        console.log(createCommentData);
+        setComments((prevComments) => [
+          {
+            id: createCommentData.id,
+            user_id: createCommentData.user_id,
+            post_id: createCommentData.post_id,
+            content: createCommentData.content,
+            date_format: createCommentData.date_format,
+            username: createCommentData.username,
+          },
+          ...prevComments,
+        ]);
+        e.target.reset();
       } catch (err) {
         console.log(err.name);
       }
@@ -42,11 +52,17 @@ function CommentsForm() {
   return (
     <div className="commentSubmit">
       {token ? (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="content"></label>
-          <textarea name="content" id="content"></textarea>
-          <button>Submit</button>
-        </form>
+        <>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="content"></label>
+            <textarea name="content" id="content"></textarea>
+            <button>Submit</button>
+          </form>
+          {!createCommentRes?.success &&
+            createCommentRes?.msg?.map((err, index) => (
+              <p key={index}>{err.msg}</p>
+            ))}
+        </>
       ) : (
         <p>
           <strong>To add comment You must log in first!</strong>
