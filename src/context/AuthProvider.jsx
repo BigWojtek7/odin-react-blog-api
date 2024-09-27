@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 
 import AuthContext from './AuthContext';
+import useLoader from '../hooks/useLoader';
 
 const AuthProvider = ({ children }) => {
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken || '');
   const [user, setUser] = useState({});
+  const { start: loaderStart, stop: loaderStop } = useLoader();
 
   const navigate = useNavigate();
 
@@ -39,6 +41,7 @@ const AuthProvider = ({ children }) => {
 
   const loginAction = async (data) => {
     try {
+      loaderStart();
       const options = {
         headers: {
           'Content-Type': 'application/json',
@@ -61,6 +64,37 @@ const AuthProvider = ({ children }) => {
       return loginData;
     } catch (err) {
       console.log(err);
+    } finally {
+      loaderStop();
+    }
+  };
+
+  const signUpAction = async (data) => {
+    try {
+      loaderStart();
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        method: 'post',
+      };
+      const createUserData = await requestWithNativeFetch(
+        `${import.meta.env.VITE_BACKEND_URL}/sign-up`,
+        options
+      );
+      if (createUserData.success) {
+        const dataToken = createUserData.token;
+        localStorage.setItem('token', dataToken);
+        setToken(dataToken);
+        navigate('/');
+        return;
+      }
+      return createUserData;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      loaderStop();
     }
   };
 
@@ -70,7 +104,9 @@ const AuthProvider = ({ children }) => {
     alert('You are signed out');
   };
   return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+    <AuthContext.Provider
+      value={{ token, user, loginAction, signUpAction, logOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

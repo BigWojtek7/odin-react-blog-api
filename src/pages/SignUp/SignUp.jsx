@@ -1,49 +1,27 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import requestWithNativeFetch from '../../utils/fetchApi';
+
 import useAuth from '../../hooks/useAuth';
-import useLoader from '../../hooks/useLoader';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);
-  const navigate = useNavigate();
-  const { token } = useAuth();
-  const { start: loaderStart, stop: loaderStop } = useLoader();
+  const auth = useAuth();
+  // const { start: loaderStart, stop: loaderStop } = useLoader();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      loaderStart();
-      const options = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: e.target.username.value,
-          password: e.target.password.value,
-          re_password: e.target.re_password.value,
-          is_admin: false,
-        }),
-        method: 'post',
-      };
-      const createUserData = await requestWithNativeFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/sign-up`,
-        options
-      );
-      setFetchData(createUserData);
-      if (createUserData.success) {
-        navigate('/');
-      }
-    } catch (err) {
-      console.log(err);
-    } finally {
-      loaderStop();
-    }
+
+    const data = {
+      username: e.target.username.value,
+      password: e.target.password.value,
+      re_password: e.target.re_password.value,
+    };
+    const signUpData = await auth.signUpAction(data);
+    setFetchData(signUpData);
   };
 
   return (
     <>
-      {!token ? (
+      {!auth.token ? (
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" type="text" />
