@@ -1,9 +1,9 @@
 import './App.css';
 
 import MainLayout from './layouts/MainLayout';
-import AuthProvider from './context/AuthProvider';
-import LoaderProvider from './context/LoaderProvider';
-import ModalProvider from './context/ModalProvider';
+import AuthProvider from './contexts/AuthProvider';
+import LoaderProvider from './contexts/LoaderProvider';
+import ModalProvider from './contexts/ModalProvider';
 
 function App() {
   return (

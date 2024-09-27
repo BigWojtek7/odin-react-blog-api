@@ -5,7 +5,6 @@ import useAuth from '../../hooks/useAuth';
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);
   const auth = useAuth();
-  // const { start: loaderStart, stop: loaderStop } = useLoader();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

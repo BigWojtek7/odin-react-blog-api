@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import LoaderContext from '../../context/LoaderContext';
+import LoaderContext from '../../contexts/LoaderContext';
 
 import styles from './Loader.module.css';
 
