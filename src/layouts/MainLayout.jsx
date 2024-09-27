@@ -4,7 +4,6 @@ import Loader from '../components/Loader/Loader';
 import Modal from '../components/Modal/Modal';
 
 function MainLayout() {
-
   return (
     <div className="content">
       <Header />

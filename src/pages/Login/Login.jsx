@@ -13,8 +13,7 @@ function Login() {
       password: e.target.password.value,
     };
     const loginData = await auth.loginAction(data);
-    setFetchData(loginData)
-
+    setFetchData(loginData);
   };
 
   return (

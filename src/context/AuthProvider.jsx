@@ -58,8 +58,7 @@ const AuthProvider = ({ children }) => {
         navigate('/');
         return;
       }
-      return loginData
-      
+      return loginData;
     } catch (err) {
       console.log(err);
     }

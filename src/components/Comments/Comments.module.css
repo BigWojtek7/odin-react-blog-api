@@ -1,9 +1,10 @@
-.comments{
+.comments {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin: 10px 0;
 }
+
 .headerComment {
   padding: 0.5em 0;
 }

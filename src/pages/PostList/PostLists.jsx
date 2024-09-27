@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
-import { useEffect, useState } from 'react';
 import requestWithNativeFetch from '../../utils/fetchApi';
 
 import Icon from '@mdi/react';
@@ -12,7 +11,7 @@ import useModal from '../../hooks/useModal';
 
 function PostLists() {
   const { token, user } = useAuth();
-  const [deletePostRes, setDeletePostRes] = useState({});
+  // const [deletePostRes, setDeletePostRes] = useState({});
 
   const { openModal, closeModal } = useModal();
 
@@ -34,14 +33,16 @@ function PostLists() {
           },
           method: 'delete',
         };
-        const deleteData = await requestWithNativeFetch(
+        const deletePostData = await requestWithNativeFetch(
           `${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`,
           options
         );
-        setDeletePostRes(deleteData);
-        setPosts((prevPosts) =>
-          prevPosts.filter((post) => post.id !== Number(postId))
-        );
+        // setDeletePostRes(deletePostData);
+        if (deletePostData.success) {
+          setPosts((prevPosts) =>
+            prevPosts.filter((post) => post.id !== Number(postId))
+          );
+        }
       } catch (err) {
         console.log(err);
       } finally {

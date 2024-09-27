@@ -10,11 +10,11 @@ const LoaderProvider = ({ children }) => {
   const start = useCallback((loaderText = 'Loader...') => {
     setLoaderText(loaderText);
     setLoaderStack((prevStack) => [...prevStack, true]);
-  },[]);
+  }, []);
 
   const stop = useCallback(() => {
     setLoaderStack((prevStack) => prevStack.slice(1));
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (!loaderStack.length) {

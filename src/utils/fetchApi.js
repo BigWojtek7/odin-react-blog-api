@@ -1,7 +1,7 @@
 const requestWithNativeFetch = async (url, options) => {
   const response = await fetch(url, options);
   const responseData = await response.json();
-  console.log(responseData)
+  console.log(responseData);
   if (!response.ok) {
     return {
       success: false,

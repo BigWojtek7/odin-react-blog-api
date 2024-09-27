@@ -1,4 +1,5 @@
 import styles from './Post.module.css';
+
 function Post({ post }) {
   return (
     <div>

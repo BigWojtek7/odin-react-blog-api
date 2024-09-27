@@ -1,11 +1,8 @@
-
-
-.comment{
+.comment {
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 6px 8px #bebebe;
   background-color: rgb(225, 224, 224);
-  
 }
 
 .singleComment p {

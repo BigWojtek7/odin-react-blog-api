@@ -2,9 +2,11 @@ import { createPortal } from 'react-dom';
 import useModal from '../../hooks/useModal';
 
 import styles from './Modal.module.css';
+
 function Modal() {
   const { modalData, closeModal } = useModal();
   if (!modalData) return null;
+
   return (
     <>
       {createPortal(
