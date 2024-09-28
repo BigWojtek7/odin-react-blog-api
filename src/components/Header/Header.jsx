@@ -41,7 +41,7 @@ function Header() {
           </div>
         )}
 
-        {user.is_admin && (
+        {user?.is_admin && (
           <Link to="new-post">
             <button>New Post</button>
           </Link>

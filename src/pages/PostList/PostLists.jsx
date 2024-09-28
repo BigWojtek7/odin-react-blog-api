@@ -64,7 +64,7 @@ function PostLists() {
                   <p>{post.date_format}</p>
                   <Icon path={mdiArrowBottomRightBoldBoxOutline} size={1.8} />
                 </Link>
-                {user.is_admin && (
+                {user?.is_admin && (
                   <button value={post.id} onClick={handleDeletePost}>
                     Delete
                   </button>

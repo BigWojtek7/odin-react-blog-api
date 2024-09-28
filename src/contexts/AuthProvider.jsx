@@ -8,8 +8,8 @@ import useLoader from '../hooks/useLoader';
 
 const AuthProvider = ({ children }) => {
   const currentToken = localStorage.getItem('token');
-  const [token, setToken] = useState(currentToken || '');
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState(currentToken || null);
+  const [user, setUser] = useState(null);
   const { start: loaderStart, stop: loaderStop } = useLoader();
 
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
     if (userData) {
       setUser(userData);
     }
-    return () => setUser({});
+    return () => setUser(null);
   }, [userData]);
 
   const loginAction = async (data) => {
@@ -101,6 +101,7 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     localStorage.removeItem('token');
     setToken(null);
+    setUser(null);
     alert('You are signed out');
   };
   return (
