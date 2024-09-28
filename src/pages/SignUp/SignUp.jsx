@@ -4,6 +4,7 @@ import formReducer from '../../reducers/formReducer';
 import initialSignUpFormState from '../../reducers/initialSignUpFormState';
 import Input from '../../components/form/Input';
 import useAuth from '../../hooks/useAuth';
+import Button from '../../components/form/Button';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);
@@ -56,8 +57,7 @@ function SignUp() {
             value={formState.re_password}
             onChange={handleInputChange}
           />
-
-          <button>Sign Up</button>
+          <Button>Sign Up</Button>
           {!fetchData?.success &&
             fetchData?.msg.map((err, index) => <p key={index}>{err.msg}</p>)}
         </form>

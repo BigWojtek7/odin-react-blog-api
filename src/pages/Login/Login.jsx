@@ -3,6 +3,7 @@ import { useReducer } from 'react';
 import formReducer from '../../reducers/formReducer';
 import initialLoginFormState from '../../reducers/initialLoginFormState';
 import Input from '../../components/form/Input';
+import Button from '../../components/form/Button';
 
 import useAuth from '../../hooks/useAuth';
 
@@ -46,7 +47,7 @@ function Login() {
             value={formState.password}
             onChange={handleInputChange}
           />
-          <button>Log In</button>
+          <Button>Log In</Button>
           {fetchData && <p>{fetchData.msg}</p>}
         </form>
       ) : (
