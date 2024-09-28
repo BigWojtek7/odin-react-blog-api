@@ -1,12 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import requestWithNativeFetch from '../../utils/fetchApi';
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
+
+import Input from '../form/Input';
+import Textarea from '../form/Textarea';
+import Button from '../form/Button';
+
+import initialPostFormState from '../../reducers/initialPostFormState';
+import formReducer from '../../reducers/formReducer';
 
 function PostForm() {
   const navigate = useNavigate();
   const [createPostRes, setCreatePostRes] = useState({});
   const { token } = useAuth();
+
+  const [formState, dispatch] = useReducer(formReducer, initialPostFormState);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,8 +26,8 @@ function PostForm() {
           Authorization: token,
         },
         body: JSON.stringify({
-          title: e.target.title.value,
-          content: e.target.content.value,
+          title: formState.title,
+          content: formState.content,
         }),
         method: 'post',
       };
@@ -35,14 +44,31 @@ function PostForm() {
     }
   };
 
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'handle input change',
+      field: e.target.name,
+      payload: e.target.value,
+    });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input name="title" id="title"></input>
-        <label htmlFor="content">Content:</label>
-        <textarea name="content" id="content"></textarea>
-        <button>Submit</button>
+        <Input
+          name="title"
+          label="Title"
+          value={formState.title}
+          onChange={handleInputChange}
+        />
+        <Textarea
+          name="content"
+          label="Content:"
+          value={formState.content}
+          onChange={handleInputChange}
+        />
+        <Button>Submit</Button>
       </form>
       {!createPostRes?.success &&
         createPostRes?.msg?.map((err, index) => <p key={index}>{err.msg}</p>)}

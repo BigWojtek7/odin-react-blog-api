@@ -45,7 +45,7 @@ function Comment({ commentId, author, content, date, setComments }) {
           <strong>{author}</strong> {date}
         </p>
         <p>{content}</p>
-        {user.is_admin && <button onClick={handleDeleteComment}>Delete</button>}
+        {user?.is_admin && <button onClick={handleDeleteComment}>Delete</button>}
       </div>
     </>
   );

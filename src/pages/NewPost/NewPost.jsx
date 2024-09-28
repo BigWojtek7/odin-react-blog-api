@@ -6,7 +6,7 @@ function NewPost() {
 
   return (
     <div className="commentSubmit">
-      {user.is_admin ? (
+      {user?.is_admin ? (
         <PostForm />
       ) : (
         <p>

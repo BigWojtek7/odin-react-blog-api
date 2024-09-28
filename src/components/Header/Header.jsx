@@ -33,7 +33,7 @@ function Header() {
         ) : (
           <div className={styles.accountLinks}>
             <span>
-              Hello <strong>{user.username}</strong> !
+              Hello <strong>{user?.username}</strong> !
             </span>
             <a href="#" onClick={handleLogout}>
               <Icon path={mdiLogout} size={1.3} color={'red'} />

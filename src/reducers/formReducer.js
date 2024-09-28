@@ -6,7 +6,7 @@ function formReducer(state, action) {
         [action.field]: action.payload,
       };
     }
-    case 'reset': {
+    case 'reset input value': {
       return action.payload;
     }
     default: {
