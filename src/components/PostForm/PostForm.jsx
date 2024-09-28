@@ -8,39 +8,45 @@ import Textarea from '../form/Textarea';
 import Button from '../form/Button';
 
 import initialPostFormState from '../../reducers/initialPostFormState';
-import formReducer from '../../reducers/formReducer';
+import postFormReducer from '../../reducers/reducerPostForm';
 
 function PostForm() {
   const navigate = useNavigate();
   const [createPostRes, setCreatePostRes] = useState({});
   const { token } = useAuth();
 
-  const [formState, dispatch] = useReducer(formReducer, initialPostFormState);
+  const [formState, dispatch] = useReducer(
+    postFormReducer,
+    initialPostFormState
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const options = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-        body: JSON.stringify({
-          title: formState.title,
-          content: formState.content,
-        }),
-        method: 'post',
-      };
-      const createPostDate = await requestWithNativeFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/posts/`,
-        options
-      );
-      setCreatePostRes(createPostDate);
-      if (createPostDate.success) {
-        navigate('/');
+    dispatch({ type: 'validate' });
+    if (formState.isValid) {
+      try {
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            title: formState.title,
+            content: formState.content,
+          }),
+          method: 'post',
+        };
+        const createPostDate = await requestWithNativeFetch(
+          `${import.meta.env.VITE_BACKEND_URL}/posts/`,
+          options
+        );
+        setCreatePostRes(createPostDate);
+        if (createPostDate.success) {
+          navigate('/');
+        }
+      } catch (err) {
+        console.log(err.name);
       }
-    } catch (err) {
-      console.log(err.name);
     }
   };
 
@@ -53,6 +59,8 @@ function PostForm() {
     });
   };
 
+  console.log(formState.errors);
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -61,12 +69,14 @@ function PostForm() {
           label="Title"
           value={formState.title}
           onChange={handleInputChange}
+          error={formState.errors.title}
         />
         <Textarea
           name="content"
           label="Content:"
           value={formState.content}
           onChange={handleInputChange}
+          error={formState.errors.content}
         />
         <Button>Submit</Button>
       </form>

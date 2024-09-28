@@ -9,7 +9,7 @@ import Button from '../form/Button';
 
 import initialCommentFormState from '../../reducers/initialCommentFormState';
 import { useReducer } from 'react';
-import formReducer from '../../reducers/formReducer';
+import commentFormReducer from '../../reducers/reducerCommentForm';
 
 function CommentsForm({ setComments }) {
   const [createCommentRes, setCreteCommentRes] = useState({});
@@ -17,51 +17,55 @@ function CommentsForm({ setComments }) {
   const { token } = useAuth();
 
   const [formState, dispatch] = useReducer(
-    formReducer,
+    commentFormReducer,
     initialCommentFormState
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const options = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-        body: JSON.stringify({
-          content: formState.content,
-        }),
-        method: 'post',
-      };
-
-      const createCommentData = await requestWithNativeFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`,
-        options
-      );
-      setCreteCommentRes(createCommentData);
-      if (createCommentData.success) {
-        setComments((prevComments) => [
-          {
-            id: createCommentData.data.id,
-            user_id: createCommentData.data.user_id,
-            post_id: createCommentData.data.post_id,
-            content: createCommentData.data.content,
-            date_format: createCommentData.data.date_format,
-            username: createCommentData.data.username,
+    dispatch({ type: 'validate' });
+    console.log(formState.isValid);
+    if (formState.isValid) {
+      try {
+        const options = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
           },
-          ...prevComments,
-        ]);
-        dispatch({
-          type: 'reset input value',
-          payload: initialCommentFormState,
-        });
+          body: JSON.stringify({
+            content: formState.content,
+          }),
+          method: 'post',
+        };
+
+        const createCommentData = await requestWithNativeFetch(
+          `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`,
+          options
+        );
+        setCreteCommentRes(createCommentData);
+        if (createCommentData.success) {
+          setComments((prevComments) => [
+            {
+              id: createCommentData.data.id,
+              user_id: createCommentData.data.user_id,
+              post_id: createCommentData.data.post_id,
+              content: createCommentData.data.content,
+              date_format: createCommentData.data.date_format,
+              username: createCommentData.data.username,
+            },
+            ...prevComments,
+          ]);
+          dispatch({
+            type: 'reset input value',
+            payload: initialCommentFormState,
+          });
+        }
+      } catch (err) {
+        console.log(err.name);
       }
-    } catch (err) {
-      console.log(err.name);
     }
   };
-
+  
   const handleInputChange = (e) => {
     dispatch({
       type: 'handle input change',
@@ -80,6 +84,7 @@ function CommentsForm({ setComments }) {
               label="Content"
               value={formState.content}
               onChange={handleInputChange}
+              error={formState.errors.content}
             />
             <Button>Submit</Button>
           </form>

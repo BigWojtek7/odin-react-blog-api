@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useReducer } from 'react';
-import formReducer from '../../reducers/formReducer';
+import loginFormReducer from '../../reducers/reducerLoginForm';
 import initialLoginFormState from '../../reducers/initialLoginFormState';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
@@ -10,16 +10,22 @@ import useAuth from '../../hooks/useAuth';
 function Login() {
   const [fetchData, setFetchData] = useState(null);
   const auth = useAuth();
-  const [formState, dispatch] = useReducer(formReducer, initialLoginFormState);
+  const [formState, dispatch] = useReducer(
+    loginFormReducer,
+    initialLoginFormState
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      username: e.target.username.value,
-      password: e.target.password.value,
-    };
-    const loginData = await auth.loginAction(data);
-    setFetchData(loginData);
+    dispatch({ type: 'validate' });
+    if (formState.isValid) {
+      const data = {
+        username: e.target.username.value,
+        password: e.target.password.value,
+      };
+      const loginData = await auth.loginAction(data);
+      setFetchData(loginData);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -39,6 +45,7 @@ function Login() {
             label="Username"
             value={formState.username}
             onChange={handleInputChange}
+            error={formState.errors.username}
           />
           <Input
             name="password"
@@ -46,6 +53,7 @@ function Login() {
             label="Password"
             value={formState.password}
             onChange={handleInputChange}
+            error={formState.errors.password}
           />
           <Button>Log In</Button>
           {fetchData && <p>{fetchData.msg}</p>}
