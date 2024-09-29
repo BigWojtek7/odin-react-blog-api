@@ -59,8 +59,6 @@ function PostForm() {
     });
   };
 
-  console.log(formState.errors);
-
   return (
     <>
       <form onSubmit={handleSubmit}>

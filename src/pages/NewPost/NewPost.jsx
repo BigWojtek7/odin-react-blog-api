@@ -1,12 +1,14 @@
 import useAuth from '../../hooks/useAuth';
 import PostForm from '../../components/PostForm/PostForm';
+import checkPermissions from '../../utils/checkPermissions';
 
 function NewPost() {
   const { user } = useAuth();
+  const { isAdmin } = checkPermissions(user);
 
   return (
     <div className="commentSubmit">
-      {user?.is_admin ? (
+      {isAdmin ? (
         <PostForm />
       ) : (
         <p>

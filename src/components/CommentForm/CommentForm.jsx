@@ -24,7 +24,6 @@ function CommentsForm({ setComments }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: 'validate' });
-    console.log(formState.isValid);
     if (formState.isValid) {
       try {
         const options = {
@@ -65,7 +64,7 @@ function CommentsForm({ setComments }) {
       }
     }
   };
-  
+
   const handleInputChange = (e) => {
     dispatch({
       type: 'handle input change',

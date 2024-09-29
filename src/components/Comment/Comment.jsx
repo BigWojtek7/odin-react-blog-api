@@ -2,9 +2,12 @@ import requestWithNativeFetch from '../../utils/fetchApi';
 import styles from './Comment.module.css';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
+import checkPermissions from '../../utils/checkPermissions';
 function Comment({ commentId, author, content, date, setComments }) {
   const { user, token } = useAuth();
   const { openModal, closeModal } = useModal();
+
+  const { isAdmin } = checkPermissions(user);
 
   // const [deleteCommentRes, setDeleteCommentRes] = useState({});
 
@@ -45,7 +48,7 @@ function Comment({ commentId, author, content, date, setComments }) {
           <strong>{author}</strong> {date}
         </p>
         <p>{content}</p>
-        {user?.is_admin && <button onClick={handleDeleteComment}>Delete</button>}
+        {isAdmin && <button onClick={handleDeleteComment}>Delete</button>}
       </div>
     </>
   );

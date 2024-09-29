@@ -8,10 +8,12 @@ import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
 import useFetch from '../../hooks/useFetch';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
+import checkPermissions from '../../utils/checkPermissions';
 
 function PostLists() {
   const { token, user } = useAuth();
   // const [deletePostRes, setDeletePostRes] = useState({});
+  const { isAdmin } = checkPermissions(user);
 
   const { openModal, closeModal } = useModal();
 
@@ -64,7 +66,7 @@ function PostLists() {
                   <p>{post.date_format}</p>
                   <Icon path={mdiArrowBottomRightBoldBoxOutline} size={1.8} />
                 </Link>
-                {user?.is_admin && (
+                {isAdmin && (
                   <button value={post.id} onClick={handleDeletePost}>
                     Delete
                   </button>
