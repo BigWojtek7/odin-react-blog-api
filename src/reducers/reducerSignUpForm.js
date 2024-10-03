@@ -1,34 +1,30 @@
 import initialSignUpFormState from './initialSignUpFormState';
+import validateForm from '../utils/validateForm';
+
+const signUpFormRules = {
+  username: { required: true },
+  password: { required: true },
+  re_password: { required: true, match: 'password' },
+};
+
 function signUpFormReducer(state, action) {
   switch (action.type) {
-    case 'handle input change': {
-      return {
+    case 'input validate': {
+      const updatedState = {
         ...state,
         [action.field]: action.payload,
-        errors: { ...state.errors, [action.field]: '' },
+        isTouched: { ...state.isTouched, [action.field]: true },
       };
+      return validateForm(updatedState, signUpFormRules);
     }
-    case 'validate': {
-      let isValid = true;
-      const errors = {};
-      if (!state.username) {
-        errors.username = 'Username is required';
-        isValid = false;
-      }
-      if (!state.password) {
-        errors.password = 'Password is required';
-        isValid = false;
-      }
-      if (!state.re_password) {
-        errors.re_password = 'Password is required';
-        isValid = false;
-      }
-      return {
+    case 'validate all': {
+      const updatedState = {
         ...state,
-        errors,
-        isValid,
+        isTouched: { username: true, password: true, re_password: true },
       };
+      return validateForm(updatedState, signUpFormRules);
     }
+
     case 'reset input value': {
       return initialSignUpFormState;
     }

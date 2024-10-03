@@ -1,26 +1,28 @@
-import initialCommentFormState from "./initialCommentFormState";
+import initialCommentFormState from './initialCommentFormState';
+import validateForm from '../utils/validateForm';
+
+const postFormRules = {
+  content: { required: true },
+};
+
 function commentFormReducer(state, action) {
   switch (action.type) {
-    case 'handle input change': {
-      return {
+    case 'input validate': {
+      const updatedState = {
         ...state,
         [action.field]: action.payload,
-        errors: { ...state.errors, [action.field]: '' },
+        isTouched: { ...state.isTouched, [action.field]: true },
       };
+      return validateForm(updatedState, postFormRules);
     }
-    case 'validate': {
-      let isValid = true;
-      const errors = {};
-      if (!state.content) {
-        errors.content = 'Content is required';
-        isValid = false;
-      }
-      return {
+    case 'validate all': {
+      const updatedState = {
         ...state,
-        errors,
-        isValid,
+        isTouched: { content: true },
       };
+      return validateForm(updatedState, postFormRules);
     }
+
     case 'reset input value': {
       return initialCommentFormState;
     }

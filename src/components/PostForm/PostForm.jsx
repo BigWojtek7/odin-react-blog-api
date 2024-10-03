@@ -24,7 +24,7 @@ function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'validate' });
+    dispatch({ type: 'validate all' });
     if (formState.isValid) {
       try {
         const options = {
@@ -56,7 +56,7 @@ function PostForm() {
   const handleInputChange = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'handle input change',
+      type: 'input validate',
       field: e.target.name,
       payload: e.target.value,
     });

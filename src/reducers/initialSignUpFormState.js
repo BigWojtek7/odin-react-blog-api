@@ -7,6 +7,12 @@ const initialSignUpFormState = {
     password: '',
     re_password: '',
   },
+  isTouched: {
+    username: false,
+    password: false,
+    re_password: false,
+  },
+  isValid: false,
 };
 
 export default initialSignUpFormState;

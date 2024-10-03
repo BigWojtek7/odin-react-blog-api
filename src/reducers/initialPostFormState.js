@@ -5,6 +5,11 @@ const initialPostFormState = {
     title: '',
     content: '',
   },
+  isTouched: {
+    title: false,
+    content: false,
+  },
+  isValid: false,
 };
 
 export default initialPostFormState;

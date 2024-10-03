@@ -25,7 +25,7 @@ function CommentsForm({ setComments }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'validate' });
+    dispatch({ type: 'validate all' });
     if (formState.isValid) {
       try {
         const options = {
@@ -58,7 +58,6 @@ function CommentsForm({ setComments }) {
           ]);
           dispatch({
             type: 'reset input value',
-            payload: initialCommentFormState,
           });
           addNotification('the comment has been created', 'success');
         }
@@ -70,7 +69,7 @@ function CommentsForm({ setComments }) {
 
   const handleInputChange = (e) => {
     dispatch({
-      type: 'handle input change',
+      type: 'input validate',
       field: e.target.name,
       payload: e.target.value,
     });

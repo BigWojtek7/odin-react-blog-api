@@ -1,30 +1,30 @@
 import initialPostFormState from './initialPostFormState';
+import validateForm from '../utils/validateForm';
+
+
+const postFormRules = {
+  title: { required: true },
+  content: { required: true },
+};
+
 function postFormReducer(state, action) {
   switch (action.type) {
-    case 'handle input change': {
-      return {
+    case 'input validate': {
+      const updatedState = {
         ...state,
         [action.field]: action.payload,
-        errors: { ...state.errors, [action.field]: '' },
+        isTouched: { ...state.isTouched, [action.field]: true },
       };
+      return validateForm(updatedState, postFormRules);
     }
-    case 'validate': {
-      let isValid = true;
-      const errors = {};
-      if (!state.title) {
-        errors.title = 'Title is required';
-        isValid = false;
-      }
-      if (!state.content) {
-        errors.content = 'Content is required';
-        isValid = false;
-      }
-      return {
+    case 'validate all': {
+      const updatedState = {
         ...state,
-        errors,
-        isValid,
+        isTouched: { title: true, content: true },
       };
+      return validateForm(updatedState, postFormRules);
     }
+
     case 'reset input value': {
       return initialPostFormState;
     }

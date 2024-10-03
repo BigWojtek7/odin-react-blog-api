@@ -33,27 +33,4 @@ function loginFormReducer(state, action) {
   }
 }
 
-// const validateState = (state) => {
-//   let isValid = true;
-//   const errors = {};
-//   if (!state.username && state.isTouched.username) {
-//     errors.username = 'Username is required';
-//     isValid = false;
-//   }
-//   if (!state.password && state.isTouched.password) {
-//     errors.password = 'Password is required';
-
-//     isValid = false;
-//   }
-//   if (!state.isTouched.username || !state.isTouched.password) {
-//     isValid = false;
-//   }
-//   console.log(isValid);
-//   return {
-//     ...state,
-//     errors,
-//     isValid,
-//   };
-// };
-
 export default loginFormReducer;
