@@ -5,11 +5,11 @@ function NotificationsList({ notifications }) {
     return null;
   }
   return (
-    <div className={styles.NotificationsList}>
+    <div className={styles.notificationsContainer}>
       {notifications.map((notif) => (
         <div
           key={notif.id}
-          className={`styles.notifications styles.${notif.type}`}
+          className={`${styles.notification} ${styles[notif.type]}`}
         >
           <p>{notif.message}</p>
         </div>
