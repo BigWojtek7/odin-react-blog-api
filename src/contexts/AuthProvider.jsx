@@ -5,12 +5,14 @@ import useFetch from '../hooks/useFetch';
 
 import AuthContext from './AuthContext';
 import useLoader from '../hooks/useLoader';
+import useNotification from '../hooks/useNotification';
 
 const AuthProvider = ({ children }) => {
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken || null);
   const [user, setUser] = useState(null);
   const { start: loaderStart, stop: loaderStop } = useLoader();
+  const { addNotification } = useNotification();
 
   const navigate = useNavigate();
 
@@ -58,6 +60,7 @@ const AuthProvider = ({ children }) => {
         const dataToken = loginData.token;
         localStorage.setItem('token', dataToken);
         setToken(dataToken);
+        addNotification('You have been successfully logged in', 'success');
         navigate('/');
         return;
       }
@@ -87,6 +90,7 @@ const AuthProvider = ({ children }) => {
         const dataToken = createUserData.token;
         localStorage.setItem('token', dataToken);
         setToken(dataToken);
+        addNotification("user has been created", 'success')
         navigate('/');
         return;
       }
@@ -102,7 +106,8 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
-    alert('You are signed out');
+    // alert('You are signed out');
+    addNotification('You have been logged out', 'success');
   };
   return (
     <AuthContext.Provider

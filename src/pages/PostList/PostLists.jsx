@@ -9,6 +9,7 @@ import useFetch from '../../hooks/useFetch';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
 import checkPermissions from '../../utils/checkPermissions';
+import useNotification from '../../hooks/useNotification';
 
 function PostLists() {
   const { token, user } = useAuth();
@@ -16,6 +17,7 @@ function PostLists() {
   const { isAdmin } = checkPermissions(user);
 
   const { openModal, closeModal } = useModal();
+  const { addNotification } = useNotification();
 
   const {
     fetchData: posts,
@@ -44,6 +46,7 @@ function PostLists() {
           setPosts((prevPosts) =>
             prevPosts.filter((post) => post.id !== Number(postId))
           );
+          addNotification('The post has been deleted', 'success');
         }
       } catch (err) {
         console.log(err);

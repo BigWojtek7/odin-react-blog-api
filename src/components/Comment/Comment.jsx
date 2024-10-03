@@ -34,7 +34,7 @@ function Comment({ commentId, author, content, date, setComments }) {
           setComments((prevComments) =>
             prevComments.filter((comment) => comment.id !== commentId)
           );
-          addNotification('Comment has been deleted', 'success');
+          addNotification('The comment has been deleted', 'success');
         }
       } catch (err) {
         console.log(err);

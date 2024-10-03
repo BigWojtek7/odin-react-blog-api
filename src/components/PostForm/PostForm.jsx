@@ -9,11 +9,13 @@ import Button from '../form/Button';
 
 import initialPostFormState from '../../reducers/initialPostFormState';
 import postFormReducer from '../../reducers/reducerPostForm';
+import useNotification from '../../hooks/useNotification';
 
 function PostForm() {
   const navigate = useNavigate();
   const [createPostRes, setCreatePostRes] = useState({});
   const { token } = useAuth();
+  const { addNotification } = useNotification();
 
   const [formState, dispatch] = useReducer(
     postFormReducer,
@@ -42,6 +44,7 @@ function PostForm() {
         );
         setCreatePostRes(createPostDate);
         if (createPostDate.success) {
+          addNotification('The post has been created', 'success');
           navigate('/');
         }
       } catch (err) {

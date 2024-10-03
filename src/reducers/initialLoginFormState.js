@@ -5,6 +5,10 @@ const initialLoginFormState = {
     username: '',
     password: '',
   },
+  isTouched: {
+    username: false,
+    password: false,
+  },
   isValid: false,
 };
 export default initialLoginFormState;

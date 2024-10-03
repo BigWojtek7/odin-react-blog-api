@@ -10,11 +10,13 @@ import Button from '../form/Button';
 import initialCommentFormState from '../../reducers/initialCommentFormState';
 import { useReducer } from 'react';
 import commentFormReducer from '../../reducers/reducerCommentForm';
+import useNotification from '../../hooks/useNotification';
 
 function CommentsForm({ setComments }) {
   const [createCommentRes, setCreteCommentRes] = useState({});
   const { postid } = useParams();
   const { token } = useAuth();
+  const { addNotification } = useNotification();
 
   const [formState, dispatch] = useReducer(
     commentFormReducer,
@@ -58,6 +60,7 @@ function CommentsForm({ setComments }) {
             type: 'reset input value',
             payload: initialCommentFormState,
           });
+          addNotification('the comment has been created', 'success');
         }
       } catch (err) {
         console.log(err.name);

@@ -15,8 +15,8 @@ const NotificationProvider = ({ children }) => {
   };
 
   const removeNotification = (id) => {
-    setNotifications(
-      notifications.filter((notification) => notification.id !== id)
+    setNotifications((prevNotifications) =>
+      prevNotifications.filter((notification) => notification.id !== id)
     );
   };
 
