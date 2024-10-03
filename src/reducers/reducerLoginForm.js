@@ -2,25 +2,23 @@ import initialLoginFormState from "./initialLoginFormState";
 function loginFormReducer(state, action) {
   switch (action.type) {
     case 'handle input change': {
-      return {
-        ...state,
-        [action.field]: action.payload,
-        errors: { ...state.errors, [action.field]: '' },
-      };
-    }
-    case 'validate': {
       let isValid = true;
       const errors = {};
-      if (!state.username) {
+      const newState = {
+        ...state,
+        [action.field]: action.payload,
+      }
+      if (!newState.username) {
         errors.username = 'Username is required';
         isValid = false;
       }
-      if (!state.password) {
+      if (!newState.password) {
         errors.password = 'Password is required';
         isValid = false;
       }
+
       return {
-        ...state,
+        ...newState,
         errors,
         isValid,
       };

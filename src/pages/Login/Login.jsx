@@ -17,16 +17,34 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'validate' });
+    dispatch({
+      type: 'handle input change',
+      field: e.target.name,
+      payload: e.target.value,
+    });
     if (formState.isValid) {
       const data = {
-        username: e.target.username.value,
-        password: e.target.password.value,
+        username: formState.username,
+        password: formState.password,
       };
       const loginData = await auth.loginAction(data);
       setFetchData(loginData);
     }
   };
+
+  // useEffect(() => {
+  //   if (formState.isValid) {
+  //     const submit = async () => {
+  //       const data = {
+  //         username: formState.username,
+  //         password: formState.password,
+  //       };
+  //       const loginData = await auth.loginAction(data);
+  //       setFetchData(loginData);
+  //     };
+  //     submit();
+  //   }
+  // }, [formState.isValid]);
 
   const handleInputChange = (e) => {
     dispatch({

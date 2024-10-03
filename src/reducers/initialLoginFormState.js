@@ -5,5 +5,6 @@ const initialLoginFormState = {
     username: '',
     password: '',
   },
+  isValid: false,
 };
 export default initialLoginFormState;
