@@ -35,7 +35,7 @@ function Header() {
             <span>
               Hello <strong>{user?.username}</strong> !
             </span>
-            <a href="#" onClick={handleLogout}>
+            <a href="#" onClick={handleLogout} aria-label="Log out">
               <Icon path={mdiLogout} size={1.3} color={'red'} />
             </a>
           </div>

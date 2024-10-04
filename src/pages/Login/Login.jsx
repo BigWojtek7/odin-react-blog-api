@@ -56,6 +56,7 @@ function Login() {
             value={formState.password}
             onChange={handleInputChange}
             error={formState.errors.password}
+            autocomplete="current-password"
           />
           <Button>Log In</Button>
           {fetchData && <p>{fetchData.msg}</p>}

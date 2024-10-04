@@ -57,6 +57,7 @@ function SignUp() {
             value={formState.password}
             onChange={handleInputChange}
             error={formState.errors.password}
+            autocomplete="new-password"
           />
           <Input
             name="re_password"
@@ -65,6 +66,7 @@ function SignUp() {
             value={formState.re_password}
             onChange={handleInputChange}
             error={formState.errors.re_password}
+            autocomplete="new-password"
           />
           <Button>Sign Up</Button>
           {!fetchData?.success &&
