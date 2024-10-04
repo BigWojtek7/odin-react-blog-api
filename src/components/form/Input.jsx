@@ -1,4 +1,5 @@
 import styles from './Input.module.css';
+
 function Input({ name, label, type = 'text', value, onChange, error }) {
   return (
     <div className={styles.input}>
@@ -15,4 +16,5 @@ function Input({ name, label, type = 'text', value, onChange, error }) {
     </div>
   );
 }
+
 export default Input;

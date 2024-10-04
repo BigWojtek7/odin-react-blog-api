@@ -1,7 +1,6 @@
 import initialPostFormState from './initialPostFormState';
 import validateForm from '../utils/validateForm';
 
-
 const postFormRules = {
   title: { required: true },
   content: { required: true },

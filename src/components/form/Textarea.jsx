@@ -1,4 +1,5 @@
 import styles from './Textarea.module.css';
+
 function Textarea({ name, label, value, onChange, error }) {
   return (
     <div className={styles.textarea}>
@@ -14,4 +15,5 @@ function Textarea({ name, label, value, onChange, error }) {
     </div>
   );
 }
+
 export default Textarea;

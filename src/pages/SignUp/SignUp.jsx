@@ -17,7 +17,6 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     dispatch({ type: 'validate all' });
 
     if (formState.isValid) {
@@ -31,7 +30,6 @@ function SignUp() {
     }
   };
 
-  console.log(formState)
   const handleInputChange = (e) => {
     e.preventDefault();
     dispatch({

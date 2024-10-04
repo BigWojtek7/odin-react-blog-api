@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
         const dataToken = createUserData.token;
         localStorage.setItem('token', dataToken);
         setToken(dataToken);
-        addNotification("user has been created", 'success')
+        addNotification('user has been created', 'success');
         navigate('/');
         return;
       }

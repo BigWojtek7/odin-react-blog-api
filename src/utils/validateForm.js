@@ -19,7 +19,7 @@ const validateForm = (state, rules) => {
       ] = `${field} must be at least ${rule.minLength} characters long`;
       isValid = false;
     }
-    if (rule.match && state[field] !== state[rule.match]){
+    if (rule.match && state[field] !== state[rule.match]) {
       errors[field] = 'Passwords do not match';
       isValid = false;
     }

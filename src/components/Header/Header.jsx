@@ -40,7 +40,6 @@ function Header() {
             </a>
           </div>
         )}
-
         {user?.is_admin && (
           <Link to="new-post">
             <button>New Post</button>

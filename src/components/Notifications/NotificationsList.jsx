@@ -4,6 +4,7 @@ function NotificationsList({ notifications }) {
   if (notifications.length === 0) {
     return null;
   }
+
   return (
     <div className={styles.notificationsContainer}>
       {notifications.map((notif) => (
@@ -17,4 +18,5 @@ function NotificationsList({ notifications }) {
     </div>
   );
 }
+
 export default NotificationsList;
