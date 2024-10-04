@@ -1,4 +1,4 @@
-const initialLoginFormState = {
+export const initialLoginFormState = {
   username: '',
   password: '',
   errors: {
@@ -11,4 +11,8 @@ const initialLoginFormState = {
   },
   isValid: false,
 };
-export default initialLoginFormState;
+
+export const loginFormRules = {
+  username: { required: true },
+  password: { required: true },
+};

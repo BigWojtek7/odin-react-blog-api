@@ -1,4 +1,4 @@
-const initialSignUpFormState = {
+export const initialSignUpFormState = {
   username: '',
   password: '',
   re_password: '',
@@ -15,4 +15,8 @@ const initialSignUpFormState = {
   isValid: false,
 };
 
-export default initialSignUpFormState;
+export const signUpFormRules = {
+  username: { required: true },
+  password: { required: true },
+  re_password: { required: true, match: 'password' },
+};

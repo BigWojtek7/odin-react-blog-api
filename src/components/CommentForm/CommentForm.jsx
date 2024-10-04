@@ -7,9 +7,12 @@ import useAuth from '../../hooks/useAuth';
 import Textarea from '../form/Textarea';
 import Button from '../form/Button';
 
-import initialCommentFormState from '../../reducers/initialCommentFormState';
+import {
+  initialCommentFormState,
+  commentFormRules,
+} from '../../reducers/initialCommentFormState';
 import { useReducer } from 'react';
-import commentFormReducer from '../../reducers/reducerCommentForm';
+import formReducer from '../../reducers/formReducer';
 import useNotification from '../../hooks/useNotification';
 
 function CommentsForm({ setComments }) {
@@ -19,13 +22,13 @@ function CommentsForm({ setComments }) {
   const { addNotification } = useNotification();
 
   const [formState, dispatch] = useReducer(
-    commentFormReducer,
+    (state, action) => formReducer(state, action, commentFormRules),
     initialCommentFormState
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'validate all' });
+    dispatch({ type: 'validate_all' });
     if (formState.isValid) {
       try {
         const options = {
@@ -57,7 +60,8 @@ function CommentsForm({ setComments }) {
             ...prevComments,
           ]);
           dispatch({
-            type: 'reset input value',
+            type: 'reset_input_value',
+            initialState: initialCommentFormState,
           });
           addNotification('the comment has been created', 'success');
         }
@@ -69,7 +73,7 @@ function CommentsForm({ setComments }) {
 
   const handleInputChange = (e) => {
     dispatch({
-      type: 'input validate',
+      type: 'input_validate',
       field: e.target.name,
       payload: e.target.value,
     });

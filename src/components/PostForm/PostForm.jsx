@@ -7,8 +7,11 @@ import Input from '../form/Input';
 import Textarea from '../form/Textarea';
 import Button from '../form/Button';
 
-import initialPostFormState from '../../reducers/initialPostFormState';
-import postFormReducer from '../../reducers/reducerPostForm';
+import {
+  initialPostFormState,
+  postFormRules,
+} from '../../reducers/initialPostFormState';
+import formReducer from '../../reducers/formReducer';
 import useNotification from '../../hooks/useNotification';
 
 function PostForm() {
@@ -18,13 +21,13 @@ function PostForm() {
   const { addNotification } = useNotification();
 
   const [formState, dispatch] = useReducer(
-    postFormReducer,
+    (state, action) => formReducer(state, action, postFormRules),
     initialPostFormState
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'validate all' });
+    dispatch({ type: 'validate_all' });
     if (formState.isValid) {
       try {
         const options = {
@@ -56,7 +59,7 @@ function PostForm() {
   const handleInputChange = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'input validate',
+      type: 'input_validate',
       field: e.target.name,
       payload: e.target.value,
     });

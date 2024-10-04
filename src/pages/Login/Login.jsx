@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useReducer } from 'react';
-import loginFormReducer from '../../reducers/reducerLoginForm';
-import initialLoginFormState from '../../reducers/initialLoginFormState';
+import formReducer from '../../reducers/formReducer';
+import {
+  initialLoginFormState,
+  loginFormRules,
+} from '../../reducers/initialLoginFormState';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
 
@@ -11,14 +14,14 @@ function Login() {
   const [fetchData, setFetchData] = useState(null);
   const auth = useAuth();
   const [formState, dispatch] = useReducer(
-    loginFormReducer,
+    (state, action) => formReducer(state, action, loginFormRules),
     initialLoginFormState
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({
-      type: 'validate all',
+      type: 'validate_all',
     });
     if (formState.isValid) {
       const data = {
@@ -32,7 +35,7 @@ function Login() {
 
   const handleInputChange = (e) => {
     dispatch({
-      type: 'input validate',
+      type: 'input_validate',
       field: e.target.name,
       payload: e.target.value,
     });

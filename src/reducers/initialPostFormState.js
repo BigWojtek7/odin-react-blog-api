@@ -1,4 +1,4 @@
-const initialPostFormState = {
+export const initialPostFormState = {
   title: '',
   content: '',
   errors: {
@@ -12,4 +12,7 @@ const initialPostFormState = {
   isValid: false,
 };
 
-export default initialPostFormState;
+export const postFormRules = {
+  title: { required: true },
+  content: { required: true },
+};
