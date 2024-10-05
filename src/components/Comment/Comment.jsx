@@ -4,14 +4,14 @@ import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
 import checkPermissions from '../../utils/checkPermissions';
 import useNotification from '../../hooks/useNotification';
+import Button from '../form/Button';
+
 function Comment({ commentId, author, content, date, setComments }) {
   const { user, token } = useAuth();
   const { openModal, closeModal } = useModal();
 
   const { isAdmin } = checkPermissions(user);
   const { addNotification } = useNotification();
-
-  // const [deleteCommentRes, setDeleteCommentRes] = useState({});
 
   const handleDeleteComment = (e) => {
     e.preventDefault();
@@ -29,7 +29,6 @@ function Comment({ commentId, author, content, date, setComments }) {
           `${import.meta.env.VITE_BACKEND_URL}/posts/comments/${commentId}`,
           options
         );
-        // setDeleteCommentRes(deleteCommentData);
         if (deleteCommentData.success) {
           setComments((prevComments) =>
             prevComments.filter((comment) => comment.id !== commentId)
@@ -51,7 +50,7 @@ function Comment({ commentId, author, content, date, setComments }) {
           <strong>{author}</strong> {date}
         </p>
         <p>{content}</p>
-        {isAdmin && <button onClick={handleDeleteComment}>Delete</button>}
+        {isAdmin && <Button onClick={handleDeleteComment}>Delete</Button>}
       </div>
     </>
   );

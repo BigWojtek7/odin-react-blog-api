@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiLogin, mdiAccountPlus, mdiLogout } from '@mdi/js';
 import useAuth from '../../hooks/useAuth';
+import Button from '../form/Button';
 
 function Header() {
   const { token, user, logOut } = useAuth();
@@ -42,7 +43,7 @@ function Header() {
         )}
         {user?.is_admin && (
           <Link to="new-post">
-            <button>New Post</button>
+            <Button>New Post</Button>
           </Link>
         )}
       </div>

@@ -11,6 +11,8 @@ import useModal from '../../hooks/useModal';
 import checkPermissions from '../../utils/checkPermissions';
 import useNotification from '../../hooks/useNotification';
 
+import Button from '../../components/form/Button';
+
 function PostLists() {
   const { token, user } = useAuth();
   // const [deletePostRes, setDeletePostRes] = useState({});
@@ -70,9 +72,9 @@ function PostLists() {
                   <Icon path={mdiArrowBottomRightBoldBoxOutline} size={1.8} />
                 </Link>
                 {isAdmin && (
-                  <button value={post.id} onClick={handleDeletePost}>
+                  <Button value={post.id} onClick={handleDeletePost}>
                     Delete
-                  </button>
+                  </Button>
                 )}
               </div>
               <p>{post.content.slice(0, 200) + '...'}</p>

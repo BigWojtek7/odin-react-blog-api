@@ -20,9 +20,6 @@ body {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
-}
 
 form {
   display: flex;
@@ -34,16 +31,6 @@ textarea {
   width: 300px;
   height: 150px;
   resize: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  color: rgb(0, 126, 217);
-  padding: 5px 10px;
-  font-size: 1rem;
-  font-weight: 700;
 }
 
 a {
