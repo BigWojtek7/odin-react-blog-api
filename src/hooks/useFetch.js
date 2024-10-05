@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useLoader from './useLoader';
+import requestWithNativeFetch from '../utils/fetchApi';
 
 const useFetch = (url, options) => {
   const [fetchData, setFetchData] = useState(null);
@@ -13,13 +14,10 @@ const useFetch = (url, options) => {
       const fetchForData = async () => {
         try {
           loaderStart();
-          const response = await fetch(url, options);
-          if (!response.ok) {
-            throw new Error(`HTTP error: Status ${response.status}`);
-          }
-          const responseJSON = await response.json();
+          const response = await requestWithNativeFetch(url, options);
+
           if (!ignore) {
-            setFetchData(responseJSON);
+            setFetchData(response);
           }
         } catch (err) {
           setError(err);
