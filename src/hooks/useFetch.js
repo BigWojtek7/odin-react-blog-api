@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useLoader from './useLoader';
-import requestWithNativeFetch from '../utils/fetchApi';
+import requestWithNativeFetch from '../utils/requestWithNativeFetch';
 
 const useFetch = (url, options) => {
   const [fetchData, setFetchData] = useState(null);

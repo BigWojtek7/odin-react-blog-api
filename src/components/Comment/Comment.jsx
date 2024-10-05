@@ -1,4 +1,4 @@
-import requestWithNativeFetch from '../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import styles from './Comment.module.css';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import requestWithNativeFetch from '../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useState, useReducer } from 'react';
 
 import Input from '../form/Input';

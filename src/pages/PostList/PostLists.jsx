@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
-import requestWithNativeFetch from '../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 
 import Icon from '@mdi/react';
 import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';

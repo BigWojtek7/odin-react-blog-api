@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import requestWithNativeFetch from '../../utils/fetchApi';
+import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
