@@ -15,7 +15,6 @@ import Button from '../../components/form/Button';
 
 function PostLists() {
   const { token, user } = useAuth();
-  // const [deletePostRes, setDeletePostRes] = useState({});
   const { isAdmin } = checkPermissions(user);
 
   const { openModal, closeModal } = useModal();
@@ -43,7 +42,6 @@ function PostLists() {
           `${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`,
           options
         );
-        // setDeletePostRes(deletePostData);
         if (deletePostData.success) {
           setPosts((prevPosts) =>
             prevPosts.filter((post) => post.id !== Number(postId))

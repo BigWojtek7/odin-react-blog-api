@@ -14,7 +14,7 @@ function Header() {
   };
 
   return (
-    <div className={styles.header}>
+    <header>
       <div className={styles.headerLeft}>
         <Link to="/" className={styles.logo}>
           Daily Blog
@@ -48,7 +48,7 @@ function Header() {
         )}
       </div>
       <hr />
-    </div>
+    </header>
   );
 }
 

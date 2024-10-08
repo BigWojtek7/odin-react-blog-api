@@ -1,5 +1,3 @@
-import './App.css';
-
 import MainLayout from './layouts/MainLayout';
 import AuthProvider from './contexts/AuthProvider';
 import LoaderProvider from './contexts/LoaderProvider';

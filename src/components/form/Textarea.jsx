@@ -2,7 +2,7 @@ import styles from './Textarea.module.css';
 
 function Textarea({ name, label, value, onChange, error }) {
   return (
-    <div className={styles.textarea}>
+    <div>
       <label htmlFor={name}>{label}</label>
       <textarea
         name={name}
