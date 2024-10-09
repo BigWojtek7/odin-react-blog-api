@@ -1,18 +1,27 @@
-
-
-.headerRight {
+.userBar {
   display: flex;
-  gap: 1.2em;
+  padding: var(--size-500);
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--size-500);
+}
+
+.username{
+  font-weight: var(--fw-semi-bold);
 }
 
 .accountLinks {
   display: flex;
-  gap: 1.2em;
+  gap: 1em;
   align-items: center;
 }
 
 .accountLinks a {
   display: flex;
   align-items: center;
-  gap: 0.3em;
+  gap: 0.2em;
+}
+.usernameContainer{
+  display: flex;
+  gap: 0.2em;
 }

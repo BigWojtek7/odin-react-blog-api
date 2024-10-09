@@ -1,11 +1,10 @@
-.title {
+.title{
   font-weight: 700;
   text-align: center;
   font-size: 1.6rem;
-  padding: 0.5em;
+  padding: .5em;
 }
 
-.content {
-  font-size: 1.5rem;
+.content{
   padding: 0.5em 0;
 }

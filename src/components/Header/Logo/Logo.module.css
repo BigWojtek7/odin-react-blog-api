@@ -2,7 +2,7 @@
   font-size: var(--fs-primary-heading);
   text-decoration: none;
   font-weight: var(--fw-bold);
-  color: rgb(0, 126, 217);
+  color: var(--clr-primary-400);
   text-transform: uppercase;
 }
 

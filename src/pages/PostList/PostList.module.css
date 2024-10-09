@@ -1,34 +1,41 @@
-.postsList ul {
+.container {
+  --max-width: 1110px;
+  --padding: 1rem;
+
+  width: min(var(--max-width), 100% - (var(--padding) * 2));
+  margin-inline: auto;
+
+  text-align: center;
+}
+
+.list {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.postsList h1 {
+.title {
   font-size: 2.5rem;
   padding: 0.5em;
 }
-.postsList {
-  text-align: center;
-}
 
-.postsList p {
+.container p {
   display: inline;
 }
 
-.postsList p:first-child {
+.container p:first-child {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.post {
+.postDetails {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0.9em;
 }
 
-.post a {
+.postDetails a {
   display: flex;
   justify-content: center;
   align-items: center;

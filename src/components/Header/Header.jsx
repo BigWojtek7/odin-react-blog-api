@@ -16,24 +16,24 @@ function Header() {
 
   return (
     <header>
-      <div className={styles.headerRight}>
+      <div className={styles.userBar}>
         {!token ? (
           <div className={styles.accountLinks}>
             <Link to="login">
               Log-in
-              <Icon path={mdiLogin} size={1.5} />
+              <Icon path={mdiLogin} size={1} />
             </Link>
             <Link to="sign-up">
-              Sign Up <Icon path={mdiAccountPlus} size={1.5} />
+              Sign Up <Icon path={mdiAccountPlus} size={1} />
             </Link>
           </div>
         ) : (
-          <div className={styles.accountLinks}>
-            <span>
-              Hello <strong>{user?.username}</strong> !
-            </span>
+          <div className={styles.usernameContainer}>
+            <p>
+              Hello <span className={styles.username}>{user?.username}</span> !
+            </p>
             <a href="#" onClick={handleLogout} aria-label="Log out">
-              <Icon path={mdiLogout} size={1.3} color={'red'} />
+              <Icon path={mdiLogout} size={1} color={'red'} />
             </a>
           </div>
         )}

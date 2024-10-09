@@ -57,13 +57,13 @@ function PostLists() {
   };
 
   return (
-    <div className={styles.postsList}>
-      <h1>Titles of posts:</h1>
-      <ul>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Titles of posts:</h1>
+      <ul className={styles.list}>
         {posts?.length > 0 ? (
           posts?.map((post) => (
             <li key={post.id}>
-              <div className={styles.post}>
+              <div className={styles.postDetails}>
                 <Link to={`/posts/${post.id}`}>
                   <p>{post.title}</p> <p>{post.username}</p>
                   <p>{post.date_format}</p>
