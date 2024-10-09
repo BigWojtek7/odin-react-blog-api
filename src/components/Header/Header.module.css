@@ -1,14 +1,4 @@
-.logo {
-  font-size: 4rem;
-  text-decoration: none;
-  color: rgb(0, 126, 217);
-  letter-spacing: 0.2em;
-}
 
-.headerLeft {
-  text-align: center;
-  padding: 0.8em;
-}
 
 .headerRight {
   display: flex;

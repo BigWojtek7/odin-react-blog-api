@@ -1,0 +1,12 @@
+.logo {
+  font-size: var(--fs-primary-heading);
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  color: rgb(0, 126, 217);
+  text-transform: uppercase;
+}
+
+.logoContainer {
+  text-align: center;
+  padding: 0.8em;
+}

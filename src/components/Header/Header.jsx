@@ -5,6 +5,7 @@ import Icon from '@mdi/react';
 import { mdiLogin, mdiAccountPlus, mdiLogout } from '@mdi/js';
 import useAuth from '../../hooks/useAuth';
 import Button from '../form/Button';
+import Logo from './Logo/Logo';
 
 function Header() {
   const { token, user, logOut } = useAuth();
@@ -15,11 +16,6 @@ function Header() {
 
   return (
     <header>
-      <div className={styles.headerLeft}>
-        <Link to="/" className={styles.logo}>
-          Daily Blog
-        </Link>
-      </div>
       <div className={styles.headerRight}>
         {!token ? (
           <div className={styles.accountLinks}>
@@ -47,7 +43,7 @@ function Header() {
           </Link>
         )}
       </div>
-      <hr />
+      <Logo />
     </header>
   );
 }
