@@ -7,7 +7,7 @@ const LoaderProvider = ({ children }) => {
   const [loaderText, setLoaderText] = useState('');
   const [loaderStack, setLoaderStack] = useState([]);
 
-  const start = useCallback((loaderText = 'Loader...') => {
+  const start = useCallback((loaderText = 'Loading...') => {
     setLoaderText(loaderText);
     setLoaderStack((prevStack) => [...prevStack, true]);
   }, []);

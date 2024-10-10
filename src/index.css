@@ -5,7 +5,8 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: url('./assets/fonts/inter-v18-latin-regular.woff2') format('woff2');
+  src: url('./assets/fonts/inter-v18-latin_latin-ext-regular.woff2')
+    format('woff2');
 }
 
 @font-face {
@@ -13,7 +14,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  src: url('./assets/fonts/inter-v18-latin-600.woff2') format('woff2');
+  src: url('./assets/fonts/inter-v18-latin_latin-ext-600.woff2') format('woff2');
 }
 
 @font-face {
@@ -21,12 +22,12 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  src: url('./assets/fonts/inter-v18-latin-700.woff2') format('woff2');
+  src: url('./assets/fonts/inter-v18-latin_latin-ext-700.woff2') format('woff2');
 }
 
 :root {
   --clr-primary-400: hsl(0, 0%, 10%);
-  
+
   --clr-neutral-400: hsl(0, 0%, 100%);
   --clr-neutral-500: hsl(221, 13%, 46%);
 
@@ -74,19 +75,7 @@ body {
   color: var(--clr-primary-400);
 }
 
-/* .content {
-  background-color: #bcbcbc;
-  border-radius: 20px;
-  padding: 0 5vw 5vh 5vw;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 a {
   text-decoration: none;
   color: inherit;
-} */
+} 

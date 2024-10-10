@@ -2,9 +2,6 @@ import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 
-import Icon from '@mdi/react';
-import { mdiArrowBottomRightBoldBoxOutline } from '@mdi/js';
-
 import useFetch from '../../hooks/useFetch';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
@@ -58,30 +55,40 @@ function PostLists() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Titles of posts:</h1>
-      <ul className={styles.list}>
-        {posts?.length > 0 ? (
-          posts?.map((post) => (
-            <li key={post.id}>
-              <div className={styles.postDetails}>
-                <Link to={`/posts/${post.id}`}>
-                  <p>{post.title}</p> <p>{post.username}</p>
-                  <p>{post.date_format}</p>
-                  <Icon path={mdiArrowBottomRightBoldBoxOutline} size={1.8} />
-                </Link>
-                {isAdmin && (
-                  <Button value={post.id} onClick={handleDeletePost}>
-                    Delete
-                  </Button>
-                )}
-              </div>
-              <p>{post.content.slice(0, 200) + '...'}</p>
-            </li>
-          ))
-        ) : (
-          <li>No post yet</li>
-        )}
-      </ul>
+      <h2 className={styles.title}>All blog posts</h2>
+      {posts?.length > 0 ? (
+        posts?.map((post) => (
+          <div className={styles.post} key={post.id}>
+            <p className={styles.postDate}>
+              <span className={styles.username}>{post.username}</span>
+              {`, ${post.date_format}`}
+            </p>
+            <div className={styles.titleSection}>
+              <h3 className={styles.postTitle}>{post.title}</h3>
+            </div>
+            <div className={styles.buttons}>
+              <p>{post.content.slice(0, 200) + '...'}</p>{' '}
+              <Link to={`/posts/${post.id}`} className={styles.postLink}>
+                <Button
+                  style={{
+                    backgroundColor: `var(--clr-secondary-200)`,
+                    color: `var(--clr-secondary-400)`,
+                  }}
+                >
+                  More
+                </Button>
+              </Link>
+              {isAdmin && (
+                <Button value={post.id} onClick={handleDeletePost}>
+                  Delete
+                </Button>
+              )}
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No post yet</p>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { createPortal } from 'react-dom';
 import useModal from '../../hooks/useModal';
 
 import styles from './Modal.module.css';
+import Button from '../form/Button';
 
 function Modal() {
   const { modalData, closeModal } = useModal();
@@ -13,8 +14,8 @@ function Modal() {
         <div className={styles.overlay}>
           <div className={styles.content}>
             <p>{modalData.message}</p>
-            <button onClick={modalData.onConfirm}>Yes</button>
-            <button onClick={closeModal}>No</button>
+            <Button onClick={modalData.onConfirm}>Yes</Button>
+            <Button onClick={closeModal}>No</Button>
           </div>
         </div>,
         document.getElementById('modal-root')
