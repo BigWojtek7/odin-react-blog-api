@@ -10,7 +10,7 @@ function Input({
   autocomplete = 'off',
 }) {
   return (
-    <div className={styles.input}>
+    <div className={styles.formGroup}>
       <label htmlFor={name}>{label}</label>
       <input
         id={name}

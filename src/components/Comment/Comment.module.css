@@ -2,7 +2,7 @@
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 6px 8px #bebebe;
-  background-color: rgb(225, 224, 224);
+  background-color: var(--clr-secondary-200)
 }
 
 .singleComment p {
