@@ -63,11 +63,11 @@ function PostLists() {
               <span className={styles.username}>{post.username}</span>
               {`, ${post.date_format}`}
             </p>
-            <div className={styles.titleSection}>
+            <div className={styles.postTitleContainer}>
               <h3 className={styles.postTitle}>{post.title}</h3>
             </div>
+            <p>{post.content.slice(0, 200) + '...'}</p>{' '}
             <div className={styles.buttons}>
-              <p>{post.content.slice(0, 200) + '...'}</p>{' '}
               <Link to={`/posts/${post.id}`} className={styles.postLink}>
                 <Button
                   style={{
