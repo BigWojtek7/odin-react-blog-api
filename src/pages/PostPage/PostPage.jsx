@@ -12,12 +12,13 @@ function PostPage() {
   );
 
   return (
-    <div>
-      <h1 className={styles.headerPost}>Post:</h1>
-      <Post post={post} />
-      <hr />
-      <Comments postid={postid} />
-    </div>
+    <section className={styles.postPage}>
+      <div className={styles.container}>
+        <Post post={post} isPreview={false} />
+        <hr />
+        <Comments postid={postid} />
+      </div>
+    </section>
   );
 }
 

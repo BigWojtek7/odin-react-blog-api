@@ -5,30 +5,9 @@
   width: min(var(--max-width), 100% - (var(--padding) * 2));
   margin-inline: auto;
 }
-.post {
-  margin-bottom: var(--size-700);
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-100);
-  align-items: flex-start;
-}
-
-.title,
-.postTitle {
-  font-size: var(--fs-600);
-  font-weight: var(--fw-semi-bold);
-}
 
 .title {
-  margin-bottom: var(--size-700);
-}
-
-.postDate {
-  font-size: var(--fs-300);
-  color: var(--clr-secondary-400);
+  font-size: var(--fs-600);
   font-weight: var(--fw-semi-bold);
-}
-
-.buttons :first-child {
-  margin-right: var(--size-200);
+  margin-block: var(--size-500);
 }

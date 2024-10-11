@@ -1,18 +1,14 @@
-import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 
 import useFetch from '../../hooks/useFetch';
 import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
-import checkPermissions from '../../utils/checkPermissions';
 import useNotification from '../../hooks/useNotification';
-
-import Button from '../../components/form/Button';
+import Post from '../../components/Post/Post';
 
 function PostLists() {
-  const { token, user } = useAuth();
-  const { isAdmin } = checkPermissions(user);
+  const { token } = useAuth();
 
   const { openModal, closeModal } = useModal();
   const { addNotification } = useNotification();
@@ -55,36 +51,15 @@ function PostLists() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>All blog posts</h2>
+      <h2 className={styles.title}>All blog posts:</h2>
       {posts?.length > 0 ? (
         posts?.map((post) => (
-          <div className={styles.post} key={post.id}>
-            <p className={styles.postDate}>
-              <span className={styles.username}>{post.username}</span>
-              {`, ${post.date_format}`}
-            </p>
-            <div className={styles.postTitleContainer}>
-              <h3 className={styles.postTitle}>{post.title}</h3>
-            </div>
-            <p>{post.content.slice(0, 200) + '...'}</p>{' '}
-            <div className={styles.buttons}>
-              <Link to={`/posts/${post.id}`} className={styles.postLink}>
-                <Button
-                  style={{
-                    backgroundColor: `var(--clr-secondary-200)`,
-                    color: `var(--clr-secondary-400)`,
-                  }}
-                >
-                  More
-                </Button>
-              </Link>
-              {isAdmin && (
-                <Button value={post.id} onClick={handleDeletePost}>
-                  Delete
-                </Button>
-              )}
-            </div>
-          </div>
+          <Post
+            post={post}
+            onDelete={handleDeletePost}
+            key={post.id}
+            isPreview={true}
+          />
         ))
       ) : (
         <p>No post yet</p>
