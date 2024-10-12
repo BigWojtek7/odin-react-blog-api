@@ -1,4 +1,5 @@
 import styles from './PostList.module.css';
+import containerStyles from '../../layouts/Container.module.css';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 
 import useFetch from '../../hooks/useFetch';
@@ -50,23 +51,21 @@ function PostLists() {
   };
 
   return (
-    <section className={styles.postList}>
-      <div className={styles.container}>
-        <h2 className={styles.title}>All blog posts:</h2>
-        <div className={styles.posts}>
-          {posts?.length > 0 ? (
-            posts?.map((post) => (
-              <Post
-                post={post}
-                onDelete={handleDeletePost}
-                isPreview={true}
-                key={post.id}
-              />
-            ))
-          ) : (
-            <p>No post yet</p>
-          )}
-        </div>
+    <section className={`${styles.postList} ${containerStyles.container}`}>
+      <h2 className={styles.title}>All blog posts:</h2>
+      <div className={styles.posts}>
+        {posts?.length > 0 ? (
+          posts?.map((post) => (
+            <Post
+              post={post}
+              onDelete={handleDeletePost}
+              isPreview={true}
+              key={post.id}
+            />
+          ))
+        ) : (
+          <p>No post yet</p>
+        )}
       </div>
     </section>
   );

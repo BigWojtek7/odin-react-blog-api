@@ -2,13 +2,12 @@
   padding-block: var(--size-400);
 }
 
-.container {
-
+/* .container {
   --padding: 1rem;
 
-  width:  calc(100% - (var(--padding) * 2));
+  width: calc(100% - (var(--padding) * 2));
   margin-inline: auto;
-}
+} */
 
 .title {
   font-size: var(--fs-600);
@@ -22,8 +21,10 @@
   gap: 1rem;
 }
 
-@media (min-width: 800px) {
+/* @media (min-width: 800px) {
   .container {
-    width: min(1110px, 100% - (4rem * 2));
+    --max-width: 1110px;
+    --padding: 4rem;
+    width: min(var(--max-width), 100% - (var(--padding) * 2));
   }
-}
+} */

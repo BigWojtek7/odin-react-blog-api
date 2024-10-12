@@ -4,6 +4,7 @@ import Post from '../../components/Post/Post';
 import useFetch from '../../hooks/useFetch';
 import Comments from '../../components/Comments/Comments';
 import styles from './PostPage.module.css';
+import containerStyles from '../../layouts/Container.module.css';
 
 function PostPage() {
   const { postid } = useParams();
@@ -12,12 +13,10 @@ function PostPage() {
   );
 
   return (
-    <section className={styles.postPage}>
-      <div className={styles.container}>
-        <Post post={post} isPreview={false} />
-        <hr />
-        <Comments postid={postid} />
-      </div>
+    <section className={`${styles.postPage} ${containerStyles.container}`}>
+      <Post post={post} isPreview={false} />
+      <hr />
+      <Comments postid={postid} />
     </section>
   );
 }
