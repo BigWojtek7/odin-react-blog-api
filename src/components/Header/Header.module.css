@@ -1,6 +1,7 @@
 .userBar {
   display: flex;
-  padding: var(--size-500);
+  font-size: var(--fs-500);
+  padding-block: var(--size-500);
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--size-500);

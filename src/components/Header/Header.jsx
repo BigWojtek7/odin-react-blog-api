@@ -1,4 +1,5 @@
 import styles from './Header.module.css';
+import containerStyles from '../../layouts/Container.module.css'
 import { Link } from 'react-router-dom';
 
 import Icon from '@mdi/react';
@@ -16,7 +17,7 @@ function Header() {
 
   return (
     <header>
-      <div className={styles.userBar}>
+      <div className={`${styles.userBar} ${containerStyles.container}`}>
         {!token ? (
           <div className={styles.accountLinks}>
             <Link to="login">

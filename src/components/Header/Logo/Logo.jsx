@@ -4,13 +4,13 @@ import styles from './Logo.module.css'
 function Logo() {
   return (
     <>
-      <hr />
+      <hr className={styles.hr} />
       <div className={styles.logoContainer}>
         <Link to="/" className={styles.logo}>
           Daily Blog
         </Link>
       </div>
-      <hr />
+      <hr className={styles.hr} />
     </>
   );
 }

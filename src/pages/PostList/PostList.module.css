@@ -2,13 +2,6 @@
   padding-block: var(--size-400);
 }
 
-/* .container {
-  --padding: 1rem;
-
-  width: calc(100% - (var(--padding) * 2));
-  margin-inline: auto;
-} */
-
 .title {
   font-size: var(--fs-600);
   font-weight: var(--fw-semi-bold);
@@ -17,14 +10,6 @@
 
 .posts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 1rem;
 }
-
-/* @media (min-width: 800px) {
-  .container {
-    --max-width: 1110px;
-    --padding: 4rem;
-    width: min(var(--max-width), 100% - (var(--padding) * 2));
-  }
-} */

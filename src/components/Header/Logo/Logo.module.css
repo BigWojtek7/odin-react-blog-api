@@ -8,5 +8,10 @@
 
 .logoContainer {
   text-align: center;
-  padding: 0.8em;
+  line-height: 1.2;
+}
+
+.hr {
+  max-width: 960px;
+  margin: 0 auto;
 }
