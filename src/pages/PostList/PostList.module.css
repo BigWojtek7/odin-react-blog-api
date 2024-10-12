@@ -1,8 +1,12 @@
+.postList {
+  padding-block: var(--size-400);
+}
+
 .container {
-  --max-width: 1110px;
+
   --padding: 1rem;
 
-  width: min(var(--max-width), 100% - (var(--padding) * 2));
+  width:  calc(100% - (var(--padding) * 2));
   margin-inline: auto;
 }
 
@@ -10,4 +14,16 @@
   font-size: var(--fs-600);
   font-weight: var(--fw-semi-bold);
   margin-block: var(--size-500);
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .container {
+    width: min(1110px, 100% - (4rem * 2));
+  }
 }

@@ -50,21 +50,25 @@ function PostLists() {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>All blog posts:</h2>
-      {posts?.length > 0 ? (
-        posts?.map((post) => (
-          <Post
-            post={post}
-            onDelete={handleDeletePost}
-            key={post.id}
-            isPreview={true}
-          />
-        ))
-      ) : (
-        <p>No post yet</p>
-      )}
-    </div>
+    <section className={styles.postList}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>All blog posts:</h2>
+        <div className={styles.posts}>
+          {posts?.length > 0 ? (
+            posts?.map((post) => (
+              <Post
+                post={post}
+                onDelete={handleDeletePost}
+                isPreview={true}
+                key={post.id}
+              />
+            ))
+          ) : (
+            <p>No post yet</p>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
