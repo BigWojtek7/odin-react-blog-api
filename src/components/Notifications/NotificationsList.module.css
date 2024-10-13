@@ -7,14 +7,14 @@
 
 .notification {
   background-color: var(--clr-secondary-200);
-  color: var(--clr-secondary-400);
+  color: #fff;
   padding: 10px 20px;
   margin-bottom: 10px;
   border-radius: 5px;
 }
 
 .notification.success {
-  background-color: var(--clr-secondary-200);
+  background-color: green;
 }
 
 .notification.error {
