@@ -30,7 +30,7 @@ function Post({ post, onDelete = null, isPreview }) {
   return (
     <div className={styles.container}>
       <div className={styles.post}>
-        <p className={styles.postDate}>
+        <p className={styles.postHeader}>
           <span className={styles.username}>{post?.username}</span>
           {`, ${post?.date_format}`}
         </p>

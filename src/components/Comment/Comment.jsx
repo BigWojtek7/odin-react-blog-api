@@ -46,8 +46,8 @@ function Comment({ commentId, author, content, date, setComments }) {
   return (
     <>
       <div className={styles.comment}>
-        <p>
-          <strong>{author}</strong> {date}
+        <p className={styles.commentHeader}>
+          <span className={styles.username}>{author}</span> {date}
         </p>
         <p>{content}</p>
         {isAdmin && <Button onClick={handleDeleteComment}>Delete</Button>}

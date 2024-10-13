@@ -7,6 +7,12 @@
   margin-bottom: var(--size-500);
 }
 
+.usernameContainer{
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
+}
+
 .username{
   font-weight: var(--fw-semi-bold);
 }
@@ -22,7 +28,5 @@
   align-items: center;
   gap: 0.2em;
 }
-.usernameContainer{
-  display: flex;
-  gap: 0.2em;
-}
+
+
