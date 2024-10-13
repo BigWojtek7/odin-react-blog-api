@@ -10,7 +10,7 @@ import Button from '../../components/form/Button';
 
 import useAuth from '../../hooks/useAuth';
 
-import styles from './Login.module.css'
+import styles from './Login.module.css';
 
 function Login() {
   const [fetchData, setFetchData] = useState(null);
@@ -44,9 +44,9 @@ function Login() {
   };
 
   return (
-    <>
+    <div className={styles.login}>
       {!auth.token ? (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Input
             name="username"
             label="Username"
@@ -69,7 +69,7 @@ function Login() {
       ) : (
         <p>You are logged in</p>
       )}
-    </>
+    </div>
   );
 }
 

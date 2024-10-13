@@ -1,3 +1,4 @@
+import styles from './SignUp.module.css';
 import { useState } from 'react';
 import { useReducer } from 'react';
 import formReducer from '../../reducers/formReducer';
@@ -43,7 +44,7 @@ function SignUp() {
   };
 
   return (
-    <>
+    <div className={styles.signUp}>
       {!auth.token ? (
         <form onSubmit={handleSubmit}>
           <Input
@@ -78,7 +79,7 @@ function SignUp() {
       ) : (
         <p>You are logged in</p>
       )}
-    </>
+    </div>
   );
 }
 
