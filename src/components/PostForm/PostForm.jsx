@@ -3,9 +3,9 @@ import useAuth from '../../hooks/useAuth';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useState, useReducer } from 'react';
 
-import Input from '../form/Input';
-import Textarea from '../form/Textarea';
-import Button from '../form/Button';
+import Input from '../form/Input/Input';
+import Textarea from '../form/Textarea/Textarea';
+import Button from '../form/Button/Button';
 
 import {
   initialPostFormState,

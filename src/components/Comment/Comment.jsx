@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import useModal from '../../hooks/useModal';
 import checkPermissions from '../../utils/checkPermissions';
 import useNotification from '../../hooks/useNotification';
-import Button from '../form/Button';
+import Button from '../form/Button/Button';
 
 function Comment({ commentId, author, content, date, setComments }) {
   const { user, token } = useAuth();

@@ -5,8 +5,8 @@ import {
   initialLoginFormState,
   loginFormRules,
 } from '../../reducers/initialLoginFormState';
-import Input from '../../components/form/Input';
-import Button from '../../components/form/Button';
+import Input from '../../components/form/Input/Input';
+import Button from '../../components/form/Button/Button';
 
 import useAuth from '../../hooks/useAuth';
 

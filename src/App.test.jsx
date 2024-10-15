@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 describe('something truthy and falsy', () => {
   it('true to be true', () => {
     expect(true).toBe(true);
@@ -13,13 +11,15 @@ describe('something truthy and falsy', () => {
 import { render, screen } from '@testing-library/react';
 
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('App', () => {
-  it('renders headline', () => {
-    render(<App title="React" />);
-
-    screen.debug();
-
-    // check if App components renders headline
+  it('renders whole app', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+    expect(container).toMatchSnapshot();
   });
 });

@@ -4,8 +4,8 @@ import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
-import Textarea from '../form/Textarea';
-import Button from '../form/Button';
+import Textarea from '../form/Textarea/Textarea';
+import Button from '../form/Button/Button';
 
 import {
   initialCommentFormState,

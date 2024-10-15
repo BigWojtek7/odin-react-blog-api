@@ -1,11 +1,11 @@
 import styles from './Header.module.css';
-import containerStyles from '../../layouts/Container.module.css'
+import containerStyles from '../../layouts/Container.module.css';
 import { Link } from 'react-router-dom';
 
 import Icon from '@mdi/react';
 import { mdiLogin, mdiAccountPlus, mdiLogout } from '@mdi/js';
 import useAuth from '../../hooks/useAuth';
-import Button from '../form/Button';
+import Button from '../form/Button/Button';
 import Logo from './Logo/Logo';
 
 function Header() {

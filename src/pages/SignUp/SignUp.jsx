@@ -6,9 +6,9 @@ import {
   initialSignUpFormState,
   signUpFormRules,
 } from '../../reducers/initialSignUpFormState';
-import Input from '../../components/form/Input';
+import Input from '../../components/form/Input/Input';
 import useAuth from '../../hooks/useAuth';
-import Button from '../../components/form/Button';
+import Button from '../../components/form/Button/Button';
 
 function SignUp() {
   const [fetchData, setFetchData] = useState(null);

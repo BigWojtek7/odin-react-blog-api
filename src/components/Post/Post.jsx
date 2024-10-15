@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Button from '../form/Button';
+import Button from '../form/Button/Button';
 import styles from './Post.module.css';
 import useAuth from '../../hooks/useAuth';
 import checkPermissions from '../../utils/checkPermissions';

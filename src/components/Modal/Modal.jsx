@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import useModal from '../../hooks/useModal';
 
 import styles from './Modal.module.css';
-import Button from '../form/Button';
+import Button from '../form/Button/Button';
 
 function Modal() {
   const { modalData, closeModal } = useModal();
