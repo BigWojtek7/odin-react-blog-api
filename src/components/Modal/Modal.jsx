@@ -6,6 +6,7 @@ import Button from '../form/Button/Button';
 
 function Modal() {
   const { modalData, closeModal } = useModal();
+  
   if (!modalData) return null;
 
   return (

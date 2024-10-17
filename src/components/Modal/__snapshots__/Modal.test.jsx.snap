@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Modal component > renders Loader component 1`] = `<div />`;
+
+exports[`renders Loader component 1`] = `<div />`;
