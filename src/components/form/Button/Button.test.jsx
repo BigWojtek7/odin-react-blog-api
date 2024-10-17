@@ -3,8 +3,6 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Button from './Button';
 
-import { expect } from 'vitest';
-
 describe('Button', () => {
   it('call the click handler every time button is clicked', async () => {
     const user = userEvent.setup();

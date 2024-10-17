@@ -6,7 +6,7 @@ const useModal = () => {
 
   if (!modalContext) {
     throw new Error(
-      'Please use useLoader inside the context of LoaderProvider'
+      'Please use useModal inside the context of ModalProvider'
     );
   }
   return modalContext;
