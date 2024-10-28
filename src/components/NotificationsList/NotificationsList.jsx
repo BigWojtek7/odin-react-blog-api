@@ -10,6 +10,7 @@ function NotificationsList({ notifications }) {
       {notifications.map((notif) => (
         <div
           key={notif.id}
+          data-testid={`notification-${notif.type}`}
           className={`${styles.notification} ${styles[notif.type]}`}
         >
           <p>{notif.message}</p>

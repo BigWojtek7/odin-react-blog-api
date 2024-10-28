@@ -61,7 +61,9 @@ exports[`App > renders whole app 1`] = `
         class="_hr_5c36da"
       />
     </header>
-    <main />
+    <main
+      class="_main_ccfe8f"
+    />
   </div>
 </div>
 `;
