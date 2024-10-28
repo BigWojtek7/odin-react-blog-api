@@ -10,8 +10,6 @@ import Button from '../../components/form/Button/Button';
 
 import useAuth from '../../hooks/useAuth';
 
-import styles from './Login.module.css';
-
 function Login() {
   const [fetchData, setFetchData] = useState(null);
   const auth = useAuth();
@@ -44,7 +42,7 @@ function Login() {
   };
 
   return (
-    <div className={styles.login}>
+    <div>
       {!auth.token ? (
         <form onSubmit={handleSubmit}>
           <Input
