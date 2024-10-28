@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Modal from './Modal';
-import { vi } from 'vitest';
 
 // Inicjalizacja mockowanych funkcji
 let mockOnConfirm = vi.fn();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NotificationContext from './NotificationContext';
-import NotificationsList from '../components/Notifications/NotificationsList';
+import NotificationsList from '../components/NotificationsList/NotificationsList';
 
 const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);

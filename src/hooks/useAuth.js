@@ -6,7 +6,7 @@ const useAuth = () => {
 
   if (!authContext) {
     throw new Error(
-      'Please use useLoader inside the context of LoaderProvider'
+      'Please use useAuth inside the context of AuthProvider'
     );
   }
   return authContext;
