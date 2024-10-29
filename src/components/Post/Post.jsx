@@ -7,6 +7,7 @@ import checkPermissions from '../../utils/checkPermissions';
 function Post({ post, onDelete = null, isPreview }) {
   const { user } = useAuth();
   const { isAdmin } = checkPermissions(user);
+  
   const previewContent = post?.content.substring(0, 100) + '...';
   const renderButtons = () => (
     <div className={styles.buttons}>
