@@ -6,7 +6,7 @@ import Button from '../form/Button/Button';
 
 function Modal() {
   const { modalData, closeModal } = useModal();
-  
+
   if (!modalData) return null;
 
   return (
@@ -16,7 +16,9 @@ function Modal() {
           <div className={styles.content}>
             <p>{modalData.message}</p>
             <Button onClick={modalData.onConfirm}>Yes</Button>
-            <Button onClick={closeModal}>No</Button>
+            <Button onClick={closeModal} style={{ marginLeft: '0.5em' }}>
+              No
+            </Button>
           </div>
         </div>,
         document.getElementById('modal-root')
