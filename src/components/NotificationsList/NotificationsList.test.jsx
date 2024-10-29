@@ -1,17 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import NotificationsList from './NotificationsList';
 
-// Inicjalizacja mockowanych funkcji
-let mockAddNotification = vi.fn();
-
-// Mockowanie hooka Notification
-
-const id = new Date().getTime();
 
 const notifications = [
   {
-    id: id,
+    id: 1,
     message: 'Info notification',
     type: 'info',
   },
