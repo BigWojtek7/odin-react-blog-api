@@ -83,7 +83,7 @@ function CommentsForm({ setComments }) {
     <div className="commentSubmit">
       {token ? (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} role="form">
             <Textarea
               name="content"
               label="Content"
