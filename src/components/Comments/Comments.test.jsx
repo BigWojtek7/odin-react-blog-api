@@ -74,7 +74,6 @@ describe('Comments component', () => {
         <Comments postid="1" />
       </MemoryRouter>
     );
-    screen.debug();
     expect(screen.getByRole('form')).toBeInTheDocument();
   });
 });
