@@ -67,7 +67,7 @@ function PostForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} role="form">
         <Input
           name="title"
           label="Title"
@@ -77,7 +77,7 @@ function PostForm() {
         />
         <Textarea
           name="content"
-          label="Content:"
+          label="Content"
           value={formState.content}
           onChange={handleInputChange}
           error={formState.errors.content}
