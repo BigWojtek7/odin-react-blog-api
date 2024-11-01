@@ -8,8 +8,12 @@ import useAuth from '../../hooks/useAuth';
 import Button from '../form/Button/Button';
 import Logo from './Logo/Logo';
 
+import checkPermissions from '../../utils/checkPermissions';
+
 function Header() {
   const { token, user, logOut } = useAuth();
+
+  const { isAdmin } = checkPermissions(user);
 
   const handleLogout = () => {
     logOut();
@@ -38,7 +42,7 @@ function Header() {
             </a>
           </div>
         )}
-        {user?.is_admin && (
+        {isAdmin && (
           <Link to="new-post">
             <Button>New Post</Button>
           </Link>
