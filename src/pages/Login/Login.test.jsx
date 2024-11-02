@@ -8,7 +8,6 @@ vi.mock('../../hooks/useAuth');
 
 describe('Login Component', () => {
   beforeEach(() => {
-    // Resetowanie mocka dla każdego testu
     useAuth.mockReturnValue({
       token: null,
       loginAction: vi.fn().mockResolvedValue({ msg: 'Login successful!' }),
@@ -55,7 +54,6 @@ describe('Login Component', () => {
       username: 'testuser',
       password: 'password123',
     });
-    // Czekamy na rezultat asynchroniczny i sprawdzamy, czy pojawia się odpowiedź
     expect(await screen.findByText(/login successful/i)).toBeInTheDocument();
   });
 
