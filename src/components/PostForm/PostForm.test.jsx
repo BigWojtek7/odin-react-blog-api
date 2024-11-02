@@ -5,12 +5,14 @@ import useNotification from '../../hooks/useNotification';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import userEvent from '@testing-library/user-event';
 
+const mockNavigate = vi.fn();
+
 vi.mock('../../hooks/useAuth');
 vi.mock('../../hooks/useNotification');
 vi.mock('../../utils/requestWithNativeFetch');
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
-  useNavigate: vi.fn(),
+  useNavigate: () => mockNavigate,
 }));
 
 describe('PostForm component', () => {
@@ -30,22 +32,16 @@ describe('PostForm component', () => {
     expect(screen.getByRole('form')).toBeInTheDocument();
   });
 
-  it('submits form and updates comments on success', async () => {
+  it('submits form and updates post on success', async () => {
     requestWithNativeFetch.mockResolvedValue({
       success: true,
-      data: {
-        id: 1,
-        content: 'Test post',
-        username: 'User1',
-        date_format: '2024-10-29',
-      },
+      msg: [{ msg: 'Post has been saved' }],
     });
 
     render(<PostForm />);
 
     await userEvent.type(screen.getByLabelText('Title'), 'Test title');
-
-    await userEvent.type(screen.getByLabelText('Content'), 'Test comment');
+    await userEvent.type(screen.getByLabelText('Content'), 'Test content');
     await userEvent.click(screen.getByText('Submit'));
 
     expect(mockAddNotification).toHaveBeenCalledWith(
