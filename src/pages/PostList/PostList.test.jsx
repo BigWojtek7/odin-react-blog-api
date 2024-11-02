@@ -1,19 +1,19 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import PostLists from './PostLists';
+import PostLists from './PostList';
 import { MemoryRouter } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import useFetch from '../../hooks/useFetch';
-import useModal from '../../hooks/useModal';
-import useNotification from '../../hooks/useNotification';
+import useModal from '../../contexts/Modal/useModal';
+import useNotification from '../../contexts/Notification/useNotification';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 
-vi.mock('../../hooks/useAuth');
+vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../hooks/useFetch');
-vi.mock('../../hooks/useModal');
-vi.mock('../../hooks/useNotification');
+vi.mock('../../contexts/Modal/useModal.js');
+vi.mock('../../contexts/Notification/useNotification.js');
 
-vi.mock('../../utils/requestWithNativeFetch.js')
+vi.mock('../../utils/requestWithNativeFetch.js');
 
 describe('PostLists component', () => {
   beforeEach(() => {

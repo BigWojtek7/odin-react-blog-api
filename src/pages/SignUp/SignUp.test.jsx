@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SignUp from './SignUp';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 
 // Mockowanie hooka useAuth
-vi.mock('../../hooks/useAuth');
+vi.mock('../../contexts/Auth/useAuth.js');
 
 describe('SignUp component', () => {
   const mockSignUpAction = vi.fn();

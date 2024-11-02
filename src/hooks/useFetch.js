@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useLoader from './useLoader';
+import useLoader from '../contexts/Loader/useLoader';
 import requestWithNativeFetch from '../utils/requestWithNativeFetch';
 
 const useFetch = (url, options) => {

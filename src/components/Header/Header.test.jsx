@@ -2,11 +2,11 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header';
 import { beforeEach, describe } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import checkPermissions from '../../utils/checkPermissions';
 import userEvent from '@testing-library/user-event';
 
-vi.mock('../../hooks/useAuth.js');
+vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../utils/checkPermissions.js');
 
 const logOut = vi.fn();

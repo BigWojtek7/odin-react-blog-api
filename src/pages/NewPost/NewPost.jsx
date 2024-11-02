@@ -1,4 +1,4 @@
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import PostForm from '../../components/PostForm/PostForm';
 import checkPermissions from '../../utils/checkPermissions';
 

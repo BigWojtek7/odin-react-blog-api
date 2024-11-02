@@ -1,11 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
-import requestWithNativeFetch from '../utils/requestWithNativeFetch';
+import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useNavigate } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 
 import AuthContext from './AuthContext';
-import useLoader from '../hooks/useLoader';
-import useNotification from '../hooks/useNotification';
+import useLoader from '../Loader/useLoader';
+import useNotification from '../Notification/useNotification';
 
 const AuthProvider = ({ children }) => {
   const currentToken = localStorage.getItem('token');

@@ -1,12 +1,12 @@
 import styles from './PostList.module.css';
 import containerStyles from '../../layouts/Container.module.css';
-import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
+import requestWithNativeFetch from '../../utils/requestWithNativeFetch.js';
 
-import useFetch from '../../hooks/useFetch';
-import useAuth from '../../hooks/useAuth';
-import useModal from '../../hooks/useModal';
-import useNotification from '../../hooks/useNotification';
-import Post from '../../components/Post/Post';
+import useFetch from '../../hooks/useFetch.js';
+import useAuth from '../../contexts/Auth/useAuth.js';
+import useModal from '../../contexts/Modal/useModal.js';
+import useNotification from '../../contexts/Notification/useNotification.js';
+import Post from '../../components/Post/Post.jsx';
 
 function PostLists() {
   const { token } = useAuth();

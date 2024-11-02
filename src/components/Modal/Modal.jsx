@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import useModal from '../../hooks/useModal';
+import useModal from '../../contexts/Modal/useModal';
 
 import styles from './Modal.module.css';
 import Button from '../form/Button/Button';

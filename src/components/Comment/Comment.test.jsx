@@ -2,15 +2,15 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Comment from './Comment';
 import { MemoryRouter } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import useModal from '../../hooks/useModal';
+import useAuth from '../../contexts/Auth/useAuth';
+import useModal from '../../contexts/Modal/useModal';
 import checkPermissions from '../../utils/checkPermissions';
-import useNotification from '../../hooks/useNotification';
+import useNotification from '../../contexts/Notification/useNotification';
 
-vi.mock('../../hooks/useAuth');
-vi.mock('../../hooks/useModal');
+vi.mock('../../contexts/Auth/useAuth.js');
+vi.mock('../../contexts/Modal/useModal.js');
 vi.mock('../../utils/checkPermissions');
-vi.mock('../../hooks/useNotification');
+vi.mock('../../contexts/Notification/useNotification.js');
 
 const mockSetComments = vi.fn();
 

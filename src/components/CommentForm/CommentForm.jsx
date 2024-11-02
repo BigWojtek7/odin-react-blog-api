@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useState } from 'react';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 
 import Textarea from '../form/Textarea/Textarea';
 import Button from '../form/Button/Button';
@@ -13,7 +13,7 @@ import {
 } from '../../reducers/initialCommentFormState';
 import { useReducer } from 'react';
 import formReducer from '../../reducers/formReducer';
-import useNotification from '../../hooks/useNotification';
+import useNotification from '../../contexts/Notification/useNotification';
 
 function CommentsForm({ setComments }) {
   const [createCommentRes, setCreteCommentRes] = useState({});

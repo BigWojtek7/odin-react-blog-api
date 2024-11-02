@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import CommentForm from './CommentForm';
-import useAuth from '../../hooks/useAuth';
-import useNotification from '../../hooks/useNotification';
+import useAuth from '../../contexts/Auth/useAuth';
+import useNotification from '../../contexts/Notification/useNotification';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useParams } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 
-vi.mock('../../hooks/useAuth');
-vi.mock('../../hooks/useNotification');
+vi.mock('../../contexts/Auth/useAuth.js');
+vi.mock('../../contexts/Notification/useNotification.js');
 vi.mock('../../utils/requestWithNativeFetch');
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),

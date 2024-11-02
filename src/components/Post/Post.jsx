@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import Button from '../form/Button/Button';
 import styles from './Post.module.css';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import checkPermissions from '../../utils/checkPermissions';
 
 function Post({ post, onDelete = null, isPreview }) {
   const { user } = useAuth();
   const { isAdmin } = checkPermissions(user);
-  
+
   const previewContent = post?.content.substring(0, 100) + '...';
   const renderButtons = () => (
     <div className={styles.buttons}>

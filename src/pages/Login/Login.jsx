@@ -8,7 +8,7 @@ import {
 import Input from '../../components/form/Input/Input';
 import Button from '../../components/form/Button/Button';
 
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 
 function Login() {
   const [fetchData, setFetchData] = useState(null);

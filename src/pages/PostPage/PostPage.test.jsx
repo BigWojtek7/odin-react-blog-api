@@ -3,9 +3,9 @@ import { MemoryRouter, Route } from 'react-router-dom';
 import PostPage from './PostPage';
 import useFetch from '../../hooks/useFetch';
 
-import AuthProvider from '../../contexts/AuthProvider';
-import LoaderProvider from '../../contexts/LoaderProvider';
-import NotificationProvider from '../../contexts/NotificationProvider';
+import AuthProvider from '../../contexts/Auth/AuthProvider';
+import LoaderProvider from '../../contexts/Loader/LoaderProvider';
+import NotificationProvider from '../../contexts/Notification/NotificationProvider';
 import { useParams } from 'react-router-dom';
 
 vi.mock('../../hooks/useFetch');

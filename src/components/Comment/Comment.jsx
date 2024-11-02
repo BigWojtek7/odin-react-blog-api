@@ -1,9 +1,9 @@
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import styles from './Comment.module.css';
-import useAuth from '../../hooks/useAuth';
-import useModal from '../../hooks/useModal';
+import useAuth from '../../contexts/Auth/useAuth';
+import useModal from '../../contexts/Modal/useModal';
 import checkPermissions from '../../utils/checkPermissions';
-import useNotification from '../../hooks/useNotification';
+import useNotification from '../../contexts/Notification/useNotification';
 import Button from '../form/Button/Button';
 
 function Comment({ commentId, author, content, date, setComments }) {

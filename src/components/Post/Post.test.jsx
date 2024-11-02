@@ -3,10 +3,10 @@ import Post from './Post';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import checkPermissions from '../../utils/checkPermissions';
 
-vi.mock('../../hooks/useAuth');
+vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../utils/checkPermissions.js');
 
 describe('Post component test', () => {

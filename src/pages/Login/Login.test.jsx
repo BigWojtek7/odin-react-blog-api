@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
 import { vi } from 'vitest';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 
-vi.mock('../../hooks/useAuth');
+vi.mock('../../contexts/Auth/useAuth.js');
 
 describe('Login Component', () => {
   beforeEach(() => {

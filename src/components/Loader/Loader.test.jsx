@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import Loader from './Loader';
 
-import LoaderContext from '../../contexts/LoaderContext';
+import LoaderContext from '../../contexts/Loader/LoaderContext';
 
 it('renders Loader component', () => {
   const { container } = render(

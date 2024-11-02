@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useState, useReducer } from 'react';
 
@@ -12,7 +12,7 @@ import {
   postFormRules,
 } from '../../reducers/initialPostFormState';
 import formReducer from '../../reducers/formReducer';
-import useNotification from '../../hooks/useNotification';
+import useNotification from '../../contexts/Notification/useNotification';
 
 function PostForm() {
   const navigate = useNavigate();

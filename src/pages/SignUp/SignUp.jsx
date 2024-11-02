@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useReducer } from 'react';
 import formReducer from '../../reducers/formReducer';
@@ -7,7 +6,7 @@ import {
   signUpFormRules,
 } from '../../reducers/initialSignUpFormState';
 import Input from '../../components/form/Input/Input';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import Button from '../../components/form/Button/Button';
 
 function SignUp() {

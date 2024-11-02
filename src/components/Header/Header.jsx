@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Icon from '@mdi/react';
 import { mdiLogin, mdiAccountPlus, mdiLogout } from '@mdi/js';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import Button from '../form/Button/Button';
 import Logo from './Logo/Logo';
 

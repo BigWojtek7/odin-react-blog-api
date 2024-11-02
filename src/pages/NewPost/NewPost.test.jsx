@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi, beforeEach } from 'vitest';
 import NewPost from './NewPost';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../contexts/Auth/useAuth';
 import checkPermissions from '../../utils/checkPermissions';
 import { MemoryRouter } from 'react-router-dom';
 
-import NotificationProvider from '../../contexts/NotificationProvider';
+import NotificationProvider from '../../contexts/Notification/NotificationProvider';
 
-vi.mock('../../hooks/useAuth');
+vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../utils/checkPermissions');
 
 describe('NewPost component', () => {

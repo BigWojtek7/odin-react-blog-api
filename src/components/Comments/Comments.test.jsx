@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import Comments from './Comments';
 import useFetch from '../../hooks/useFetch';
-import useAuth from '../../hooks/useAuth';
-import useNotification from '../../hooks/useNotification';
-import useModal from '../../hooks/useModal';
+import useAuth from '../../contexts/Auth/useAuth';
+import useNotification from '../../contexts/Notification/useNotification';
+import useModal from '../../contexts/Modal/useModal';
 import { MemoryRouter } from 'react-router-dom';
 
 vi.mock('../../hooks/useFetch');
-vi.mock('../../hooks/useAuth.js');
-vi.mock('../../hooks/useNotification.js');
-vi.mock('../../hooks/useModal.js');
+vi.mock('../../contexts/Auth/useAuth.js');
+vi.mock('../../contexts/Notification/useNotification.js');
+vi.mock('../../contexts/Modal/useModal.js');
 
 describe('Comments component', () => {
   const commentsData = [

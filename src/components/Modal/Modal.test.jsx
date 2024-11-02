@@ -12,7 +12,7 @@ vi.mock('react-dom', () => ({
 }));
 
 // Mockowanie hooka useModal
-vi.mock('../../hooks/useModal', () => {
+vi.mock('../../contexts/Modal/useModal.js', () => {
   return {
     default: () => ({
       modalData: {
