@@ -12,7 +12,7 @@ function Comments({ postid }) {
 
   return (
     <div className={styles.comments}>
-      <h2 className={styles.title}>Comments:</h2>
+      <h2 className={styles.title}>Comments</h2>
       <CommentsForm setComments={setComments} />
       {comments?.length > 0 ? (
         comments?.map((comment) => (

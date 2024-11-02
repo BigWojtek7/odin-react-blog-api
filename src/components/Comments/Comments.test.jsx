@@ -43,7 +43,7 @@ describe('Comments component', () => {
         <Comments postid="1" />
       </MemoryRouter>
     );
-    expect(screen.getByText('Comments:')).toBeInTheDocument();
+    expect(screen.getByText('Comments')).toBeInTheDocument();
   });
 
   it('renders "No comments yet" when there are no comments', () => {
