@@ -24,6 +24,10 @@ describe('CommentForm component', () => {
     useNotification.mockReturnValue({ addNotification: mockAddNotification });
   });
 
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('renders form when user is authenticated', () => {
     render(<CommentForm setComments={mockSetComments} />);
     expect(screen.getByRole('form')).toBeInTheDocument();

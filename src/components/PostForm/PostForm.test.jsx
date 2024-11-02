@@ -21,6 +21,10 @@ describe('PostForm component', () => {
     useNotification.mockReturnValue({ addNotification: mockAddNotification });
   });
 
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('renders form', () => {
     render(<PostForm />);
     expect(screen.getByRole('form')).toBeInTheDocument();
