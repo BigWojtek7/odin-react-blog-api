@@ -38,7 +38,6 @@ const AuthProvider = ({ children }) => {
     if (userData) {
       setUser(userData);
     }
-    return () => setUser(null);
   }, [userData]);
 
   const loginAction = async (data) => {
