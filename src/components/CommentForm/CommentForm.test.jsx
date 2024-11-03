@@ -54,8 +54,10 @@ describe('CommentForm component', () => {
 
     render(<CommentForm setComments={mockSetComments} />);
 
-    await userEvent.type(screen.getByLabelText('Content'), 'Test comment');
-    await userEvent.click(screen.getByText('Submit'));
+    const user = userEvent.setup();
+
+    await user.type(screen.getByLabelText('Content'), 'Test comment');
+    await user.click(screen.getByText('Submit'));
 
     expect(mockAddNotification).toHaveBeenCalledWith(
       'the comment has been created',

@@ -16,12 +16,18 @@ const LoaderProvider = ({ children }) => {
     setLoaderStack((prevStack) => prevStack.slice(1));
   }, []);
 
+  // useEffect(() => {
+  //   console.log('Loader stack changed:', loaderStack);
+  //   if (!loaderStack.length) {
+  //     setIsLoading(false);
+  //     return;
+  //   }
+  //   setIsLoading(true);
+  // }, [loaderStack]);
+
   useEffect(() => {
-    if (!loaderStack.length) {
-      setIsLoading(false);
-      return;
-    }
-    setIsLoading(true);
+    // console.log('Loader stack changed:', loaderStack);
+    setIsLoading(loaderStack.length > 0);
   }, [loaderStack]);
 
   return (

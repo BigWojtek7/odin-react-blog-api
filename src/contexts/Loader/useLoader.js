@@ -11,6 +11,8 @@ const useLoader = () => {
     );
   }
   return {
+    loaderText: loaderContext.loaderText,
+    isLoading: loaderContext.isLoading,
     start: loaderContext.start,
     stop: loaderContext.stop,
   };
