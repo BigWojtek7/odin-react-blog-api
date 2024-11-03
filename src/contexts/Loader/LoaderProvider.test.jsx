@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 
 const MockComponent = () => {
   const { isLoading, loaderText, start, stop } = useLoader();
-  console.log(isLoading);
   return (
     <div>
       <div>Is Loading: {isLoading ? 'true' : 'false'}</div>
