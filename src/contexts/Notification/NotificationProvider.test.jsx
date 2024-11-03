@@ -16,26 +16,26 @@ const MockComponent = () => {
 describe('NotificationProvider', () => {
   vi.useFakeTimers();
 
-  it('dodaje powiadomienie po wywołaniu addNotification', async () => {
+  it('adds a notification after calling addNotification', async () => {
     render(
       <NotificationProvider>
         <MockComponent />
       </NotificationProvider>
     );
 
-    // Have to change to fireEvent, beacause userEvent is not working well with fake timers
+    // Have to change to fireEvent, because userEvent is not working well with fake timers.
     fireEvent.click(screen.getByText('Add Notification'));
     expect(screen.getByText('Test message')).toBeInTheDocument();
   }, 10000);
 
-  it('usuwa powiadomienie automatycznie po 5 sekundach', async () => {
+  it('deletes notification automatically after 5 seconds', async () => {
     render(
       <NotificationProvider>
         <MockComponent />
       </NotificationProvider>
     );
 
-    // Have to change to fireEvent, beacause userEvent is not working well with fake timers
+    // Have to change to fireEvent, because userEvent is not working well with fake timers.
     fireEvent.click(screen.getByText('Add Notification'));
     expect(screen.getByText('Test message')).toBeInTheDocument();
 

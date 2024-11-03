@@ -4,7 +4,6 @@ import ModalProvider from './ModalProvider';
 import ModalContext from './ModalContext';
 import { useContext } from 'react';
 
-// Mockowy komponent, aby przetestować `ModalProvider`
 const MockComponent = ({ onConfirm }) => {
   const { modalData, openModal, closeModal } = useContext(ModalContext);
 
@@ -64,13 +63,11 @@ describe('ModalProvider', () => {
     const openButton = screen.getByText('Open Modal');
     await user.click(openButton);
 
-    // Sprawdzenie, czy modal się otworzył
     expect(screen.getByText('Message: Are you sure?')).toBeInTheDocument();
 
     const closeButton = screen.getByText('Close Modal');
     await user.click(closeButton);
 
-    // Sprawdzenie, czy modal został zamknięty
     expect(screen.getByText('No Modal')).toBeInTheDocument();
   });
 
@@ -86,11 +83,9 @@ describe('ModalProvider', () => {
     const user = userEvent.setup();
     await user.click(screen.getByText('Open Modal'));
 
-    // Kliknięcie przycisku Confirm
     const confirmButton = screen.getByText('Confirm');
     await user.click(confirmButton);
 
-    // Sprawdzenie, czy funkcja onConfirm została wywołana
     expect(onConfirm).toHaveBeenCalled();
   });
 });
