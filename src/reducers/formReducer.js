@@ -8,6 +8,7 @@ function formReducer(state, action, formRules) {
         [action.field]: action.payload,
         isTouched: { ...state.isTouched, [action.field]: true },
       };
+      console.log('0.5',updatedState)
       return validateForm(updatedState, formRules);
     }
     case 'validate_all': {
