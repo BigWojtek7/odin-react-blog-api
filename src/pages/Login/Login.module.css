@@ -1,0 +1,15 @@
+.demoInfo {
+  font-size: var(--fs-300);
+  margin-block: 1em;
+  text-align: center;
+}
+.demoLogin {
+  max-width: 30ch;
+  margin: 0 auto;
+}
+.demoButtons {
+  width: 100%;
+  display: flex;
+  
+  justify-content: space-between;
+}
