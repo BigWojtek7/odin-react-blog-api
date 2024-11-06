@@ -11,6 +11,8 @@ A blog application built as part of [The Odin Project](https://www.theodinprojec
 - **Comment**: Log in to leave comments on posts.
 - **Admin Permissions**: As an admin, you can add and delete posts and delete comments.
 
+![Main screen]('./src/assets/images/homepage.png)
+
 ## 🌐 Live Demo
 
 Check out the live version: [Live Preview](https://my-blog-api.netlify.app/)

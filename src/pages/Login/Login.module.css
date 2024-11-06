@@ -3,13 +3,14 @@
   margin-block: 1em;
   text-align: center;
 }
+
 .demoLogin {
   max-width: 30ch;
   margin: 0 auto;
 }
+
 .demoButtons {
   width: 100%;
   display: flex;
-  
   justify-content: space-between;
 }
