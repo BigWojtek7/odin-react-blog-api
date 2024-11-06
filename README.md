@@ -13,7 +13,7 @@ A blog application built as part of [The Odin Project](https://www.theodinprojec
   ![Login](./src/assets/images/login.png)
 - **Admin Permissions**: As an admin, you can add and delete posts and delete comments.
   ![New post](./src/assets/images/new-post.png)
-- **Post details**: You can browse posts without login (just click the 'More' button.)
+- **Post details**: You can browse posts without logging in (click the 'More' button on the homepage).
   ![Post details](./src/assets/images/post-page.png)
 
 ## 🌐 Live Demo
