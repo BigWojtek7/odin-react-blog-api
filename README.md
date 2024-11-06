@@ -3,15 +3,18 @@
 [![Live Preview](https://img.shields.io/badge/Live_Preview-Available-brightgreen)](https://my-blog-api.netlify.app/)  
 [![Backend Repository](https://img.shields.io/badge/Backend_Repo-Link-blue)](https://github.com/BigWojtek7/odin-express-blog-api)
 
-A blog application built as part of [The Odin Project](https://www.theodinproject.com/) curriculum. This web app allows users to view posts and, if logged in, comment on them. Admin users have additional permissions to add , delete posts and  delete comments.
+A blog application built as part of [The Odin Project](https://www.theodinproject.com/) curriculum. This web app allows users to view posts and, if logged in, comment on them. Admin users have additional permissions to add , delete posts and delete comments.
 
 ## 🚀 Features
 
 - **View Posts**: Browse blog posts without logging in.
+  ![Main screen](./src/assets/images/homepage.png)
 - **Comment**: Log in to leave comments on posts.
+  ![Login](./src/assets/images/login.png)
 - **Admin Permissions**: As an admin, you can add and delete posts and delete comments.
-
-![Main screen]('./src/assets/images/homepage.png)
+  ![New post](./src/assets/images/new-post.png)
+- **Post details**: You can browse posts without login (just click the 'More' button.)
+  ![Post details](./src/assets/images/post-page.png)
 
 ## 🌐 Live Demo
 
@@ -36,16 +39,19 @@ Check out the live version: [Live Preview](https://my-blog-api.netlify.app/)
 ## ⚙️ Installation and Setup
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/BigWojtek7/odin-express-blog-api.git
    ```
 
 2. **Navigate to the project folder:**
+
    ```bash
    cd odin-express-blog-api
    ```
 
 3. **Install dependencies:**
+
    ```bash
    npm install
    ```
@@ -58,6 +64,7 @@ Check out the live version: [Live Preview](https://my-blog-api.netlify.app/)
 ## 🧑‍💻 User Accounts
 
 ### Admin Account
+
 To test admin functionalities, log in with the following account:
 
 <details>
@@ -69,6 +76,7 @@ To test admin functionalities, log in with the following account:
 </details>
 
 ### Regular User Account
+
 You can create a regular user account in the app, or use the example account:
 
 <details>
@@ -90,4 +98,3 @@ You can create a regular user account in the app, or use the example account:
 ## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
