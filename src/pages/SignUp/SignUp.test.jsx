@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import SignUp from './SignUp';
 import useAuth from '../../contexts/Auth/useAuth';
 
-// Mockowanie hooka useAuth
 vi.mock('../../contexts/Auth/useAuth.js');
 
 describe('SignUp component', () => {
@@ -11,7 +10,6 @@ describe('SignUp component', () => {
   const mockSetFetchData = vi.fn();
 
   beforeEach(() => {
-    // Resetowanie mocków przed każdym testem
     vi.clearAllMocks();
 
     useAuth.mockReturnValue({
