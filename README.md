@@ -58,7 +58,7 @@ Check out the live version: [Live Preview](https://my-blog-api.netlify.app/)
 
 4. **Run the development server:**
    ```bash
-   npm start
+   npm run dev
    ```
 
 ## 🧑‍💻 User Accounts
