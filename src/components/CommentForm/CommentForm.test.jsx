@@ -13,6 +13,9 @@ vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useParams: vi.fn(),
 }));
+vi.mock('../../contexts/Loader/useLoader.js', () => ({
+  default: () => ({ start: vi.fn(), stop: vi.fn() }),
+}));
 
 describe('CommentForm component', () => {
   const mockSetComments = vi.fn();

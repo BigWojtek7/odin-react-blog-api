@@ -7,12 +7,15 @@ import useAuth from '../../contexts/Auth/useAuth.js';
 import useModal from '../../contexts/Modal/useModal.js';
 import useNotification from '../../contexts/Notification/useNotification.js';
 import Post from '../../components/Post/Post.jsx';
+import useLoader from '../../contexts/Loader/useLoader.js';
 
 function PostLists() {
   const { token } = useAuth();
 
   const { openModal, closeModal } = useModal();
   const { addNotification } = useNotification();
+
+  const { start: loaderStart, stop: loaderStop } = useLoader();
 
   const {
     fetchData: posts,
@@ -25,6 +28,7 @@ function PostLists() {
     const postId = e.target.value;
     openModal('Do you really want to delete this post?', async () => {
       try {
+        loaderStart();
         const options = {
           headers: {
             'Content-Type': 'application/json',
@@ -45,6 +49,7 @@ function PostLists() {
       } catch (err) {
         console.log(err);
       } finally {
+        loaderStop();
         closeModal();
       }
     });

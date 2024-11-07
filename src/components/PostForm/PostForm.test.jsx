@@ -14,6 +14,9 @@ vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
+vi.mock('../../contexts/Loader/useLoader.js', () => ({
+  default: () => ({ start: vi.fn(), stop: vi.fn() }),
+}));
 
 describe('PostForm component', () => {
   const mockAddNotification = vi.fn();

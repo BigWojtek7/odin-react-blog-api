@@ -14,6 +14,7 @@ import {
 import { useReducer } from 'react';
 import formReducer from '../../reducers/formReducer';
 import useNotification from '../../contexts/Notification/useNotification';
+import useLoader from '../../contexts/Loader/useLoader';
 
 function CommentsForm({ setComments }) {
   const [createCommentRes, setCreteCommentRes] = useState({});
@@ -21,6 +22,7 @@ function CommentsForm({ setComments }) {
   const { token } = useAuth();
   const { addNotification } = useNotification();
 
+  const { start: loaderStart, stop: loaderStop } = useLoader();
   const [formState, dispatch] = useReducer(
     (state, action) => formReducer(state, action, commentFormRules),
     initialCommentFormState
@@ -31,6 +33,7 @@ function CommentsForm({ setComments }) {
     dispatch({ type: 'validate_all' });
     if (formState.isValid) {
       try {
+        loaderStart();
         const options = {
           headers: {
             'Content-Type': 'application/json',
@@ -67,6 +70,8 @@ function CommentsForm({ setComments }) {
         }
       } catch (err) {
         console.log(err.name);
+      } finally {
+        loaderStop();
       }
     }
   };

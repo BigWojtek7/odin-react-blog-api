@@ -9,6 +9,9 @@ import NotificationProvider from '../../contexts/Notification/NotificationProvid
 
 vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../utils/checkPermissions');
+vi.mock('../../contexts/Loader/useLoader.js', () => ({
+  default: () => ({ start: vi.fn(), stop: vi.fn() }),
+}));
 
 describe('NewPost component', () => {
   afterEach(() => {

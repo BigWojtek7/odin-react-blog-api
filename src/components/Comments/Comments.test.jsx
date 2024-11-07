@@ -10,6 +10,9 @@ vi.mock('../../hooks/useFetch');
 vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../contexts/Notification/useNotification.js');
 vi.mock('../../contexts/Modal/useModal.js');
+vi.mock('../../contexts/Loader/useLoader.js', () => ({
+  default: () => ({ start: vi.fn(), stop: vi.fn() }),
+}));
 
 describe('Comments component', () => {
   const commentsData = [

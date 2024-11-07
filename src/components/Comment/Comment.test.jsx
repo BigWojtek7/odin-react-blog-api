@@ -11,6 +11,9 @@ vi.mock('../../contexts/Auth/useAuth.js');
 vi.mock('../../contexts/Modal/useModal.js');
 vi.mock('../../utils/checkPermissions');
 vi.mock('../../contexts/Notification/useNotification.js');
+vi.mock('../../contexts/Loader/useLoader.js', () => ({
+  default: () => ({ start: vi.fn(), stop: vi.fn() }),
+}));
 
 const mockSetComments = vi.fn();
 

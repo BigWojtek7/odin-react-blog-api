@@ -15,9 +15,7 @@ const useFetch = (url, options) => {
         try {
           loaderStart();
           const response = await requestWithNativeFetch(url, options);
-          console.log('response:',response)
           if (!ignore) {
-            console.log('setting fetch data:', response)
             setFetchData(response);
           }
         } catch (err) {

@@ -13,12 +13,15 @@ import {
 } from '../../reducers/initialPostFormState';
 import formReducer from '../../reducers/formReducer';
 import useNotification from '../../contexts/Notification/useNotification';
+import useLoader from '../../contexts/Loader/useLoader';
 
 function PostForm() {
   const navigate = useNavigate();
   const [createPostRes, setCreatePostRes] = useState({});
   const { token } = useAuth();
   const { addNotification } = useNotification();
+
+  const { start: loaderStart, stop: loaderStop } = useLoader();
 
   const [formState, dispatch] = useReducer(
     (state, action) => formReducer(state, action, postFormRules),
@@ -30,6 +33,7 @@ function PostForm() {
     dispatch({ type: 'validate_all' });
     if (formState.isValid) {
       try {
+        loaderStart();
         const options = {
           headers: {
             'Content-Type': 'application/json',
@@ -52,6 +56,8 @@ function PostForm() {
         }
       } catch (err) {
         console.log(err.name);
+      } finally {
+        loaderStop();
       }
     }
   };

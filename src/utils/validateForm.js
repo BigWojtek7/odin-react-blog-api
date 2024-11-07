@@ -1,7 +1,6 @@
 const validateForm = (state, rules) => {
   const errors = {};
   let isValid = true;
-  console.log('0.7',state)
   Object.keys(rules).forEach((field) => {
     const value = state[field];
     const rule = rules[field];

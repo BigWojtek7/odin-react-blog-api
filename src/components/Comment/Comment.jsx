@@ -5,6 +5,7 @@ import useModal from '../../contexts/Modal/useModal';
 import checkPermissions from '../../utils/checkPermissions';
 import useNotification from '../../contexts/Notification/useNotification';
 import Button from '../form/Button/Button';
+import useLoader from '../../contexts/Loader/useLoader';
 
 function Comment({ commentId, author, content, date, setComments }) {
   const { user, token } = useAuth();
@@ -13,11 +14,14 @@ function Comment({ commentId, author, content, date, setComments }) {
   const { isAdmin } = checkPermissions(user);
   const { addNotification } = useNotification();
 
+  const { start: loaderStart, stop: loaderStop } = useLoader();
+
   const handleDeleteComment = (e) => {
     e.preventDefault();
 
     openModal('Do you really want to delete this comment?', async () => {
       try {
+        loaderStart();
         const options = {
           headers: {
             'Content-Type': 'application/json',
@@ -38,6 +42,7 @@ function Comment({ commentId, author, content, date, setComments }) {
       } catch (err) {
         console.log(err);
       } finally {
+        loaderStop();
         closeModal();
       }
     });
