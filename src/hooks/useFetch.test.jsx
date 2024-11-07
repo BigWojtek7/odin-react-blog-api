@@ -14,7 +14,7 @@ afterEach(() => {
 })
 
 describe('useFetch', () => {
-  it('prawidłowo pobiera dane', async () => {
+  it('downloads data correctly', async () => {
     const mockData = { key: 'value' };
     requestWithNativeFetch.mockResolvedValueOnce(mockData);
 
@@ -25,7 +25,7 @@ describe('useFetch', () => {
     expect(result.current.error).toBeNull();
   });
 
-  it('prawidłowo obsługuje błędy', async () => {
+  it('handles errors correctly', async () => {
     const mockError = new Error('Fetch error');
     requestWithNativeFetch.mockRejectedValueOnce(mockError);
 

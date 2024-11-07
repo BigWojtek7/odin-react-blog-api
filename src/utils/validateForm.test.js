@@ -7,7 +7,7 @@ describe('validateForm', () => {
     re_password: { required: true, match: 'password' },
   };
 
-  it('powinno zwrócić stan jako poprawny, gdy wszystkie pola są prawidłowe', () => {
+  it('should return status as valid when all fields are valid', () => {
     const state = {
       username: 'user123',
       password: 'password123',
@@ -21,7 +21,7 @@ describe('validateForm', () => {
     expect(result.errors).toEqual({});
   });
 
-  it('powinno zwrócić błąd, gdy wymagane pole jest puste', () => {
+  it('should return an error when a required field is empty', () => {
     const state = {
       username: '',
       password: 'password123',
@@ -35,7 +35,7 @@ describe('validateForm', () => {
     expect(result.errors.username).toBe('username is required');
   });
 
-  it('powinno zwrócić błąd, gdy pole nie spełnia minimalnej długości', () => {
+  it('should return an error if the field does not meet the minimum length', () => {
     const state = {
       username: 'us',
       password: 'password123',
@@ -46,10 +46,12 @@ describe('validateForm', () => {
     const result = validateForm(state, rules);
 
     expect(result.isValid).toBe(false);
-    expect(result.errors.username).toBe('username must be at least 3 characters long');
+    expect(result.errors.username).toBe(
+      'username must be at least 3 characters long'
+    );
   });
 
-  it('powinno zwrócić błąd, gdy hasła się nie zgadzają', () => {
+  it('should return an error if the passwords do not match', () => {
     const state = {
       username: 'user123',
       password: 'password123',
@@ -63,7 +65,7 @@ describe('validateForm', () => {
     expect(result.errors.re_password).toBe('Passwords do not match');
   });
 
-  it('powinno być niepoprawne, gdy pola nie zostały dotknięte', () => {
+  it('should be incorrect when fields have not been touched', () => {
     const state = {
       username: 'user123',
       password: 'password123',
