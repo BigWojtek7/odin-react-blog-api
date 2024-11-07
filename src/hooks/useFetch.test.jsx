@@ -20,7 +20,7 @@ describe('useFetch', () => {
 
     const { result } = renderHook(() => useFetch('https://api.example.com/data'));
 
-    await waitFor(() => result.current.fetchData !== null);  // Poczekaj na rzeczywiste dane
+    await waitFor(() => result.current.fetchData !== null);  // Wait for the actual data
     expect(result.current.fetchData).toEqual(mockData);
     expect(result.current.error).toBeNull();
   });
@@ -31,7 +31,7 @@ describe('useFetch', () => {
 
     const { result } = renderHook(() => useFetch('https://api.example.com/data'));
 
-    await waitFor(() => result.current.error !== null);  // Poczekaj na błąd
+    await waitFor(() => result.current.error !== null);  // wait for error
     expect(result.current.error).toEqual(mockError);
     expect(result.current.fetchData).toBeNull();
   });
