@@ -13,7 +13,7 @@ function PostPage() {
 
   return (
     <section className={containerStyles.container}>
-      <Post post={post} isPreview={false} />
+      {post ? <Post post={post} isPreview={false} /> : <p>Loading post...</p>}
       <hr />
       <Comments postid={postid} />
     </section>
