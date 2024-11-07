@@ -7,7 +7,11 @@ const NotificationProvider = ({ children }) => {
 
   const addNotification = (message, type = 'info') => {
     const id = new Date().getTime();
-    setNotifications([...notifications, { id, message, type }]);
+
+    setNotifications((prevNotifications) => [
+      ...prevNotifications,
+      { id, message, type },
+    ]);
 
     setTimeout(() => {
       removeNotification(id);
