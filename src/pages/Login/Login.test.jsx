@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
-import { vi } from 'vitest';
 import useAuth from '../../contexts/Auth/useAuth';
 
 vi.mock('../../contexts/Auth/useAuth.js');
