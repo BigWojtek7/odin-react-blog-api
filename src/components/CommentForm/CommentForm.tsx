@@ -15,9 +15,12 @@ import { useReducer } from 'react';
 import formReducer from '../../reducers/formReducer';
 import useNotification from '../../contexts/Notification/useNotification';
 import useLoader from '../../contexts/Loader/useLoader';
+import { CreateResType } from '../../types/SharedInterfaces';
 
 function CommentsForm({ setComments }) {
-  const [createCommentRes, setCreteCommentRes] = useState({});
+  const [createCommentRes, setCreteCommentRes] = useState<CreateResType | null>(
+    null
+  );
   const { postid } = useParams();
   const { token } = useAuth();
   const { addNotification } = useNotification();

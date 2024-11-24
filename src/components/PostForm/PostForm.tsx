@@ -6,7 +6,6 @@ import { useState, useReducer } from 'react';
 import Input from '../form/Input/Input';
 import Textarea from '../form/Textarea/Textarea';
 import Button from '../form/Button/Button';
-
 import {
   initialPostFormState,
   postFormRules,
@@ -14,10 +13,13 @@ import {
 import formReducer from '../../reducers/formReducer';
 import useNotification from '../../contexts/Notification/useNotification';
 import useLoader from '../../contexts/Loader/useLoader';
+import { CreateResType } from '../../types/SharedInterfaces';
 
 function PostForm() {
   const navigate = useNavigate();
-  const [createPostRes, setCreatePostRes] = useState({});
+  const [createPostRes, setCreatePostRes] = useState<CreateResType | null>(
+    null
+  );
   const { token } = useAuth();
   const { addNotification } = useNotification();
 

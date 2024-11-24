@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useLoader from '../contexts/Loader/useLoader';
 import requestWithNativeFetch from '../utils/requestWithNativeFetch';
 
-const useFetch = (url, options) => {
+const useFetch = (url: string, options?: RequestInit) => {
   const [fetchData, setFetchData] = useState(null);
   const [error, setError] = useState(null);
 
