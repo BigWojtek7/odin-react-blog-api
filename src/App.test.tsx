@@ -13,6 +13,10 @@ import { render } from '@testing-library/react';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
+beforeEach(() => {
+  vi.unmock('../src/contexts/Auth/useAuth.ts');
+});
+
 describe('App', () => {
   it('renders whole app', () => {
     const { container } = render(

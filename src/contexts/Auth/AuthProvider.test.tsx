@@ -2,11 +2,17 @@ import { render, screen, act } from '@testing-library/react';
 import AuthProvider from './AuthProvider';
 import useAuth from './useAuth';
 
+beforeEach(() => {
+  vi.unmock('../Auth/useAuth');
+});
+
 vi.mock('../../utils/requestWithNativeFetch');
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useNavigate: vi.fn(),
 }));
+
+
 
 const mockLoader = { start: vi.fn(), stop: vi.fn() };
 vi.mock('../Loader/useLoader', () => ({

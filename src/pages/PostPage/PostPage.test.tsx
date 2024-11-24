@@ -8,6 +8,10 @@ import LoaderProvider from '../../contexts/Loader/LoaderProvider';
 import NotificationProvider from '../../contexts/Notification/NotificationProvider';
 import { useParams } from 'react-router-dom';
 
+beforeEach(() => {
+  vi.unmock('../../contexts/Auth/useAuth');
+});
+
 vi.mock('../../hooks/useFetch');
 vi.mock('react-router-dom', async (importOriginal) => {
   const actual = await importOriginal();
