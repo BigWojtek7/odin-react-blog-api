@@ -1,5 +1,11 @@
 import { createContext } from 'react';
 
-const ModalContext = createContext();
+interface ModalContextType {
+  modalData: any;
+  openModal: (message: string, onConfirm: any) => void;
+  closeModal: () => void;
+}
+
+const ModalContext = createContext<ModalContextType | null>(null);
 
 export default ModalContext;

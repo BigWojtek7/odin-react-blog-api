@@ -1,5 +1,13 @@
 import { createContext } from 'react';
 
-const AuthContext = createContext();
+interface AuthContextType {
+  token: string;
+  user: any;
+  loginAction: (data: any) => Promise<any>;
+  signUpAction: (data: any) => Promise<any>;
+  logOut: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export default AuthContext;

@@ -1,5 +1,9 @@
 import { createContext } from 'react';
 
-const NotificationContext = createContext();
+interface NotificationContextType {
+  addNotification: (message: any, type?: string) => void;
+}
+
+const NotificationContext = createContext<NotificationContextType | null>(null);
 
 export default NotificationContext;
