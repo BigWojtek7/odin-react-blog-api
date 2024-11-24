@@ -105,7 +105,6 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
-    // alert('You are signed out');
     addNotification('You have been logged out', 'success');
   };
   return (
