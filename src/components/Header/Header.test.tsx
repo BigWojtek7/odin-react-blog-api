@@ -1,29 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import Header from './Header';
-import { beforeEach, describe } from 'vitest';
+import { describe } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import useAuth from '../../contexts/Auth/useAuth';
-import checkPermissions from '../../utils/checkPermissions';
 import userEvent from '@testing-library/user-event';
 
-vi.mock('../../contexts/Auth/useAuth.js');
-vi.mock('../../utils/checkPermissions.js');
+import { mockedUseAuth, mockedCheckPermissions } from '../../../tests/setup';
 
 const logOut = vi.fn();
 
 describe('testing Header component', () => {
-  beforeEach(() => {
-    useAuth.mockReturnValue({
-      user: { username: 'wojtek', is_admin: false },
-      token: 'token',
-      logOut: logOut,
-    });
-    checkPermissions.mockReturnValue({ isAdmin: false });
+  mockedUseAuth.mockReturnValueOnce({
+    user: { username: 'wojtek', is_admin: false },
+    token: 'token',
+    logOut: logOut,
   });
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
+  // afterEach(() => {
+  //   vi.clearAllMocks();
+  // });
 
   it('renders Header component', () => {
     render(
@@ -39,7 +33,7 @@ describe('testing Header component', () => {
   });
 
   it('renders Header component without token', () => {
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValueOnce({
       user: { username: 'wojtek', is_admin: false },
       token: null,
       logOut: logOut,
@@ -59,12 +53,12 @@ describe('testing Header component', () => {
   });
 
   it('renders Header component with admin permission', () => {
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
       user: { username: 'wojtek', is_admin: true },
       token: 'token',
       logOut: vi.fn(),
     });
-    checkPermissions.mockReturnValue({ isAdmin: true });
+    mockedCheckPermissions.mockReturnValue({ isAdmin: true });
 
     render(
       <MemoryRouter>
@@ -78,7 +72,7 @@ describe('testing Header component', () => {
   });
 
   it('calls logout on log out button click', async () => {
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
       user: { username: 'wojtek', is_admin: true },
       token: 'token',
       logOut: logOut,

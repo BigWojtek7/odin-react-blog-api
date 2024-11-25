@@ -2,18 +2,12 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Comment from './Comment';
 import { MemoryRouter } from 'react-router-dom';
-import useAuth from '../../contexts/Auth/useAuth';
-import useModal from '../../contexts/Modal/useModal';
-import checkPermissions from '../../utils/checkPermissions';
-import useNotification from '../../contexts/Notification/useNotification';
 
-vi.mock('../../contexts/Auth/useAuth.js');
-vi.mock('../../contexts/Modal/useModal.js');
-vi.mock('../../utils/checkPermissions');
-vi.mock('../../contexts/Notification/useNotification.js');
-vi.mock('../../contexts/Loader/useLoader.js', () => ({
-  default: () => ({ start: vi.fn(), stop: vi.fn() }),
-}));
+import {
+  mockedUseAuth,
+  mockedUseModal,
+  mockedCheckPermissions,
+} from '../../../tests/setup';
 
 const mockSetComments = vi.fn();
 
@@ -27,13 +21,12 @@ describe('Comment component tests', () => {
   };
 
   beforeEach(() => {
-    useAuth.mockReturnValue({
-      user: { name: 'wojtek', is_admin: false },
+    mockedUseAuth.mockReturnValue({
+      user: { username: 'wojtek', is_admin: false },
       token: 'token',
+      logOut: vi.fn(),
     });
-    useModal.mockReturnValue({ openModal: vi.fn(), closeModal: vi.fn() });
-    checkPermissions.mockReturnValue({ isAdmin: false });
-    useNotification.mockReturnValue({ addNotification: vi.fn() });
+    mockedCheckPermissions.mockReturnValue({ isAdmin: false });
   });
 
   it('renders Comment component', () => {
@@ -50,11 +43,12 @@ describe('Comment component tests', () => {
   });
 
   it('renders Delete button for admin', () => {
-    useAuth.mockReturnValue({
-      user: { name: 'admin', is_admin: true },
+    mockedUseAuth.mockReturnValueOnce({
+      user: { username: 'admin', is_admin: true },
       token: 'token',
+      logOut: vi.fn(),
     });
-    checkPermissions.mockReturnValue({ isAdmin: true });
+    mockedCheckPermissions.mockReturnValueOnce({ isAdmin: true });
 
     render(
       <MemoryRouter>
@@ -70,8 +64,12 @@ describe('Comment component tests', () => {
     const mockOpenModal = vi.fn();
 
     const user = userEvent.setup();
-    useModal.mockReturnValue({ openModal: mockOpenModal, closeModal: vi.fn() });
-    checkPermissions.mockReturnValue({ isAdmin: true });
+    mockedUseModal.mockReturnValueOnce({
+      openModal: mockOpenModal,
+      closeModal: vi.fn(),
+      modalData: null,
+    });
+    mockedCheckPermissions.mockReturnValueOnce({ isAdmin: true });
 
     render(
       <MemoryRouter>

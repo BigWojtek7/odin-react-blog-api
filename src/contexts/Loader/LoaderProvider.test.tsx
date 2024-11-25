@@ -16,6 +16,9 @@ const MockComponent = () => {
 };
 
 describe('LoaderProvider', () => {
+  beforeAll(() => {
+    vi.unmock('../Loader/useLoader');
+  });
   it('sets initial values to false and empty text', () => {
     render(
       <LoaderProvider>

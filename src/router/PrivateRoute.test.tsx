@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-// import useAuth from '../contexts/Auth/useAuth';
 
+import { mockedUseAuth } from '../../tests/setup';
 // vi.mock('../contexts/Auth/useAuth.ts');
 
 // Mock komponentu Outlet
@@ -10,7 +10,10 @@ const MockOutlet = () => <div>Private Content</div>;
 
 describe('PrivateRoute', () => {
   it('renders Outlet when user is authenticated', () => {
-    global.mockedUseAuth.mockReturnValue({ token: 'fakeToken' });
+    mockedUseAuth.mockReturnValueOnce({
+      ...mockedUseAuth(),
+      token: 'fakeToken',
+    });
 
     render(
       <MemoryRouter initialEntries={['/private']}>
@@ -27,7 +30,7 @@ describe('PrivateRoute', () => {
   });
 
   it('redirects to home page when user is not authenticated', () => {
-    global.mockedUseAuth.mockReturnValue({ token: null });
+    mockedUseAuth.mockReturnValueOnce({ ...mockedUseAuth(), token: null });
 
     render(
       <MemoryRouter initialEntries={['/private']}>

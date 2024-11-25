@@ -12,7 +12,7 @@ const defaultUser: User = {
   is_editor: false,
 };
 
-const checkPermissions = (user: User = defaultUser): Permissions => {
+const checkPermissions = (user: Partial<User> = defaultUser): Permissions => {
   return {
     isAdmin: !!user?.is_admin,
     canCreatePost: !!user?.is_admin || !!user?.is_editor,

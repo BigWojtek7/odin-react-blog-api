@@ -1,6 +1,10 @@
 import checkPermissions from './checkPermissions';
 
 describe('checkPermissions', () => {
+  beforeEach(() => {
+    vi.unmock('../utils/checkPermissions');
+  });
+
   it('returns false for both isAdmin and canCreatePost when user is undefined', () => {
     const permissions = checkPermissions();
     expect(permissions.isAdmin).toBe(false);

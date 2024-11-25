@@ -4,7 +4,13 @@ import ModalProvider from './ModalProvider';
 import ModalContext from './ModalContext';
 import { useContext } from 'react';
 
-const MockComponent = ({ onConfirm }) => {
+import { MouseEventHandler } from 'react';
+
+const MockComponent = ({
+  onConfirm,
+}: {
+  onConfirm?: MouseEventHandler<HTMLButtonElement>;
+}) => {
   const { modalData, openModal, closeModal } = useContext(ModalContext);
 
   return (

@@ -3,8 +3,8 @@ import requestWithNativeFetch from './requestWithNativeFetch';
 global.fetch = vi.fn();
 
 describe('requestWithNativeFetch', () => {
-  afterEach(() => {
-    vi.clearAllMocks();
+  beforeEach(() => {
+    vi.unmock('./requestWithNativeFetch');
   });
 
   it('returns response data on successful request', async () => {

@@ -14,7 +14,8 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
 beforeEach(() => {
-  vi.unmock('../src/contexts/Auth/useAuth.ts');
+  vi.unmock('../src/contexts/Auth/useAuth');
+  vi.unmock('../src/hooks/useFetch');
 });
 
 describe('App', () => {

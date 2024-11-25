@@ -23,7 +23,7 @@ describe('NotificationProvider', () => {
       </NotificationProvider>
     );
 
-    // Have to change to fireEvent, because userEvent is not working well with fake timers.
+    // Change to fireEvent, because userEvent is not working well with fake timers.
     fireEvent.click(screen.getByText('Add Notification'));
     expect(screen.getByText('Test message')).toBeInTheDocument();
   }, 10000);
@@ -35,7 +35,7 @@ describe('NotificationProvider', () => {
       </NotificationProvider>
     );
 
-    // Have to change to fireEvent, because userEvent is not working well with fake timers.
+    // Change to fireEvent, because userEvent is not working well with fake timers.
     fireEvent.click(screen.getByText('Add Notification'));
     expect(screen.getByText('Test message')).toBeInTheDocument();
 

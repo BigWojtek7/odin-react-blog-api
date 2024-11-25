@@ -4,15 +4,15 @@ import useAuth from './useAuth';
 
 beforeEach(() => {
   vi.unmock('../Auth/useAuth');
+  vi.unmock('../Loader/useLoader');
+  vi.unmock('../../hooks/useFetch');
 });
 
-vi.mock('../../utils/requestWithNativeFetch');
+// vi.mock('../../utils/requestWithNativeFetch');
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useNavigate: vi.fn(),
 }));
-
-
 
 const mockLoader = { start: vi.fn(), stop: vi.fn() };
 vi.mock('../Loader/useLoader', () => ({
