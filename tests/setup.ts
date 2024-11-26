@@ -2,6 +2,10 @@ import { expect, afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import { vi } from 'vitest';
+import { useParams } from 'react-router-dom';
+
+import * as ReactRouterDom from 'react-router-dom';
+import { Mock } from 'vitest';
 
 expect.extend(matchers);
 
@@ -13,6 +17,8 @@ afterEach(() => {
 export const mockedUseAuth = vi.fn(() => ({
   user: { username: 'defaultUser', is_admin: false },
   token: 'defaultToken',
+  loginAction: vi.fn(),
+  signUpAction: vi.fn(),
   logOut: vi.fn(),
 }));
 
@@ -60,6 +66,18 @@ vi.mock('../src/hooks/useFetch', () => ({
   default: mockedUseFetch,
 }));
 
+// react-router-dom mock
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual: typeof ReactRouterDom = await importOriginal();
+  return {
+    ...actual,
+    useNavigate: vi.fn(),
+    useParams: vi.fn(),
+  };
+});
+
+export const mockedUseParams = useParams as Mock;
+
 // requestWithNativeFetch mock
 
 export const mockedRequestWithNativeFetch = vi.fn();
@@ -75,3 +93,4 @@ export const mockedCheckPermissions = vi.fn(() => ({ isAdmin: false }));
 vi.mock('../src/utils/checkPermissions', () => ({
   default: mockedCheckPermissions,
 }));
+
