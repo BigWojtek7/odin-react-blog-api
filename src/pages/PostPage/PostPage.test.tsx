@@ -1,26 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import PostPage from './PostPage';
 import useFetch from '../../hooks/useFetch';
+import { mockedUseFetch, mockedUseParams } from '../../../tests/setup';
 
-import AuthProvider from '../../contexts/Auth/AuthProvider';
-import LoaderProvider from '../../contexts/Loader/LoaderProvider';
-import NotificationProvider from '../../contexts/Notification/NotificationProvider';
-import { useParams } from 'react-router-dom';
 
-beforeEach(() => {
-  vi.unmock('../../contexts/Auth/useAuth');
-});
-
-vi.mock('../../hooks/useFetch');
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    useNavigate: vi.fn(),
-    useParams: vi.fn(),
-  };
-});
 
 describe('PostPage', () => {
   const mockPost = {
@@ -32,23 +16,17 @@ describe('PostPage', () => {
   };
 
   beforeEach(() => {
-    useFetch.mockReturnValue({
+    mockedUseFetch.mockReturnValue({
       fetchData: mockPost,
     });
-    useParams.mockReturnValue({ postid: '1' });
+    mockedUseParams.mockReturnValue({ postid: '1' });
   });
 
   it('renders the post and comments', () => {
     render(
-      <NotificationProvider>
-        <LoaderProvider>
-          <AuthProvider>
-            <MemoryRouter initialEntries={['/posts/1']}>
-              <PostPage />
-            </MemoryRouter>
-          </AuthProvider>
-        </LoaderProvider>
-      </NotificationProvider>
+      <MemoryRouter initialEntries={['/posts/1']}>
+        <PostPage />
+      </MemoryRouter>
     );
 
     expect(screen.getByText(mockPost.title)).toBeInTheDocument();
@@ -58,15 +36,9 @@ describe('PostPage', () => {
 
   it('calls useFetch with the correct URL', () => {
     render(
-      <NotificationProvider>
-        <LoaderProvider>
-          <AuthProvider>
-            <MemoryRouter initialEntries={['/posts/1']}>
-              <PostPage />
-            </MemoryRouter>
-          </AuthProvider>
-        </LoaderProvider>
-      </NotificationProvider>
+      <MemoryRouter initialEntries={['/posts/1']}>
+        <PostPage />
+      </MemoryRouter>
     );
 
     expect(useFetch).toHaveBeenCalledWith(

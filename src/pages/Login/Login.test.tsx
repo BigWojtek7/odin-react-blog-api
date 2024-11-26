@@ -1,13 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
-import useAuth from '../../contexts/Auth/useAuth';
-
-vi.mock('../../contexts/Auth/useAuth.js');
+import { mockedUseAuth } from '../../../tests/setup';
 
 describe('Login Component', () => {
   beforeEach(() => {
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       token: null,
       loginAction: vi.fn().mockResolvedValue({ msg: 'Login successful!' }),
     });
@@ -37,11 +36,11 @@ describe('Login Component', () => {
 
   it('calls loginAction on form submit with valid data', async () => {
     const mockLogin = vi.fn().mockResolvedValue({ msg: 'Login successful!' });
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       token: null,
       loginAction: mockLogin,
     });
-    const user = userEvent.setup();
 
     render(<Login />);
 
@@ -57,7 +56,8 @@ describe('Login Component', () => {
   });
 
   it('displays logged-in message when there is a token', () => {
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       token: 'sampleToken',
       loginAction: vi.fn(),
     });

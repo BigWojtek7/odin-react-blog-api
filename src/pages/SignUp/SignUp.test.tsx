@@ -1,18 +1,17 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SignUp from './SignUp';
-import useAuth from '../../contexts/Auth/useAuth';
+import { mockedUseAuth } from '../../../tests/setup';
 
-vi.mock('../../contexts/Auth/useAuth.js');
 
 describe('SignUp component', () => {
   const mockSignUpAction = vi.fn();
-  const mockSetFetchData = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
 
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       token: null,
       signUpAction: mockSignUpAction,
     });
@@ -83,7 +82,8 @@ describe('SignUp component', () => {
   });
 
   it('displays "You are logged in" when token is present', () => {
-    useAuth.mockReturnValue({
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       token: 'mockToken',
       signUpAction: mockSignUpAction,
     });
