@@ -1,30 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import CommentForm from './CommentForm';
-import useAuth from '../../contexts/Auth/useAuth';
-import useNotification from '../../contexts/Notification/useNotification';
-import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
-import { useParams } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-
-vi.mock('../../contexts/Auth/useAuth.js');
-vi.mock('../../contexts/Notification/useNotification.js');
-vi.mock('../../utils/requestWithNativeFetch');
-vi.mock('react-router-dom', () => ({
-  ...vi.importActual('react-router-dom'),
-  useParams: vi.fn(),
-}));
-vi.mock('../../contexts/Loader/useLoader.js', () => ({
-  default: () => ({ start: vi.fn(), stop: vi.fn() }),
-}));
+import {
+  mockedRequestWithNativeFetch,
+  mockedUseAuth,
+  mockedUseNotification,
+  mockedUseParams,
+} from '../../../tests/setup';
 
 describe('CommentForm component', () => {
   const mockSetComments = vi.fn();
   const mockAddNotification = vi.fn();
 
   beforeEach(() => {
-    useParams.mockReturnValue({ postid: '1' });
-    useAuth.mockReturnValue({ token: 'mockToken' });
-    useNotification.mockReturnValue({ addNotification: mockAddNotification });
+    mockedUseParams.mockReturnValue({ postid: '1' });
+    mockedUseAuth.mockReturnValue({ ...mockedUseAuth(), token: 'mockToken' });
+    mockedUseNotification.mockReturnValue({
+      addNotification: mockAddNotification,
+    });
   });
 
   afterEach(() => {
@@ -37,7 +30,7 @@ describe('CommentForm component', () => {
   });
 
   it('prompts login when user is unauthenticated', () => {
-    useAuth.mockReturnValue({ token: null });
+    mockedUseAuth.mockReturnValue({ ...mockedUseAuth(), token: null });
     render(<CommentForm setComments={mockSetComments} />);
     expect(
       screen.getByText('To add comment You must log in first!')
@@ -45,7 +38,7 @@ describe('CommentForm component', () => {
   });
 
   it('submits form and updates comments on success', async () => {
-    requestWithNativeFetch.mockResolvedValue({
+    mockedRequestWithNativeFetch.mockResolvedValue({
       success: true,
       data: {
         id: 1,

@@ -1,4 +1,4 @@
-const requestWithNativeFetch = async (url, options) => {
+const requestWithNativeFetch = async (url: string, options?: RequestInit) => {
   try {
     const response = await fetch(url, options);
 

@@ -22,6 +22,7 @@ describe('Comment component tests', () => {
 
   beforeEach(() => {
     mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       user: { username: 'wojtek', is_admin: false },
       token: 'token',
       logOut: vi.fn(),
@@ -44,6 +45,7 @@ describe('Comment component tests', () => {
 
   it('renders Delete button for admin', () => {
     mockedUseAuth.mockReturnValueOnce({
+      ...mockedUseAuth(),
       user: { username: 'admin', is_admin: true },
       token: 'token',
       logOut: vi.fn(),

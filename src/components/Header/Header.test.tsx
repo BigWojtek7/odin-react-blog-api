@@ -10,6 +10,7 @@ const logOut = vi.fn();
 
 describe('testing Header component', () => {
   mockedUseAuth.mockReturnValueOnce({
+    ...mockedUseAuth(),
     user: { username: 'wojtek', is_admin: false },
     token: 'token',
     logOut: logOut,
@@ -34,6 +35,7 @@ describe('testing Header component', () => {
 
   it('renders Header component without token', () => {
     mockedUseAuth.mockReturnValueOnce({
+      ...mockedUseAuth(),
       user: { username: 'wojtek', is_admin: false },
       token: null,
       logOut: logOut,
@@ -54,6 +56,7 @@ describe('testing Header component', () => {
 
   it('renders Header component with admin permission', () => {
     mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       user: { username: 'wojtek', is_admin: true },
       token: 'token',
       logOut: vi.fn(),
@@ -73,6 +76,7 @@ describe('testing Header component', () => {
 
   it('calls logout on log out button click', async () => {
     mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
       user: { username: 'wojtek', is_admin: true },
       token: 'token',
       logOut: logOut,

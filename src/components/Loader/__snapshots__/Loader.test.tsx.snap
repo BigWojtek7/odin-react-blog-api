@@ -1,3 +1,22 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`renders Loader component 1`] = `<div />`;
+exports[`Loader component tests > renders Loader component with default context 1`] = `
+<div>
+  <div
+    class="_overlay_bf668d"
+  >
+    <div
+      class="_loaderContainer_bf668d"
+    >
+      <span
+        class="_spinner_bf668d"
+      />
+      <span
+        class="_text_bf668d"
+      >
+        Loading...
+      </span>
+    </div>
+  </div>
+</div>
+`;

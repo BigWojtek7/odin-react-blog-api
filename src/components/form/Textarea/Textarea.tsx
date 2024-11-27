@@ -1,6 +1,14 @@
 import styles from './Textarea.module.css';
 
-function Textarea({ name, label, value, onChange, error }) {
+interface TextareaProps {
+  name: string;
+  label: string;
+  value: string | number;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  error?: string;
+}
+
+function Textarea({ name, label, value, onChange, error }: TextareaProps) {
   return (
     <div>
       <label htmlFor={name}>{label}</label>

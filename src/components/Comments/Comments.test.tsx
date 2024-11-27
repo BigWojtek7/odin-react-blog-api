@@ -1,20 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import Comments from './Comments';
-import useFetch from '../../hooks/useFetch';
-import useAuth from '../../contexts/Auth/useAuth';
-import useNotification from '../../contexts/Notification/useNotification';
-import useModal from '../../contexts/Modal/useModal';
 import { MemoryRouter } from 'react-router-dom';
-
-vi.mock('../../hooks/useFetch');
-vi.mock('../../contexts/Auth/useAuth.js');
-vi.mock('../../contexts/Notification/useNotification.js');
-vi.mock('../../contexts/Modal/useModal.js');
-vi.mock('../../contexts/Loader/useLoader.js', () => ({
-  default: () => ({ start: vi.fn(), stop: vi.fn() }),
-}));
+import { mockedUseFetch } from '../../../tests/setup';
 
 describe('Comments component', () => {
+  beforeAll(() => {
+    vi.unmock('react-router-dom');
+  });
   const commentsData = [
     {
       id: 1,
@@ -31,13 +23,10 @@ describe('Comments component', () => {
   ];
 
   beforeEach(() => {
-    useFetch.mockReturnValue({
+    mockedUseFetch.mockReturnValue({
       fetchData: commentsData,
       setFetchData: vi.fn(),
     });
-    useAuth.mockReturnValue({ token: 'token' });
-    useNotification.mockReturnValue({ addNotification: vi.fn() });
-    useModal.mockReturnValue({ openModal: vi.fn(), closeModal: vi.fn() });
   });
 
   it('renders Comments component and title', () => {
@@ -50,7 +39,7 @@ describe('Comments component', () => {
   });
 
   it('renders "No comments yet" when there are no comments', () => {
-    useFetch.mockReturnValue({ fetchData: [], setFetchData: vi.fn() });
+    mockedUseFetch.mockReturnValue({ fetchData: [], setFetchData: vi.fn() });
     render(
       <MemoryRouter>
         <Comments postid="1" />

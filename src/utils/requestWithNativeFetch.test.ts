@@ -1,6 +1,7 @@
 import requestWithNativeFetch from './requestWithNativeFetch';
 
-global.fetch = vi.fn();
+const mockedFetch = vi.fn();
+global.fetch = mockedFetch;
 
 describe('requestWithNativeFetch', () => {
   beforeEach(() => {
@@ -9,7 +10,7 @@ describe('requestWithNativeFetch', () => {
 
   it('returns response data on successful request', async () => {
     const mockData = { success: true, data: { key: 'value' } };
-    fetch.mockResolvedValueOnce({
+    mockedFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
     });
@@ -21,7 +22,7 @@ describe('requestWithNativeFetch', () => {
 
   it('returns error message and status on failed request', async () => {
     const mockErrorData = { msg: 'Invalid request' };
-    fetch.mockResolvedValueOnce({
+    mockedFetch.mockResolvedValueOnce({
       ok: false,
       status: 400,
       json: async () => mockErrorData,
@@ -36,7 +37,7 @@ describe('requestWithNativeFetch', () => {
   });
 
   it('returns default error message if response lacks error details', async () => {
-    fetch.mockResolvedValueOnce({
+    mockedFetch.mockResolvedValueOnce({
       ok: false,
       status: 404,
       json: async () => ({}),
@@ -52,7 +53,7 @@ describe('requestWithNativeFetch', () => {
 
   it('handles network error gracefully', async () => {
     const errorMessage = 'Failed to fetch';
-    fetch.mockRejectedValueOnce(new Error(errorMessage));
+    mockedFetch.mockRejectedValueOnce(new Error(errorMessage));
 
     const result = await requestWithNativeFetch('/test-url');
     expect(result).toEqual({

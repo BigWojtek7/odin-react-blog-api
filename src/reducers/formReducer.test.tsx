@@ -1,7 +1,10 @@
 import formReducer from './formReducer';
 import validateForm from '../utils/validateForm';
+import { Mock } from 'vitest';
 
 vi.mock('../utils/validateForm');
+
+const mockedValidateForm = validateForm as Mock;
 
 describe('formReducer', () => {
   const initialState = {
@@ -19,7 +22,7 @@ describe('formReducer', () => {
       field: 'field1',
       payload: 'value1',
     };
-    validateForm.mockReturnValue({
+    mockedValidateForm.mockReturnValue({
       ...initialState,
       field1: 'value1',
       isTouched: { ...initialState.isTouched, field1: true },
@@ -38,7 +41,7 @@ describe('formReducer', () => {
       ...initialState,
       isTouched: { field1: true, field2: true },
     };
-    validateForm.mockReturnValue(updatedState);
+    mockedValidateForm.mockReturnValue(updatedState);
 
     const result = formReducer(initialState, action, formRules);
 

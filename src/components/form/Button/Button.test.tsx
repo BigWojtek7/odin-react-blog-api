@@ -8,7 +8,7 @@ describe('Button', () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
 
-    render(<Button onClick={handleClick} />);
+    render(<Button onClick={handleClick}>Test</Button>);
     const button = screen.getByRole('button');
 
     await user.click(button);

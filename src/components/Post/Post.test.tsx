@@ -3,11 +3,7 @@ import Post from './Post';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import useAuth from '../../contexts/Auth/useAuth';
-import checkPermissions from '../../utils/checkPermissions';
-
-vi.mock('../../contexts/Auth/useAuth.js');
-vi.mock('../../utils/checkPermissions.js');
+import { mockedCheckPermissions, mockedUseAuth } from '../../../tests/setup';
 
 describe('Post component test', () => {
   const post = {
@@ -19,12 +15,15 @@ describe('Post component test', () => {
   };
 
   beforeEach(() => {
-    useAuth.mockReset();
+    mockedUseAuth.mockReset();
   });
 
   it('renders Post component in preview mode & user is no admin', () => {
-    useAuth.mockReturnValue({ user: { name: 'wojtek', is_admin: false } });
-    checkPermissions.mockReturnValue({ isAdmin: false });
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
+      user: { username: 'wojtek', is_admin: false },
+    });
+    mockedCheckPermissions.mockReturnValue({ isAdmin: false });
     render(
       <MemoryRouter>
         <Post post={post} isPreview={true} />
@@ -37,8 +36,8 @@ describe('Post component test', () => {
   });
 
   it('renders Post component in preview mode & user is admin', () => {
-    useAuth.mockReturnValue({ user: { name: 'wojtek', is_admin: true } });
-    checkPermissions.mockReturnValue({ isAdmin: true });
+    mockedUseAuth.mockReturnValue({...mockedUseAuth(), user: { username: 'wojtek', is_admin: true } });
+    mockedCheckPermissions.mockReturnValue({ isAdmin: true });
     render(
       <MemoryRouter>
         <Post post={post} isPreview={true} />
@@ -49,8 +48,11 @@ describe('Post component test', () => {
   });
 
   it('renders Post component without preview mode', () => {
-    useAuth.mockReturnValue({ user: { name: 'wojtek', is_admin: false } });
-    checkPermissions.mockReturnValue({ isAdmin: false });
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
+      user: { username: 'wojtek', is_admin: false },
+    });
+    mockedCheckPermissions.mockReturnValue({ isAdmin: false });
     render(
       <MemoryRouter>
         <Post post={post} isPreview={false} />

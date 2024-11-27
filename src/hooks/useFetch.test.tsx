@@ -1,17 +1,9 @@
 import { renderHook } from '@testing-library/react';
 import useFetch from './useFetch';
 import { waitFor } from '@testing-library/react';
-import { afterEach } from 'vitest';
 
 import { mockedRequestWithNativeFetch } from '../../tests/setup';
 
-vi.mock('../contexts/Loader/useLoader', () => ({
-  default: () => ({ start: vi.fn(), stop: vi.fn() }),
-}));
-
-afterEach(() => {
-  vi.clearAllMocks();
-});
 
 describe('useFetch', () => {
   beforeEach(() => {

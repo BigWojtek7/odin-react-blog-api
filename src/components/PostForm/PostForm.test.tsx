@@ -1,29 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import PostForm from './PostForm';
-import useAuth from '../../contexts/Auth/useAuth';
-import useNotification from '../../contexts/Notification/useNotification';
-import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import userEvent from '@testing-library/user-event';
-
-const mockNavigate = vi.fn();
-
-vi.mock('../../contexts/Auth/useAuth.js');
-vi.mock('../../contexts/Notification/useNotification.js');
-vi.mock('../../utils/requestWithNativeFetch');
-vi.mock('react-router-dom', () => ({
-  ...vi.importActual('react-router-dom'),
-  useNavigate: () => mockNavigate,
-}));
-vi.mock('../../contexts/Loader/useLoader.js', () => ({
-  default: () => ({ start: vi.fn(), stop: vi.fn() }),
-}));
+import {
+  mockedRequestWithNativeFetch,
+  mockedUseAuth,
+  mockedUseNotification,
+} from '../../../tests/setup';
 
 describe('PostForm component', () => {
   const mockAddNotification = vi.fn();
 
   beforeEach(() => {
-    useAuth.mockReturnValue({ token: 'mockToken' });
-    useNotification.mockReturnValue({ addNotification: mockAddNotification });
+    mockedUseAuth.mockReturnValue({ ...mockedUseAuth(), token: 'mockToken' });
+    mockedUseNotification.mockReturnValue({
+      addNotification: mockAddNotification,
+    });
   });
 
   afterEach(() => {
@@ -36,7 +27,7 @@ describe('PostForm component', () => {
   });
 
   it('submits form and updates post on success', async () => {
-    requestWithNativeFetch.mockResolvedValue({
+    mockedRequestWithNativeFetch.mockResolvedValue({
       success: true,
       msg: [{ msg: 'Post has been saved' }],
     });
