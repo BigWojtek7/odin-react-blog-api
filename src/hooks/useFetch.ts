@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import useLoader from '../contexts/Loader/useLoader';
 import requestWithNativeFetch from '../utils/requestWithNativeFetch';
 
-const useFetch = (url: string, options?: RequestInit) => {
-  const [fetchData, setFetchData] = useState(null);
+const useFetch = <T>(url: string, options?: RequestInit) => {
+  const [fetchData, setFetchData] = useState(<T | null>(null));
   const [error, setError] = useState(null);
 
   const { start: loaderStart, stop: loaderStop } = useLoader();

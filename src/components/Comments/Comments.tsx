@@ -3,25 +3,34 @@ import styles from './Comments.module.css';
 import Comment from '../Comment/Comment';
 import CommentsForm from '../CommentForm/CommentForm';
 
-function Comments({ postid }) {
+import { CommentType } from '../../types/SharedInterfaces';
+
+interface CommentsProps {
+  postid: number;
+}
+
+function Comments({ postid }: CommentsProps) {
   const {
     fetchData: comments,
     setFetchData: setComments,
     // error: commentError;
-  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`);
+  } = useFetch<CommentType[]>(
+    `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`
+  );
 
+  console.log(comments);
   return (
     <div className={styles.comments}>
       <h2 className={styles.title}>Comments</h2>
       <CommentsForm setComments={setComments} />
-      {comments?.length > 0 ? (
+      {comments && comments?.length > 0 ? (
         comments?.map((comment) => (
           <Comment
             key={comment.id}
             commentId={comment.id}
             author={comment.username}
             content={comment.content}
-            date={comment.date_format}
+            formattedDate={comment.date_format}
             setComments={setComments}
           />
         ))

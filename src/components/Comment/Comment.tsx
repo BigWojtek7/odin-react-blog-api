@@ -6,8 +6,24 @@ import checkPermissions from '../../utils/checkPermissions';
 import useNotification from '../../contexts/Notification/useNotification';
 import Button from '../form/Button/Button';
 import useLoader from '../../contexts/Loader/useLoader';
+import { Dispatch, SetStateAction } from 'react';
+import { CommentType } from '../../types/SharedInterfaces';
 
-function Comment({ commentId, author, content, date, setComments }) {
+interface CommentProps {
+  commentId: number;
+  author: string;
+  content: string;
+  formattedDate: string;
+  setComments: Dispatch<SetStateAction<CommentType[]>>;
+}
+
+function Comment({
+  commentId,
+  author,
+  content,
+  formattedDate,
+  setComments,
+}: CommentProps) {
   const { user, token } = useAuth();
   const { openModal, closeModal } = useModal();
 
@@ -16,9 +32,7 @@ function Comment({ commentId, author, content, date, setComments }) {
 
   const { start: loaderStart, stop: loaderStop } = useLoader();
 
-  const handleDeleteComment = (e) => {
-    e.preventDefault();
-
+  const handleDeleteComment = () => {
     openModal('Do you really want to delete this comment?', async () => {
       try {
         loaderStart();
@@ -34,13 +48,17 @@ function Comment({ commentId, author, content, date, setComments }) {
           options
         );
         if (deleteCommentData.success) {
-          setComments((prevComments) =>
+          setComments((prevComments: CommentType[]) =>
             prevComments.filter((comment) => comment.id !== commentId)
           );
           addNotification('The comment has been deleted', 'success');
         }
       } catch (err) {
         console.log(err);
+        addNotification(
+          'Failed to delete the comment. Please try again.',
+          'error'
+        );
       } finally {
         loaderStop();
         closeModal();
@@ -52,7 +70,7 @@ function Comment({ commentId, author, content, date, setComments }) {
     <>
       <div className={styles.comment}>
         <p className={styles.commentHeader}>
-          <span className={styles.username}>{author}</span> {date}
+          <span className={styles.username}>{author}</span> {formattedDate}
         </p>
         <p>{content}</p>
         {isAdmin && <Button onClick={handleDeleteComment}>Delete</Button>}

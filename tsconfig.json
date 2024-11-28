@@ -21,9 +21,9 @@
     
 
     /* Strict */
-    "strict": false, 
-    "noImplicitAny": false,
-    "strictNullChecks": false,
+    "strict": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
   },
   
   "include": ["src"],
