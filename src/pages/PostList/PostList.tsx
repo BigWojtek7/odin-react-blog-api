@@ -42,9 +42,7 @@ function PostLists() {
         );
         if (deletePostData.success) {
           setPosts((prevPosts) =>
-            prevPosts
-              ? prevPosts.filter((post) => post.id !== Number(postId))
-              : []
+            prevPosts.filter((post) => post.id !== Number(postId))
           );
           addNotification('The post has been deleted', 'success');
         }

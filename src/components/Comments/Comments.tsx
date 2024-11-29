@@ -22,7 +22,7 @@ function Comments({ postid }: CommentsProps) {
     <div className={styles.comments}>
       <h2 className={styles.title}>Comments</h2>
       <CommentsForm setComments={setComments} />
-      {comments && comments?.length > 0 ? (
+      {comments?.length > 0 ? (
         comments?.map((comment) => (
           <Comment
             key={comment.id}

@@ -16,7 +16,7 @@ function Post({ post, onDelete, isPreview }: PostProps) {
   const { user } = useAuth();
   const { isAdmin } = checkPermissions(user);
 
-  const previewContent = post?.content.substring(0, 100) + '...';
+  const previewContent = post?.content?.substring(0, 100) + '...';
   const renderButtons = () => (
     <div className={styles.buttons}>
       <Link to={`/posts/${post.id}`} className={styles.postLink}>

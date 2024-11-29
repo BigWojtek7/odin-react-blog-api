@@ -1,10 +1,6 @@
-interface CreateResMsg {
-  msg: string;
-}
-
-export interface CreateResType {
-  success: boolean;
-  msg: CreateResMsg[];
+export interface User {
+  is_admin: boolean;
+  username: string;
 }
 
 export interface PostType {
@@ -29,4 +25,13 @@ export interface CommentType {
 
 export interface ChildrenProps {
   children: React.ReactNode;
+}
+
+interface CreateResMsg {
+  msg: string;
+}
+
+export interface CreateResType {
+  success: boolean;
+  msg: CreateResMsg[];
 }

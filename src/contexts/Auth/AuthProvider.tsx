@@ -1,18 +1,12 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import requestWithNativeFetch from '../../utils/requestWithNativeFetch';
 import { useNavigate } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
 
 import AuthContext from './AuthContext';
 import useLoader from '../Loader/useLoader';
 import useNotification from '../Notification/useNotification';
 
-import { ChildrenProps } from '../../types/SharedInterfaces';
-
-interface User {
-  is_admin: boolean;
-  username: string;
-}
+import { ChildrenProps, User } from '../../types/SharedInterfaces';
 
 interface LoginData {
   username: string;
@@ -32,29 +26,34 @@ const AuthProvider = ({ children }: ChildrenProps) => {
 
   const navigate = useNavigate();
 
-  const options = useMemo(
-    () => ({
-      headers: {
-        Authorization: token || '',
-      },
-    }),
-    [token]
-  );
-
-  const {
-    fetchData: userData,
-    // error,
-    // loading,
-  } = useFetch<User>(
-    token ? `${import.meta.env.VITE_BACKEND_URL}/user` : null,
-    options
-  );
-
   useEffect(() => {
-    if (userData) {
-      setUser(userData);
+    if (token) {
+      const url = `${import.meta.env.VITE_BACKEND_URL}/user`;
+      const options = {
+        headers: {
+          Authorization: token || '',
+        },
+      };
+      let ignore = false;
+      const fetchForData = async () => {
+        try {
+          loaderStart();
+          const response = await requestWithNativeFetch(url, options);
+          if (!ignore) {
+            setUser(response);
+          }
+        } catch (err) {
+          console.log(err);
+        } finally {
+          loaderStop();
+        }
+      };
+      fetchForData();
+      return () => {
+        ignore = true;
+      };
     }
-  }, [userData]);
+  }, [loaderStart, loaderStop]);
 
   const loginAction = async (data: LoginData) => {
     try {
