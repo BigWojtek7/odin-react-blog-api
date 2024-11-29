@@ -65,10 +65,11 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
               user_id: createCommentData.data.user_id,
               post_id: createCommentData.data.post_id,
               content: createCommentData.data.content,
+              date: createCommentData.data.date,
               date_format: createCommentData.data.date_format,
               username: createCommentData.data.username,
             },
-            ...prevComments,
+            ...(prevComments ?? []),
           ]);
           dispatch({
             type: 'reset_input_value',
@@ -104,7 +105,7 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
               onChange={handleInputChange}
               error={formState.errors.content}
             />
-            <Button>Submit</Button>
+            <Button type="submit">Submit</Button>
           </form>
           {!createCommentRes?.success &&
             createCommentRes?.msg?.map((err, index) => (

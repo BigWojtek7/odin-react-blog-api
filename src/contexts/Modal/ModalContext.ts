@@ -1,7 +1,12 @@
-import { createContext } from 'react';
+import { createContext, MouseEventHandler } from 'react';
+
+interface ModalDataType {
+  message: string;
+  onConfirm: MouseEventHandler<HTMLButtonElement>;
+}
 
 interface ModalContextType {
-  modalData: any;
+  modalData: ModalDataType | null;
   openModal: (message: string, onConfirm: any) => void;
   closeModal: () => void;
 }
