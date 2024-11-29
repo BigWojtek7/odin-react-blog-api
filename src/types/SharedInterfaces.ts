@@ -7,6 +7,16 @@ export interface CreateResType {
   msg: CreateResMsg[];
 }
 
+export interface PostType {
+  content: string;
+  date: Date;
+  date_format: string;
+  id: number;
+  title: string;
+  user_id: number;
+  username: string;
+}
+
 export interface CommentType {
   content: string;
   date: Date;
@@ -15,4 +25,8 @@ export interface CommentType {
   post_id: number;
   user_id: number;
   username: string;
+}
+
+export interface ChildrenProps {
+  children: React.ReactNode;
 }

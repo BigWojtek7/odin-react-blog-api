@@ -9,20 +9,23 @@ function Modal() {
 
   if (!modalData) return null;
 
+  const modalRoot = document.getElementById('modal-root');
+
   return (
     <>
-      {createPortal(
-        <div className={styles.overlay}>
-          <div className={styles.content}>
-            <p>{modalData.message}</p>
-            <Button onClick={modalData.onConfirm}>Yes</Button>
-            <Button onClick={closeModal} style={{ marginLeft: '0.5em' }}>
-              No
-            </Button>
-          </div>
-        </div>,
-        document.getElementById('modal-root')
-      )}
+      {modalRoot &&
+        createPortal(
+          <div className={styles.overlay}>
+            <div className={styles.content}>
+              <p>{modalData.message}</p>
+              <Button onClick={modalData.onConfirm}>Yes</Button>
+              <Button onClick={closeModal} style={{ marginLeft: '0.5em' }}>
+                No
+              </Button>
+            </div>
+          </div>,
+          modalRoot
+        )}
     </>
   );
 }

@@ -9,6 +9,8 @@ import useNotification from '../../contexts/Notification/useNotification.js';
 import Post from '../../components/Post/Post.jsx';
 import useLoader from '../../contexts/Loader/useLoader.js';
 
+import { PostType } from '../../types/SharedInterfaces.js';
+
 function PostLists() {
   const { token } = useAuth();
 
@@ -21,18 +23,16 @@ function PostLists() {
     fetchData: posts,
     setFetchData: setPosts,
     // error,
-  } = useFetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
+  } = useFetch<PostType[]>(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
-  const handleDeletePost = (e) => {
-    e.preventDefault();
-    const postId = e.target.value;
+  const handleDeletePost = (postId: number) => {
     openModal('Do you really want to delete this post?', async () => {
       try {
         loaderStart();
         const options = {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            Authorization: token || '',
           },
           method: 'delete',
         };
@@ -42,7 +42,9 @@ function PostLists() {
         );
         if (deletePostData.success) {
           setPosts((prevPosts) =>
-            prevPosts.filter((post) => post.id !== Number(postId))
+            prevPosts
+              ? prevPosts.filter((post) => post.id !== Number(postId))
+              : []
           );
           addNotification('The post has been deleted', 'success');
         }
@@ -59,7 +61,7 @@ function PostLists() {
     <section className={`${styles.postList} ${containerStyles.container}`}>
       <h2 className={styles.title}>All blog posts:</h2>
       <div className={styles.posts}>
-        {posts?.length > 0 ? (
+        {posts && posts?.length > 0 ? (
           posts?.map((post) => (
             <Post
               post={post}

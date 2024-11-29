@@ -9,8 +9,17 @@ import Input from '../../components/form/Input/Input';
 import useAuth from '../../contexts/Auth/useAuth';
 import Button from '../../components/form/Button/Button';
 
+interface ErrorMessage {
+  msg: string;
+}
+
+interface FormResponse {
+  msg: ErrorMessage[];
+  success: boolean;
+}
+
 function SignUp() {
-  const [fetchData, setFetchData] = useState(null);
+  const [formErrors, setFormErrors] = useState<FormResponse | null>(null);
   const auth = useAuth();
 
   const [formState, dispatch] = useReducer(
@@ -18,7 +27,7 @@ function SignUp() {
     initialSignUpFormState
   );
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({ type: 'validate_all' });
 
@@ -29,11 +38,12 @@ function SignUp() {
         re_password: formState.re_password,
       };
       const signUpData = await auth.signUpAction(data);
-      setFetchData(signUpData);
+      console.log(signUpData);
+      if (signUpData && !signUpData.success) setFormErrors(signUpData);
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     dispatch({
       type: 'input_validate',
@@ -71,9 +81,9 @@ function SignUp() {
             error={formState.errors.re_password}
             autocomplete="new-password"
           />
-          <Button>Sign Up</Button>
-          {!fetchData?.success &&
-            fetchData?.msg.map((err, index) => <p key={index}>{err.msg}</p>)}
+          <Button type="submit">Sign Up</Button>
+          {!formErrors?.success &&
+            formErrors?.msg.map((err, index) => <p key={index}>{err.msg}</p>)}
         </form>
       ) : (
         <p>You are logged in</p>

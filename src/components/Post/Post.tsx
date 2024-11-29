@@ -4,7 +4,15 @@ import styles from './Post.module.css';
 import useAuth from '../../contexts/Auth/useAuth';
 import checkPermissions from '../../utils/checkPermissions';
 
-function Post({ post, onDelete = null, isPreview }) {
+import { PostType } from '../../types/SharedInterfaces';
+
+interface PostProps {
+  post: PostType;
+  onDelete?: (postId: number) => void;
+  isPreview: boolean;
+}
+
+function Post({ post, onDelete, isPreview }: PostProps) {
   const { user } = useAuth();
   const { isAdmin } = checkPermissions(user);
 
@@ -22,7 +30,7 @@ function Post({ post, onDelete = null, isPreview }) {
         </Button>
       </Link>
       {isAdmin && (
-        <Button value={post.id} onClick={onDelete}>
+        <Button value={post.id} onClick={() => onDelete?.(post.id)}>
           Delete
         </Button>
       )}

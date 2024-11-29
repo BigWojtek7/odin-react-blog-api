@@ -20,8 +20,7 @@ function Login() {
     initialLoginFormState
   );
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     dispatch({
       type: 'validate_all',
     });
@@ -35,7 +34,7 @@ function Login() {
     }
   };
 
-  const handleDemoLogin = async (role) => {
+  const handleDemoLogin = async (role: string) => {
     const demoCredentials =
       role === 'admin'
         ? { username: 'admin', password: 'admin' }
@@ -44,7 +43,7 @@ function Login() {
     await auth.loginAction(demoCredentials);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: 'input_validate',
       field: e.target.name,
@@ -73,7 +72,7 @@ function Login() {
               error={formState.errors.password}
               autocomplete="current-password"
             />
-            <Button>Log In</Button>
+            <Button type="submit">Log In</Button>
             {fetchData && <p>{fetchData.msg}</p>}{' '}
           </form>
 

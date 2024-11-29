@@ -32,7 +32,6 @@ const AuthProvider = ({ children }: ChildrenProps) => {
 
   const navigate = useNavigate();
 
-  console.log(user);
   const options = useMemo(
     () => ({
       headers: {

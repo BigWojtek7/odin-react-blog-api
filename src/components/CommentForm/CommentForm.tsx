@@ -17,7 +17,13 @@ import useNotification from '../../contexts/Notification/useNotification';
 import useLoader from '../../contexts/Loader/useLoader';
 import { CreateResType } from '../../types/SharedInterfaces';
 
-function CommentsForm({ setComments }) {
+import { CommentType } from '../../types/SharedInterfaces';
+
+interface CommentFormProps {
+  setComments: React.Dispatch<React.SetStateAction<CommentType[] | null>>;
+}
+
+function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
   const [createCommentRes, setCreteCommentRes] = useState<CreateResType | null>(
     null
   );
@@ -31,8 +37,7 @@ function CommentsForm({ setComments }) {
     initialCommentFormState
   );
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     dispatch({ type: 'validate_all' });
     if (formState.isValid) {
       try {
@@ -40,7 +45,7 @@ function CommentsForm({ setComments }) {
         const options = {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            Authorization: token || '',
           },
           body: JSON.stringify({
             content: formState.content,
@@ -79,7 +84,7 @@ function CommentsForm({ setComments }) {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({
       type: 'input_validate',
       field: e.target.name,

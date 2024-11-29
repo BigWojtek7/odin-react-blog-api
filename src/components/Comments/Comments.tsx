@@ -17,8 +17,7 @@ function Comments({ postid }: CommentsProps) {
   } = useFetch<CommentType[]>(
     `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}/comments`
   );
-
-  console.log(comments);
+  console.log(postid);
   return (
     <div className={styles.comments}>
       <h2 className={styles.title}>Comments</h2>

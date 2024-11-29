@@ -5,9 +5,11 @@ import useFetch from '../../hooks/useFetch';
 import Comments from '../../components/Comments/Comments';
 import containerStyles from '../../layouts/Container.module.css';
 
+import { PostType } from '../../types/SharedInterfaces';
+
 function PostPage() {
   const { postid } = useParams();
-  const { fetchData: post } = useFetch(
+  const { fetchData: post } = useFetch<PostType>(
     `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
   );
 
@@ -15,7 +17,7 @@ function PostPage() {
     <section className={containerStyles.container}>
       {post ? <Post post={post} isPreview={false} /> : <p>Loading post...</p>}
       <hr />
-      <Comments postid={postid} />
+      <Comments postid={Number(postid)} />
     </section>
   );
 }

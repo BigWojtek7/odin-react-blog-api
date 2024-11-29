@@ -39,7 +39,7 @@ function Comment({
         const options = {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            Authorization: token || '',
           },
           method: 'delete',
         };
@@ -48,7 +48,7 @@ function Comment({
           options
         );
         if (deleteCommentData.success) {
-          setComments((prevComments: CommentType[]) =>
+          setComments((prevComments) =>
             prevComments.filter((comment) => comment.id !== commentId)
           );
           addNotification('The comment has been deleted', 'success');

@@ -30,7 +30,7 @@ function PostForm() {
     initialPostFormState
   );
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({ type: 'validate_all' });
     if (formState.isValid) {
@@ -39,7 +39,7 @@ function PostForm() {
         const options = {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            Authorization: token || '',
           },
           body: JSON.stringify({
             title: formState.title,
@@ -64,14 +64,18 @@ function PostForm() {
     }
   };
 
-  const handleInputChange = (e) => {
-    e.preventDefault();
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     dispatch({
       type: 'input_validate',
       field: e.target.name,
       payload: e.target.value,
     });
   };
+
 
   return (
     <>
@@ -90,7 +94,7 @@ function PostForm() {
           onChange={handleInputChange}
           error={formState.errors.content}
         />
-        <Button>Submit</Button>
+        <Button type="submit">Submit</Button>
       </form>
       {!createPostRes?.success &&
         createPostRes?.msg?.map((err, index) => <p key={index}>{err.msg}</p>)}
