@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { ChildrenProps } from '../../types/SharedInterfaces';
+
 import LoaderContext from './LoaderContext';
 
-const LoaderProvider = ({ children }) => {
+const LoaderProvider = ({ children }: ChildrenProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loaderText, setLoaderText] = useState('');
-  const [loaderStack, setLoaderStack] = useState([]);
+  const [loaderStack, setLoaderStack] = useState<boolean[]>([]);
 
   const start = useCallback((loaderText = 'Loading...') => {
     setLoaderText(loaderText);

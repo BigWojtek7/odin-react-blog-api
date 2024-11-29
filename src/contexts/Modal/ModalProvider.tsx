@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import ModalContext from './ModalContext';
+import { ChildrenProps } from '../../types/SharedInterfaces';
 
-const ModalProvider = ({ children }) => {
-  const [modalData, setModalData] = useState(null);
+interface ModalDataType {
+  message: string;
+  onConfirm: MouseEventHandler<HTMLButtonElement>;
+}
 
-  const openModal = (message, onConfirm) => {
+const ModalProvider = ({ children }: ChildrenProps) => {
+  const [modalData, setModalData] = useState<ModalDataType | null>(null);
+
+  const openModal = (
+    message: string,
+    onConfirm: MouseEventHandler<HTMLButtonElement>
+  ) => {
     setModalData({ message, onConfirm });
   };
   const closeModal = () => {

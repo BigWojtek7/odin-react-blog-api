@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 interface AuthContextType {
-  token: string;
+  token: string | null;
   user: any;
   loginAction: (data: any) => Promise<any>;
   signUpAction: (data: any) => Promise<any>;

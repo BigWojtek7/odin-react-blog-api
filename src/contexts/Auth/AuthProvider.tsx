@@ -7,19 +7,36 @@ import AuthContext from './AuthContext';
 import useLoader from '../Loader/useLoader';
 import useNotification from '../Notification/useNotification';
 
-const AuthProvider = ({ children }) => {
+import { ChildrenProps } from '../../types/SharedInterfaces';
+
+interface User {
+  is_admin: boolean;
+  username: string;
+}
+
+interface LoginData {
+  username: string;
+  password: string;
+}
+
+interface SignUpData extends LoginData {
+  re_password: string;
+}
+
+const AuthProvider = ({ children }: ChildrenProps) => {
   const currentToken = localStorage.getItem('token');
   const [token, setToken] = useState(currentToken || null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const { start: loaderStart, stop: loaderStop } = useLoader();
   const { addNotification } = useNotification();
 
   const navigate = useNavigate();
 
+  console.log(user);
   const options = useMemo(
     () => ({
       headers: {
-        Authorization: token,
+        Authorization: token || '',
       },
     }),
     [token]
@@ -29,7 +46,7 @@ const AuthProvider = ({ children }) => {
     fetchData: userData,
     // error,
     // loading,
-  } = useFetch(
+  } = useFetch<User>(
     token ? `${import.meta.env.VITE_BACKEND_URL}/user` : null,
     options
   );
@@ -40,7 +57,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [userData]);
 
-  const loginAction = async (data) => {
+  const loginAction = async (data: LoginData) => {
     try {
       loaderStart();
       const options = {
@@ -71,7 +88,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUpAction = async (data) => {
+  const signUpAction = async (data: SignUpData) => {
     try {
       loaderStart();
       const options = {

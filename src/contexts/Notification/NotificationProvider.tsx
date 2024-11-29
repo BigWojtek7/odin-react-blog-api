@@ -2,10 +2,20 @@ import { useState } from 'react';
 import NotificationContext from './NotificationContext';
 import NotificationsList from '../../components/NotificationsList/NotificationsList';
 
-const NotificationProvider = ({ children }) => {
-  const [notifications, setNotifications] = useState([]);
+import { ChildrenProps } from '../../types/SharedInterfaces';
 
-  const addNotification = (message, type = 'info') => {
+interface NotificationsType {
+  id: number;
+  message: string;
+  type: 'success' | 'error';
+}
+
+const NotificationProvider = ({ children }: ChildrenProps) => {
+  const [notifications, setNotifications] = useState<NotificationsType[] | []>(
+    []
+  );
+
+  const addNotification = (message: string, type: 'success' | 'error') => {
     const id = new Date().getTime();
 
     setNotifications((prevNotifications) => [
@@ -18,9 +28,11 @@ const NotificationProvider = ({ children }) => {
     }, 5000);
   };
 
-  const removeNotification = (id) => {
+  const removeNotification = (id: number) => {
     setNotifications((prevNotifications) =>
-      prevNotifications.filter((notification) => notification.id !== id)
+      prevNotifications.filter(
+        (notification: NotificationsType) => notification.id !== id
+      )
     );
   };
 
