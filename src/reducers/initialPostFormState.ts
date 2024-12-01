@@ -1,4 +1,11 @@
-export const initialPostFormState = {
+import { FormRules, FormState } from './formReducer';
+
+export interface InitialPostFormType {
+  title: string;
+  content: string;
+}
+
+export const initialPostFormState: FormState<InitialPostFormType> = {
   title: '',
   content: '',
   errors: {
@@ -12,7 +19,7 @@ export const initialPostFormState = {
   isValid: false,
 };
 
-export const postFormRules = {
+export const postFormRules: FormRules<InitialPostFormType> = {
   title: { required: true },
   content: { required: true },
 };
