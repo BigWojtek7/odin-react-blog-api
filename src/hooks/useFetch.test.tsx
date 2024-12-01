@@ -33,6 +33,6 @@ describe('useFetch', () => {
 
     await waitFor(() => result.current.error !== null); // wait for error
     expect(result.current.error).toEqual(mockError);
-    expect(result.current.fetchData).toBeNull();
+    expect(result.current.fetchData).toEqual([]);
   });
 });

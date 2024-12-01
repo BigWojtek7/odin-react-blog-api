@@ -3,7 +3,7 @@ import useLoader from '../contexts/Loader/useLoader';
 import requestWithNativeFetch from '../utils/requestWithNativeFetch';
 
 const useFetch = <T>(url: string | null, options?: RequestInit) => {
-  const [fetchData, setFetchData] = useState(<T | []>[]);
+  const [fetchData, setFetchData] = useState<T | []>([]);
   const [error, setError] = useState(null);
 
   const { start: loaderStart, stop: loaderStop } = useLoader();
