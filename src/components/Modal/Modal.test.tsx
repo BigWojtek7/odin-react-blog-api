@@ -8,7 +8,7 @@ let mockCloseModal = vi.fn();
 
 vi.mock('react-dom', () => ({
   ...vi.importActual('react-dom'),
-  createPortal: (element) => element,
+  createPortal: (element: any) => element,
 }));
 
 // Mockowanie hooka useModal
@@ -22,6 +22,19 @@ vi.mock('../../contexts/Modal/useModal.js', () => {
       closeModal: mockCloseModal,
     }),
   };
+});
+
+beforeEach(() => {
+  const modalRoot = document.createElement('div');
+  modalRoot.setAttribute('id', 'modal-root');
+  document.body.appendChild(modalRoot);
+});
+
+afterEach(() => {
+  const modalRoot = document.getElementById('modal-root');
+  if (modalRoot) {
+    document.body.removeChild(modalRoot);
+  }
 });
 
 describe('Modal component', () => {

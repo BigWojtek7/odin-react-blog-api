@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-
-interface AuthContextType {
+import { User } from '../../types/SharedInterfaces';
+export interface AuthContextType {
   token: string | null;
-  user: any;
+  user: User | null;
   loginAction: (data: any) => Promise<any>;
   signUpAction: (data: any) => Promise<any>;
   logOut: () => void;

@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 interface NotificationContextType {
-  addNotification: (message: any, type?: string) => void;
+  addNotification: (message: string, type?: 'success' | 'error') => void;
 }
 
 const NotificationContext = createContext<NotificationContextType | null>(null);

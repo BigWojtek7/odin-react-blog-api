@@ -1,13 +1,18 @@
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import NotificationProvider from './NotificationProvider';
 import NotificationContext from './NotificationContext';
-import React from 'react';
+import { useContext } from 'react';
 
 const MockComponent = () => {
-  const { addNotification } = React.useContext(NotificationContext);
+  const notificationContext = useContext(NotificationContext);
+
+  if (!notificationContext) {
+    throw new Error('ModalContext is not available');
+  }
+  const { addNotification } = notificationContext;
 
   return (
-    <button onClick={() => addNotification('Test message', 'info')}>
+    <button onClick={() => addNotification('Test message', 'success')}>
       Add Notification
     </button>
   );

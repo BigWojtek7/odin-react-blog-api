@@ -12,11 +12,15 @@ function PostPage() {
   const { fetchData: post } = useFetch<PostType>(
     `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
   );
-  console.log(post)
+  console.log(post);
 
   return (
     <section className={containerStyles.container}>
-      {post ? <Post post={post} isPreview={false} /> : <p>Loading post...</p>}
+      {!Array.isArray(post) ? (
+        <Post post={post} isPreview={false} />
+      ) : (
+        <p>Loading post...</p>
+      )}
       <hr />
       <Comments postid={Number(postid)} />
     </section>

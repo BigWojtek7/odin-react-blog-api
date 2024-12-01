@@ -14,6 +14,7 @@ interface PostProps {
 
 function Post({ post, onDelete, isPreview }: PostProps) {
   const { user } = useAuth();
+  
   const { isAdmin } = checkPermissions(user);
 
   const previewContent = post?.content?.substring(0, 100) + '...';

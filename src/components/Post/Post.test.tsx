@@ -8,10 +8,12 @@ import { mockedCheckPermissions, mockedUseAuth } from '../../../tests/setup';
 describe('Post component test', () => {
   const post = {
     id: 1,
+    user_id: 22,
     username: 'user',
     title: 'Main title',
     content: 'Some example content',
     date_format: '13-10-2024 19:00',
+    date: new Date(),
   };
 
   beforeEach(() => {
@@ -36,7 +38,10 @@ describe('Post component test', () => {
   });
 
   it('renders Post component in preview mode & user is admin', () => {
-    mockedUseAuth.mockReturnValue({...mockedUseAuth(), user: { username: 'wojtek', is_admin: true } });
+    mockedUseAuth.mockReturnValue({
+      ...mockedUseAuth(),
+      user: { username: 'wojtek', is_admin: true },
+    });
     mockedCheckPermissions.mockReturnValue({ isAdmin: true });
     render(
       <MemoryRouter>

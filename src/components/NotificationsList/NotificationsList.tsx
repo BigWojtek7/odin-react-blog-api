@@ -1,6 +1,11 @@
 import styles from './NotificationsList.module.css';
+import { NotificationsType } from '../../contexts/Notification/NotificationProvider';
 
-function NotificationsList({ notifications }) {
+interface NotificationsListProps {
+  notifications: NotificationsType[] | [];
+}
+
+function NotificationsList({ notifications }: NotificationsListProps) {
   if (notifications.length === 0) {
     return null;
   }

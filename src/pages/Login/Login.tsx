@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useReducer } from 'react';
-import formReducer from '../../reducers/formReducer';
 import {
   initialLoginFormState,
+  InitialLoginFormType,
   loginFormRules,
 } from '../../reducers/initialLoginFormState';
 import Input from '../../components/form/Input/Input';
@@ -11,16 +11,25 @@ import Button from '../../components/form/Button/Button';
 import useAuth from '../../contexts/Auth/useAuth';
 
 import styles from './Login.module.css';
+import createFormReducer from '../../utils/createFormReducer';
+import handleInputChange from '../../utils/handleInputChange';
 
 function Login() {
-  const [fetchData, setFetchData] = useState(null);
+  const [fetchData, setFetchData] = useState<{
+    success: boolean;
+    msg: string;
+  } | null>(null);
   const auth = useAuth();
+
+  const loginFormReducer =
+    createFormReducer<InitialLoginFormType>(loginFormRules);
   const [formState, dispatch] = useReducer(
-    (state, action) => formReducer(state, action, loginFormRules),
+    loginFormReducer,
     initialLoginFormState
   );
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch({
       type: 'validate_all',
     });
@@ -43,12 +52,8 @@ function Login() {
     await auth.loginAction(demoCredentials);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: 'input_validate',
-      field: e.target.name,
-      payload: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange<InitialLoginFormType>(e, dispatch);
   };
 
   return (
@@ -60,7 +65,7 @@ function Login() {
               name="username"
               label="Username"
               value={formState.username}
-              onChange={handleInputChange}
+              onChange={handleChange}
               error={formState.errors.username}
             />
             <Input
@@ -68,12 +73,12 @@ function Login() {
               type="password"
               label="Password"
               value={formState.password}
-              onChange={handleInputChange}
+              onChange={handleChange}
               error={formState.errors.password}
               autocomplete="current-password"
             />
             <Button type="submit">Log In</Button>
-            {fetchData && <p>{fetchData.msg}</p>}{' '}
+            {fetchData && <p>{fetchData.msg}</p>}
           </form>
 
           <div className={styles.demoLogin}>

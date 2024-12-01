@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useReducer } from 'react';
-import formReducer from '../../reducers/formReducer';
 import {
   initialSignUpFormState,
+  InitialSignUpFormType,
   signUpFormRules,
 } from '../../reducers/initialSignUpFormState';
 import Input from '../../components/form/Input/Input';
 import useAuth from '../../contexts/Auth/useAuth';
 import Button from '../../components/form/Button/Button';
+import createFormReducer from '../../utils/createFormReducer';
+import handleInputChange from '../../utils/handleInputChange';
 
 interface ErrorMessage {
   msg: string;
@@ -22,8 +24,11 @@ function SignUp() {
   const [formErrors, setFormErrors] = useState<FormResponse | null>(null);
   const auth = useAuth();
 
+  const signUpFormReducer =
+    createFormReducer<InitialSignUpFormType>(signUpFormRules);
+
   const [formState, dispatch] = useReducer(
-    (state, action) => formReducer(state, action, signUpFormRules),
+    signUpFormReducer,
     initialSignUpFormState
   );
 
@@ -43,13 +48,8 @@ function SignUp() {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    dispatch({
-      type: 'input_validate',
-      field: e.target.name,
-      payload: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange<InitialSignUpFormType>(e, dispatch);
   };
 
   return (
@@ -60,7 +60,7 @@ function SignUp() {
             name="username"
             label="Username"
             value={formState.username}
-            onChange={handleInputChange}
+            onChange={handleChange}
             error={formState.errors.username}
           />
           <Input
@@ -68,7 +68,7 @@ function SignUp() {
             type="password"
             label="Password"
             value={formState.password}
-            onChange={handleInputChange}
+            onChange={handleChange}
             error={formState.errors.password}
             autocomplete="new-password"
           />
@@ -77,7 +77,7 @@ function SignUp() {
             type="password"
             label="Repeat Password"
             value={formState.re_password}
-            onChange={handleInputChange}
+            onChange={handleChange}
             error={formState.errors.re_password}
             autocomplete="new-password"
           />

@@ -40,9 +40,9 @@ function PostLists() {
           `${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`,
           options
         );
-        if (deletePostData.success) {
+        if (deletePostData.success && posts.length !== 0) {
           setPosts((prevPosts) =>
-            prevPosts.filter((post) => post.id !== Number(postId))
+            prevPosts.filter((post: PostType) => post.id !== Number(postId))
           );
           addNotification('The post has been deleted', 'success');
         }

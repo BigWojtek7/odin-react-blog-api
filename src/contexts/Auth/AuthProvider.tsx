@@ -53,7 +53,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
         ignore = true;
       };
     }
-  }, [loaderStart, loaderStop]);
+  }, [loaderStart, loaderStop, token]);
 
   const loginAction = async (data: LoginData) => {
     try {

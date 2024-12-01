@@ -16,6 +16,7 @@ describe('Comment component tests', () => {
     commentId: 1,
     author: 'Author',
     content: 'This is a comment',
+    formattedDate: '2024-10-29',
     date: '2024-10-29',
     setComments: mockSetComments,
   };

@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import * as ReactRouterDom from 'react-router-dom';
 import { Mock } from 'vitest';
 
+import { AuthContextType } from '../src/contexts/Auth/AuthContext';
+
 expect.extend(matchers);
 
 afterEach(() => {
@@ -14,7 +16,7 @@ afterEach(() => {
 });
 
 // useAuth mock
-export const mockedUseAuth = vi.fn(() => ({
+export const mockedUseAuth = vi.fn<[], AuthContextType>(() => ({
   user: { username: 'defaultUser', is_admin: false },
   token: 'defaultToken',
   loginAction: vi.fn(),
@@ -30,6 +32,8 @@ vi.mock('../src/contexts/Auth/useAuth', () => ({
 export const mockedUseLoader = vi.fn(() => ({
   start: vi.fn(),
   stop: vi.fn(),
+  isLoading: false,
+  loaderText: 'Loading data...',
 }));
 
 vi.mock('../src/contexts/Loader/useLoader', () => ({
@@ -37,7 +41,6 @@ vi.mock('../src/contexts/Loader/useLoader', () => ({
 }));
 
 // useModal mock
-
 export const mockedUseModal = vi.fn(() => ({
   openModal: vi.fn(),
   closeModal: vi.fn(),
@@ -93,4 +96,3 @@ export const mockedCheckPermissions = vi.fn(() => ({ isAdmin: false }));
 vi.mock('../src/utils/checkPermissions', () => ({
   default: mockedCheckPermissions,
 }));
-

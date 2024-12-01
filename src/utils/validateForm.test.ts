@@ -1,4 +1,11 @@
+import { FormState } from '../reducers/formReducer';
 import validateForm from './validateForm';
+
+interface TestFormType {
+  username: string;
+  password: string;
+  re_password: string;
+}
 
 describe('validateForm', () => {
   const rules = {
@@ -8,11 +15,13 @@ describe('validateForm', () => {
   };
 
   it('should return status as valid when all fields are valid', () => {
-    const state = {
+    const state: FormState<TestFormType> = {
       username: 'user123',
       password: 'password123',
       re_password: 'password123',
       isTouched: { username: true, password: true, re_password: true },
+      errors: { username: '', password: '', re_password: '' },
+      isValid: false,
     };
 
     const result = validateForm(state, rules);
@@ -22,11 +31,13 @@ describe('validateForm', () => {
   });
 
   it('should return an error when a required field is empty', () => {
-    const state = {
+    const state: FormState<TestFormType> = {
       username: '',
       password: 'password123',
       re_password: 'password123',
       isTouched: { username: true, password: true, re_password: true },
+      errors: { username: '', password: '', re_password: '' },
+      isValid: false,
     };
 
     const result = validateForm(state, rules);
@@ -36,11 +47,13 @@ describe('validateForm', () => {
   });
 
   it('should return an error if the field does not meet the minimum length', () => {
-    const state = {
+    const state: FormState<TestFormType> = {
       username: 'us',
       password: 'password123',
       re_password: 'password123',
       isTouched: { username: true, password: true, re_password: true },
+      errors: { username: '', password: '', re_password: '' },
+      isValid: false,
     };
 
     const result = validateForm(state, rules);
@@ -52,11 +65,13 @@ describe('validateForm', () => {
   });
 
   it('should return an error if the passwords do not match', () => {
-    const state = {
+    const state: FormState<TestFormType> = {
       username: 'user123',
       password: 'password123',
       re_password: 'wrongpassword',
       isTouched: { username: true, password: true, re_password: true },
+      errors: { username: '', password: '', re_password: '' },
+      isValid: false,
     };
 
     const result = validateForm(state, rules);
@@ -66,11 +81,13 @@ describe('validateForm', () => {
   });
 
   it('should be incorrect when fields have not been touched', () => {
-    const state = {
+    const state: FormState<TestFormType> = {
       username: 'user123',
       password: 'password123',
       re_password: 'password123',
       isTouched: { username: false, password: false, re_password: false },
+      errors: { username: '', password: '', re_password: '' },
+      isValid: false,
     };
 
     const result = validateForm(state, rules);

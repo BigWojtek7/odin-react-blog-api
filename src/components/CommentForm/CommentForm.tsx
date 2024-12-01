@@ -10,17 +10,19 @@ import Button from '../form/Button/Button';
 import {
   initialCommentFormState,
   commentFormRules,
+  InitialCommentFormType,
 } from '../../reducers/initialCommentFormState';
 import { useReducer } from 'react';
-import formReducer from '../../reducers/formReducer';
 import useNotification from '../../contexts/Notification/useNotification';
 import useLoader from '../../contexts/Loader/useLoader';
 import { CreateResType } from '../../types/SharedInterfaces';
 
 import { CommentType } from '../../types/SharedInterfaces';
+import createFormReducer from '../../utils/createFormReducer';
+import handleInputChange from '../../utils/handleInputChange';
 
 interface CommentFormProps {
-  setComments: React.Dispatch<React.SetStateAction<CommentType[] | null>>;
+  setComments: React.Dispatch<React.SetStateAction<CommentType[] | []>>;
 }
 
 function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
@@ -32,8 +34,11 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
   const { addNotification } = useNotification();
 
   const { start: loaderStart, stop: loaderStop } = useLoader();
+
+  const commentFormReducer =
+    createFormReducer<InitialCommentFormType>(commentFormRules);
   const [formState, dispatch] = useReducer(
-    (state, action) => formReducer(state, action, commentFormRules),
+    commentFormReducer,
     initialCommentFormState
   );
 
@@ -85,12 +90,8 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({
-      type: 'input_validate',
-      field: e.target.name,
-      payload: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleInputChange<InitialCommentFormType>(e, dispatch);
   };
 
   return (
@@ -102,7 +103,7 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
               name="content"
               label="Content"
               value={formState.content}
-              onChange={handleInputChange}
+              onChange={handleChange}
               error={formState.errors.content}
             />
             <Button type="submit">Submit</Button>

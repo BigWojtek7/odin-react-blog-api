@@ -8,12 +8,14 @@ import Textarea from '../form/Textarea/Textarea';
 import Button from '../form/Button/Button';
 import {
   initialPostFormState,
+  InitialPostFormType,
   postFormRules,
 } from '../../reducers/initialPostFormState';
-import formReducer from '../../reducers/formReducer';
 import useNotification from '../../contexts/Notification/useNotification';
 import useLoader from '../../contexts/Loader/useLoader';
 import { CreateResType } from '../../types/SharedInterfaces';
+import createFormReducer from '../../utils/createFormReducer';
+import handleInputChange from '../../utils/handleInputChange';
 
 function PostForm() {
   const navigate = useNavigate();
@@ -25,8 +27,10 @@ function PostForm() {
 
   const { start: loaderStart, stop: loaderStop } = useLoader();
 
+  const postFormReducer = createFormReducer<InitialPostFormType>(postFormRules);
+
   const [formState, dispatch] = useReducer(
-    (state, action) => formReducer(state, action, postFormRules),
+    postFormReducer,
     initialPostFormState
   );
 
@@ -64,18 +68,24 @@ function PostForm() {
     }
   };
 
-  const handleInputChange = (
+  const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    dispatch({
-      type: 'input_validate',
-      field: e.target.name,
-      payload: e.target.value,
-    });
+    handleInputChange<InitialPostFormType>(e, dispatch);
   };
-
+  // const handleInputChange = (
+  //   e:
+  //     | React.ChangeEvent<HTMLInputElement>
+  //     | React.ChangeEvent<HTMLTextAreaElement>
+  // ) => {
+  //   dispatch({
+  //     type: 'input_validate',
+  //     field: e.target.name,
+  //     payload: e.target.value,
+  //   });
+  // };
 
   return (
     <>
@@ -84,14 +94,14 @@ function PostForm() {
           name="title"
           label="Title"
           value={formState.title}
-          onChange={handleInputChange}
+          onChange={handleChange}
           error={formState.errors.title}
         />
         <Textarea
           name="content"
           label="Content"
           value={formState.content}
-          onChange={handleInputChange}
+          onChange={handleChange}
           error={formState.errors.content}
         />
         <Button type="submit">Submit</Button>

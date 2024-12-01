@@ -5,7 +5,7 @@ interface ModalDataType {
   onConfirm: MouseEventHandler<HTMLButtonElement>;
 }
 
-interface ModalContextType {
+export interface ModalContextType {
   modalData: ModalDataType | null;
   openModal: (message: string, onConfirm: any) => void;
   closeModal: () => void;

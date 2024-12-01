@@ -48,7 +48,7 @@ describe('NewPost component', () => {
   it('renders message when user is not logged in', () => {
     mockedUseAuth.mockReturnValue({
       ...mockedUseAuth(),
-      user: { username: null, is_admin: false },
+      user: { username: 'null', is_admin: false },
     });
     mockedCheckPermissions.mockReturnValue({ isAdmin: false });
 

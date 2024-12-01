@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import LoaderContext from '../../contexts/Loader/LoaderContext';
+import { useEffect, useState } from 'react';
 
 import styles from './Loader.module.css';
+import useLoader from '../../contexts/Loader/useLoader';
 
 function Loader() {
-  const { isLoading, loaderText } = useContext(LoaderContext);
+  const { isLoading, loaderText } = useLoader();
   const [isDelay, setIsDelay] = useState(false);
 
+  console.log(isLoading)
   useEffect(() => {
     if (isLoading) {
       const timeoutId = setTimeout(() => {

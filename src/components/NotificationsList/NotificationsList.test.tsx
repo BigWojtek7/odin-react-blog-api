@@ -1,14 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import NotificationsList from './NotificationsList';
 
-
 const notifications = [
   {
     id: 1,
     message: 'Info notification',
-    type: 'info',
+    type: 'success' as 'success',
   },
-  { id: 2, message: 'Error notification', type: 'error' },
+  { id: 2, message: 'Error notification', type: 'error' as 'error' },
 ];
 
 describe('Notifications component', () => {
@@ -22,7 +21,7 @@ describe('Notifications component', () => {
   it('renders notifications with correct types using data-testid', () => {
     render(<NotificationsList notifications={notifications} />);
 
-    expect(screen.getByTestId('notification-info')).toBeInTheDocument();
+    expect(screen.getByTestId('notification-success')).toBeInTheDocument();
     expect(screen.getByTestId('notification-error')).toBeInTheDocument();
   });
 

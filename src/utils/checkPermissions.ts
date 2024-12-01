@@ -1,21 +1,20 @@
-interface User {
-  is_admin: boolean;
-  is_editor: boolean;
-}
+import { User } from '../types/SharedInterfaces';
 interface Permissions {
   isAdmin: boolean;
-  canCreatePost: boolean;
+  // canCreatePost: boolean;
 }
 
 const defaultUser: User = {
   is_admin: false,
-  is_editor: false,
+  username: '',
 };
 
-const checkPermissions = (user: Partial<User> = defaultUser): Permissions => {
+const checkPermissions = (
+  user: Partial<User> | null = defaultUser
+): Permissions => {
   return {
     isAdmin: !!user?.is_admin,
-    canCreatePost: !!user?.is_admin || !!user?.is_editor,
+    // canCreatePost: !!user?.is_admin || !!user?.is_editor,
   };
 };
 

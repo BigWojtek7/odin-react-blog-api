@@ -32,7 +32,7 @@ describe('Comments component', () => {
   it('renders Comments component and title', () => {
     render(
       <MemoryRouter>
-        <Comments postid="1" />
+        <Comments postid={1} />
       </MemoryRouter>
     );
     expect(screen.getByText('Comments')).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('Comments component', () => {
     mockedUseFetch.mockReturnValue({ fetchData: [], setFetchData: vi.fn() });
     render(
       <MemoryRouter>
-        <Comments postid="1" />
+        <Comments postid={1} />
       </MemoryRouter>
     );
     expect(screen.getByText('No comments yet')).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe('Comments component', () => {
   it('renders list of comments when comments are present', () => {
     render(
       <MemoryRouter>
-        <Comments postid="1" />
+        <Comments postid={1} />
       </MemoryRouter>
     );
     commentsData.forEach((comment) => {
@@ -63,7 +63,7 @@ describe('Comments component', () => {
   it('renders CommentForm component', () => {
     render(
       <MemoryRouter>
-        <Comments postid="1" />
+        <Comments postid={1} />
       </MemoryRouter>
     );
     expect(screen.getByRole('form')).toBeInTheDocument();

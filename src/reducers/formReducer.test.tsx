@@ -1,4 +1,4 @@
-import formReducer from './formReducer';
+import formReducer, { FormAction, FormState } from './formReducer';
 import validateForm from '../utils/validateForm';
 import { Mock } from 'vitest';
 
@@ -6,18 +6,28 @@ vi.mock('../utils/validateForm');
 
 const mockedValidateForm = validateForm as Mock;
 
+export interface InitialFormType {
+  field1: string;
+  field2: string;
+}
+
 describe('formReducer', () => {
-  const initialState = {
+  const initialState: FormState<InitialFormType> = {
     field1: '',
     field2: '',
+    errors: {
+      field1: '',
+      field2: '',
+    },
     isTouched: { field1: false, field2: false },
+    isValid: false,
   };
   const formRules = {
     /* rules definition here */
   };
 
   it('should handle "input_validate" action', () => {
-    const action = {
+    const action: FormAction<InitialFormType> = {
       type: 'input_validate',
       field: 'field1',
       payload: 'value1',
@@ -36,7 +46,7 @@ describe('formReducer', () => {
   });
 
   it('should handle "validate_all" action', () => {
-    const action = { type: 'validate_all' };
+    const action: FormAction<InitialFormType> = { type: 'validate_all' };
     const updatedState = {
       ...initialState,
       isTouched: { field1: true, field2: true },
@@ -51,10 +61,13 @@ describe('formReducer', () => {
   });
 
   it('should handle "reset_input_value" action', () => {
-    const action = { type: 'reset_input_value', initialState };
+    const action: FormAction<InitialFormType> = {
+      type: 'reset_input_value',
+      initialState,
+    };
 
     const result = formReducer(
-      { field1: 'modified', field2: 'data' },
+      { ...initialState, field1: 'modified', field2: 'data' },
       action,
       formRules
     );
@@ -63,10 +76,11 @@ describe('formReducer', () => {
   });
 
   it('should throw error for unknown action type', () => {
-    const action = { type: 'unknown_action' };
+    // @ts-expect-error: This is an intentional test case for an invalid action type
+    const action: FormAction<InitialFormType> = { type: 'unknown_action' };
 
     expect(() => formReducer(initialState, action, formRules)).toThrow(
-      'Unknown action: unknown_action'
+      'Unknown action: {"type":"unknown_action"}'
     );
   });
 });

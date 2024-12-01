@@ -4,7 +4,7 @@ import NotificationsList from '../../components/NotificationsList/NotificationsL
 
 import { ChildrenProps } from '../../types/SharedInterfaces';
 
-interface NotificationsType {
+export interface NotificationsType {
   id: number;
   message: string;
   type: 'success' | 'error';

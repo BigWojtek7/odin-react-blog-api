@@ -11,7 +11,12 @@ const MockComponent = ({
 }: {
   onConfirm?: MouseEventHandler<HTMLButtonElement>;
 }) => {
-  const { modalData, openModal, closeModal } = useContext(ModalContext);
+  const modalContext = useContext(ModalContext);
+
+  if (!modalContext) {
+    throw new Error('ModalContext is not available');
+  }
+  const { modalData, openModal, closeModal } = modalContext;
 
   return (
     <div>
