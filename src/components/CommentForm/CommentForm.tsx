@@ -83,7 +83,12 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
           addNotification('the comment has been created', 'success');
         }
       } catch (err) {
-        console.log(err.name);
+        if (err instanceof Error) {
+          console.log(err.name);
+          console.log(err.message);
+        } else {
+          console.log('Unknown error', err);
+        }
       } finally {
         loaderStop();
       }

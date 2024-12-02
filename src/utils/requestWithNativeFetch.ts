@@ -17,7 +17,7 @@ const requestWithNativeFetch = async (url: string, options?: RequestInit) => {
     return {
       success: false,
       status: 500,
-      msg: err.message || 'network error',
+      msg: err instanceof Error ? err.message : 'network error',
     };
   }
 };

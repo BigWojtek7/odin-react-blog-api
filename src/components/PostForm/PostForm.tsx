@@ -61,7 +61,12 @@ function PostForm() {
           navigate('/');
         }
       } catch (err) {
-        console.log(err.name);
+        if (err instanceof Error) {
+          console.log(err.name);
+          console.log(err.message);
+        } else {
+          console.log('Nieznany błąd', err);
+        }
       } finally {
         loaderStop();
       }
@@ -75,17 +80,6 @@ function PostForm() {
   ) => {
     handleInputChange<InitialPostFormType>(e, dispatch);
   };
-  // const handleInputChange = (
-  //   e:
-  //     | React.ChangeEvent<HTMLInputElement>
-  //     | React.ChangeEvent<HTMLTextAreaElement>
-  // ) => {
-  //   dispatch({
-  //     type: 'input_validate',
-  //     field: e.target.name,
-  //     payload: e.target.value,
-  //   });
-  // };
 
   return (
     <>

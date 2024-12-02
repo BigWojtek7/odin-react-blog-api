@@ -4,7 +4,7 @@ import requestWithNativeFetch from '../utils/requestWithNativeFetch';
 
 const useFetch = <T>(url: string | null, options?: RequestInit) => {
   const [fetchData, setFetchData] = useState<T | []>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | unknown | null>(null);
 
   const { start: loaderStart, stop: loaderStop } = useLoader();
 
@@ -19,8 +19,14 @@ const useFetch = <T>(url: string | null, options?: RequestInit) => {
             setFetchData(response);
           }
         } catch (err) {
-          setError(err);
-          console.log(err);
+          if (err instanceof Error) {
+            console.log(err.name);
+            console.log(err.message);
+            setError(err);
+          } else {
+            console.log('Nieznany błąd', err);
+            setError(err);
+          }
         } finally {
           loaderStop();
         }
