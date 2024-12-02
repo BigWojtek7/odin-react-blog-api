@@ -3,7 +3,21 @@
 [![Live Preview](https://img.shields.io/badge/Live_Preview-Available-brightgreen)](https://my-blog-api.netlify.app/)  
 [![Backend Repository](https://img.shields.io/badge/Backend_Repo-Link-blue)](https://github.com/BigWojtek7/odin-express-blog-api)
 
-A blog application built as part of [The Odin Project](https://www.theodinproject.com/) curriculum. This web app allows users to view posts and, if logged in, comment on them. Admin users have additional permissions to add , delete posts and delete comments.
+# Blog Application  
+
+A blog application built as part of the [The Odin Project](https://www.theodinproject.com/) curriculum.  
+
+This web app allows users to:  
+- View posts  
+- Comment on posts (if logged in)  
+- **Admin users** have additional permissions to:  
+  - Add and delete posts  
+  - Delete comments  
+
+## Features  
+- **TypeScript**: The application is fully typed, ensuring safer and more maintainable code.  
+- **Testing**: Comprehensive tests written with Vitest and React Testing Library to guarantee reliability and functionality.  
+- **Modern Design**: Styled with CSS Modules for scoped, maintainable, and reusable styles.  
 
 ## 🚀 Features
 
