@@ -12,7 +12,6 @@ function PostPage() {
   const { fetchData: post } = useFetch<PostType>(
     `${import.meta.env.VITE_BACKEND_URL}/posts/${postid}`
   );
-  console.log(post);
 
   return (
     <section className={containerStyles.container}>

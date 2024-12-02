@@ -43,7 +43,6 @@ function SignUp() {
         re_password: formState.re_password,
       };
       const signUpData = await auth.signUpAction(data);
-      console.log(signUpData);
       if (signUpData && !signUpData.success) setFormErrors(signUpData);
     }
   };

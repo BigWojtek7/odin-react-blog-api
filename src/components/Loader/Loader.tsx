@@ -7,7 +7,6 @@ function Loader() {
   const { isLoading, loaderText } = useLoader();
   const [isDelay, setIsDelay] = useState(false);
 
-  console.log(isLoading)
   useEffect(() => {
     if (isLoading) {
       const timeoutId = setTimeout(() => {
