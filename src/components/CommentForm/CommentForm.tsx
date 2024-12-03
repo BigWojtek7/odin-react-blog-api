@@ -42,7 +42,8 @@ function CommentsForm({ setComments }: CommentFormProps): JSX.Element {
     initialCommentFormState
   );
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch({ type: 'validate_all' });
     if (formState.isValid) {
       try {
