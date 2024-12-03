@@ -13,12 +13,10 @@ import useAuth from '../../contexts/Auth/useAuth';
 import styles from './Login.module.css';
 import createFormReducer from '../../utils/createFormReducer';
 import handleInputChange from '../../utils/handleInputChange';
+import { LoginResponse } from '../../contexts/Auth/AuthContext';
 
 function Login() {
-  const [fetchData, setFetchData] = useState<{
-    success: boolean;
-    msg: string;
-  } | null>(null);
+  const [fetchData, setFetchData] = useState<LoginResponse | null>(null);
   const auth = useAuth();
 
   const loginFormReducer =

@@ -7,7 +7,10 @@ interface ModalDataType {
 
 export interface ModalContextType {
   modalData: ModalDataType | null;
-  openModal: (message: string, onConfirm: any) => void;
+  openModal: (
+    message: ModalDataType['message'],
+    onConfirm: ModalDataType['onConfirm']
+  ) => void;
   closeModal: () => void;
 }
 

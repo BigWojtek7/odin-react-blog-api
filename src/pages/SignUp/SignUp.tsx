@@ -11,17 +11,10 @@ import Button from '../../components/form/Button/Button';
 import createFormReducer from '../../utils/createFormReducer';
 import handleInputChange from '../../utils/handleInputChange';
 
-interface ErrorMessage {
-  msg: string;
-}
-
-interface FormResponse {
-  msg: ErrorMessage[];
-  success: boolean;
-}
+import { SignUpResponse } from '../../contexts/Auth/AuthContext';
 
 function SignUp() {
-  const [formErrors, setFormErrors] = useState<FormResponse | null>(null);
+  const [formErrors, setFormErrors] = useState<SignUpResponse | null>(null);
   const auth = useAuth();
 
   const signUpFormReducer =
@@ -43,7 +36,7 @@ function SignUp() {
         re_password: formState.re_password,
       };
       const signUpData = await auth.signUpAction(data);
-      if (signUpData && !signUpData.success) setFormErrors(signUpData);
+      if (!signUpData.success) setFormErrors(signUpData);
     }
   };
 

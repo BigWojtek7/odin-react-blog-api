@@ -29,9 +29,11 @@ const MockComponent = ({
       ) : (
         <p>No Modal</p>
       )}
-      <button onClick={() => openModal('Are you sure?', onConfirm)}>
-        Open Modal
-      </button>
+      {onConfirm && (
+        <button onClick={() => openModal('Are you sure?', onConfirm)}>
+          Open Modal
+        </button>
+      )}
     </div>
   );
 };

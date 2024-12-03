@@ -34,7 +34,7 @@ const MockComponent = () => {
         Log in
       </button>
       <button
-        onClick={() => signUpAction({ username: 'test', password: '123' })}
+        onClick={() => signUpAction({ username: 'test', password: '123', re_password: '123' })}
       >
         Sign up
       </button>
