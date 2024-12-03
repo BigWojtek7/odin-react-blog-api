@@ -1,5 +1,9 @@
 import { FormRules, FormState } from '../reducers/formReducer';
 
+// Using `any` here because the structure of the data is guaranteed by external validation,
+// and strict type checking is unnecessary in this context.
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const validateForm = <T extends Record<string, any>>(
   state: FormState<T>,
   rules: FormRules<T>
